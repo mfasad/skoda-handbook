@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Check Deadlock Шкода Октавия: Диагностика и устранение заклинивания — Skoda-Handbook</title>
+    <meta name="description" content="Полное руководство по диагностике и устранению ошибки Check Deadlock на Skoda Octavia. Причины, симптомы, методы сброса и замены замков.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/c/ch/check-deadlock-shkoda-oktaviya.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Check Deadlock Шкода Октавия: Диагностика и устранение заклинивания">
+    <meta property="og:description" content="Полное руководство по диагностике и устранению ошибки Check Deadlock на Skoda Octavia. Причины, симптомы, методы сброса и замены замков.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/octavia/">Octavia</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Check Deadlock Шкода Октавия: Диагностика и устранение заклинивания</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Check Deadlock Шкода Октавия: Диагностика и устранение заклинивания</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#суть-проблемы-и-работа-системы-блокировки">Суть проблемы и работа системы блокировки</a></li><li><a href="#основные-причины-появления-ошибки">Основные причины появления ошибки</a></li><li><a href="#диагностика-неисправности-своими-руками">Диагностика неисправности своими руками</a></li><li><a href="#пошаговая-инструкция-по-устранению">Пошаговая инструкция по устранению</a></li><li><a href="#замена-механизма-замка-и-программирование">Замена механизма замка и программирование</a></li><li><a href="#специфика-работы-с-задними-дверями">Специфика работы с задними дверями</a></li><li><a href="#профилактика-и-обслуживание-системы">Профилактика и обслуживание системы</a></li><li><a href="#таблица-кодов-ошибок-и-их-расшифровка">Таблица кодов ошибок и их расшифровка</a></li><li><a href="#критические-моменты-и-важные-замечания">Критические моменты и важные замечания</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Появление надписи <em>Check Deadlock</em> на приборной панели автомобиля <em>Skoda Octavia</em> — это сигнал, который игнорировать категорически нельзя. Данная ошибка указывает на неисправность в системе центрального замка или в механизме блокировки дверей, что может привести к невозможности открыть или закрыть автомобиль обычным способом. Владельцы часто сталкиваются с этой проблемой после зимы или при износе механических частей привода замка.</p>
+
+<p>Важно понимать, что система <strong>Deadlock</strong> (двойная блокировка) предназначена для повышения безопасности, блокируя тяги замков изнутри при двойном нажатии на кнопку брелока. Когда компьютер автомобиля фиксирует несоответствие между командой и фактическим положением механизма, он выводит предупреждение на дисплей. Игнорирование этой проблемы может закончиться тем, что двери окажутся заблокированными в закрытом состоянии, а ключ не сможет их открыть даже механически.</p>
+
+<h2 id="суть-проблемы-и-работа-системы-блокировки">Суть проблемы и работа системы блокировки</h2>
+
+<p>Система <strong>Deadlock</strong> в автомобилях <em>Skoda Octavia</em> (особенно поколений A5, A7 и A8) работает по принципу автоматической блокировки тяг замка при активации режима охраны. Электронный блок управления (BCM) отслеживает положение микровыключателей внутри механизма замка. Если после подачи команды на блокировку датчик не фиксирует изменение состояния в течение заданного времени, система выдает ошибку <code>Check Deadlock</code>.</p>
+
+<p>Часто проблема кроется не в электронике, а в механике. Загрязнение, отсутствие смазки или износ шестерен привода замка приводят к тому, что моторчик не может провернуть механизм до упора. В этом случае система считает, что дверь не заблокирована, и требует проверки. Особенно это актуально для задней двери, где механизм часто подвергается большим нагрузкам.</p>
+
+<p>Понимание принципа работы поможет вам правильно диагностировать неисправность. Вам нужно отличать ошибку, возникающую из-за разряженного аккумулятора, от поломки самого замка. Если ошибка появляется только при холодном двигателе, проблема может быть в густой смазке. Если же она постоянная — механизм, скорее всего, требует замены.</p>
+
+<h2 id="основные-причины-появления-ошибки">Основные причины появления ошибки</h2>
+
+<p>Первая и самая частая причина — это износ <strong>микропереключателей</strong> внутри блока замка. Со временем контакты окисляются или отламываются, и блок управления не получает сигнал о том, что дверь закрыта. Это приводит к постоянному сбросу попытки блокировки и появлению сообщения на панели приборов.</p>
+
+<p>Второй по распространенности фактор — это механическое заклинивание тяг. Внутри дверной карты множество пластиковых и металлических тяг, которые со временем могут разойтись, погнуться или застрять. Любое лишнее сопротивление двигателю привода замка воспринимается системой как неисправность.</p>
+
+<p>Не стоит исключать и проблемы с проводкой. В местах перегибов двери (гофре) провода могут переламываться. Это особенно характерно для передних дверей <em>Skoda Octavia</em>, где изгиб при открытии наиболее сильный. Разрыв цепи питания привода замка мгновенно вызовет ошибку <strong>Deadlock</strong>.</p>
+
+<h2 id="диагностика-неисправности-своими-руками">Диагностика неисправности своими руками</h2>
+
+<p>Начните диагностику с простого визуального осмотра. Откройте дверь и проверьте целостность резиновой гофры между кузовом и дверью. Если вы видите переломленные провода, проблема найдена. Если целостность нарушена, аккуратно заизолируйте провода или замените жгут.</p>
+
+<p>Если с проводкой все в порядке, необходимо проверить работу механизма вручную. Снимите обшивку двери и попробуйте вручную перевести замок в положение закрытия. Если ход тугой или требуется значительное усилие, механизм нуждается в чистке и смазке. Используйте специальные аэрозольные смазки, например, <code>WD-40 Specialist Silicone</code>.</p>
+
+<p>Для более точной диагностики потребуется диагностический сканер. Подключите устройство к разъему OBDII и считайте коды ошибок. В системе <em>Skoda</em> ошибка может кодироваться как <code>00930</code> (Central locking switch) или <code>00931</code> (Deadlock actuator). Эти коды укажут вам на конкретный блок, который вышел из строя.</p>
+
+<h2 id="пошаговая-инструкция-по-устранению">Пошаговая инструкция по устранению</h2>
+
+<p>Для устранения проблемы вам понадобится набор инструментов, включая Torx-биты и плоскую отвертку. Процесс начинается со снятия обшивки двери, чтобы получить доступ к механизму замка. Будьте осторожны, чтобы не повредить пластиковые клипсы при демонтаже.</p>
+
+<div class="checklist-block"><h4>☑️ Подготовка к ремонту</h4><label class="check-item"><input type="checkbox"><span>Снять обшивку двери</span></label><label class="check-item"><input type="checkbox"><span>Проверить целостность проводки в гофре</span></label><label class="check-item"><input type="checkbox"><span>Осмотреть механизм замка на предмет износа</span></label><label class="check-item"><input type="checkbox"><span>Протестировать работу привода без обшивки</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<p>После доступа к механизму проверьте работу мотора. Если при подаче напряжения он гудит, но не крутит, значит, проблема в редукторе. Если мотор молчит — проверьте подачу напряжения мультиметром. Иногда помогает простая смазка шестерен, но часто требуется полная замена блока.</p>
+
+<p>В некоторых случаях помогает программный сброс ошибки через диагностический сканер. Это временная мера, которая поможет вам доехать до сервиса, если проблема была вызвана временным сбоем электроники. Однако, если механика неисправна, ошибка вернется после первого цикла блокировки.</p>
+
+<h2 id="замена-механизма-замка-и-программирование">Замена механизма замка и программирование</h2>
+
+<p>Если диагностика показала, что механизм замка неисправен, его необходимо заменить. Для <em>Skoda Octavia</em> подходят оригинальные блоки или качественные аналоги. При выборе запчасти обращайте внимание на номер детали, так как он может отличаться в зависимости от года выпуска и комплектации.</p>
+
+<p>Процесс замены требует аккуратности. Отсоедините разъемы, открутите болты крепления и извлеките старый механизм. Установите новый блок, соблюдая порядок подключения тяг. Важно правильно натянуть пластиковые тяги, чтобы они не болтались и не мешали работе замка.</p>
+
+<p>После установки необходимо выполнить адаптацию. Для этого используйте диагностический сканер, способный работать с блоками <em>VAG</em>. Зайдите в блок <code>Central Electronics (09)</code> и выполните процедуру кодирования. Если этого не сделать, система может не распознавать новый замок.</p>
+
+<details class="faq-item"><summary>Нюансы программирования замка</summary><div class="faq-answer"><p>При замене замка на новый, иногда требуется перенести шестеренки и механизмы со старого замка, так как они могут иметь другой передаточный номер или быть изношены. Также важно проверить, не заблокирован ли ключ в замке, так как при неправильной сборке ключ может застрять.</p></div></details>
+
+<h2 id="специфика-работы-с-задними-дверями">Специфика работы с задними дверями</h2>
+
+<p>Задние двери <em>Skoda Octavia</em> имеют свои особенности. Механизм замка здесь расположен иначе, и доступ к нему немного сложнее. Часто проблема возникает из-за того, что замок заднего крыла (если это универсал) перекрывает доступ к тягам.</p>
+
+<p>Особое внимание уделите смазке. В зимний период смазка в задних замках часто замерзает, что приводит к ошибке. Используйте морозостойкие смазки, которые не густеют при температурах ниже -30 градусов.</p>
+
+<p>Проблема с задними дверями часто проявляется при попытке открыть багажник. Если ошибка <strong>Deadlock</strong> появляется только при закрытии багажника, проверьте механизм замка крышки багажника. Он имеет схожую конструкцию с дверными замками, но работает в более агрессивных условиях.</p>
+
+<div class="attention-box attention-info"><div><strong>📊 Какая у вас модель Skoda Octavia?</strong><ul><li>Octavia A5</li><li>Octavia A7</li><li>Octavia A8</li><li>Другая модель</li></ul></div></div>
+
+<h2 id="профилактика-и-обслуживание-системы">Профилактика и обслуживание системы</h2>
+
+<p>Регулярная профилактика поможет избежать появления ошибки <code>Check Deadlock</code>. Раз в год проводите чистку и смазку механизмов замков. Используйте специальные смазки, которые не смываются водой и не притягивают грязь.</p>
+
+<p>Обращайте внимание на работу брелока. Если кнопки нажимаются с трудом или сигнал передается нестабильно, замените батарейку. Слабый сигнал может привести к тому, что система не получит команду на блокировку и выдаст ошибку.</p>
+
+<p>Следите за состоянием резиновых уплотнителей. Если они повреждены, вода может попадать внутрь механизма замка, вызывая коррозию контактов. Своевременная замена уплотнителей продлит жизнь механизму замка.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед зимой обязательно обработайте все замки силиконовой смазкой. Это предотвратит замерзание механизма и появление ошибки Check Deadlock в морозную погоду.</p></div>
+
+<h2 id="таблица-кодов-ошибок-и-их-расшифровка">Таблица кодов ошибок и их расшифровка</h2>
+
+<p>Ниже приведена таблица основных кодов ошибок, связанных с системой блокировки дверей на <em>Skoda Octavia</em>. Эти данные помогут вам быстро определить источник проблемы.</p>
+
+<table>
+<thead>
+<tr>
+<th>Код ошибки</th>
+<th>Описание</th>
+<th>Вероятная причина</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00930</td>
+<td>Central locking switch</td>
+<td>Неисправность микропереключателя</td>
+</tr>
+<tr>
+<td>00931</td>
+<td>Deadlock actuator</td>
+<td>Заклинивание привода блокировки</td>
+</tr>
+<tr>
+<td>00932</td>
+<td>Left front door lock</td>
+<td>Проблема с замком водительской двери</td>
+</tr>
+<tr>
+<td>00933</td>
+<td>Right front door lock</td>
+<td>Проблема с замком передней пассажирской двери</td>
+</tr>
+<tr>
+<td>00934</td>
+<td>Left rear door lock</td>
+<td>Неисправность замка задней левой двери</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="критические-моменты-и-важные-замечания">Критические моменты и важные замечания</h2>
+
+<p>При работе с системой блокировки дверей необходимо соблюдать осторожность. Неправильная сборка может привести к тому, что дверь не закроется вообще или ключ застрянет в замке. Всегда проверяйте работу механизма перед установкой обшивки.</p>
+
+<p>Особое внимание уделите моменту, когда вы заменяете замок. Если вы не знаете, как правильно его снять, лучше обратитесь к профессионалам. Ошибка при демонтаже может привести к повреждению самой двери или механизмов стеклоподъемника.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Главная причина ошибки Check Deadlock — это механическое заклинивание привода замка или износ микропереключателей, а не программный сбой.</p></div>
+
+<blockquote>⚠️ Внимание: Никогда не пытайтесь открыть дверь силой, если ошибка Deadlock активна. Это может привести к поломке личинки замка или обрыву тросика внутреннего открывания.</blockquote>
+
+<blockquote>⚠️ Внимание: При замене замка убедитесь, что новый блок совместим с вашей комплектацией. Иначе система может не распознать его и отключить функции центрального замка.</blockquote>
+
+<blockquote>⚠️ Внимание: Если вы слышите щелчки в двери при блокировке, но дверь не закрывается, проблема может быть в тягах, а не в самом замке. Проверьте их целостность.</blockquote>
+
+<h2 id="faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</h2>
+
+<details>
+<summary>Почему появляется ошибка Check Deadlock после мойки?</summary>
+<p>Вода могла попасть внутрь механизма замка, вызвав короткое замыкание или коррозию контактов. Также вода могла вымыть смазку, что привело к заклиниванию механизма. Рекомендуется просушить замок и обработать его водоотталкивающей смазкой.</p>
+</details>
+
+<details>
+<summary>Можно ли ездить с ошибкой Check Deadlock?</summary>
+<p>Технически можно, но это небезопасно. Система блокировки может не сработать в нужный момент, оставив двери незакрытыми или, наоборот, заблокированными наглухо. Лучше устранить причину ошибки как можно скорее.</p>
+</details>
+
+<details>
+<summary>Сколько стоит замена замка на Skoda Octavia?</summary>
+<p>Стоимость зависит от модели и комплектации. Оригинал может стоить от 10 000 до 25 000 рублей, аналог — от 4 000 до 8 000 рублей. Работа по замене занимает около 1-2 часов и стоит дополнительно 3 000-5 000 рублей.</p>
+</details>
+
+<details>
+<summary>Поможет ли сброс ошибки через сканер?</summary>
+<p>Сброс ошибки через сканер — это временная мера. Если механическая неисправность не устранена, ошибка вернется после первого цикла блокировки. Сброс полезен только для диагностики или если проблема была вызвана временным сбоем электроники.</p>
+</details>
+
+<details>
+<summary>Что делать, если ключ застрял в замке?</summary>
+<p>Не пытайтесь выдернуть ключ силой. Попробуйте слегка покачать его, одновременно пытаясь открыть дверь. Если это не помогает, обратитесь к автоэлектрику или слесарю, который сможет аккуратно разобрать механизм замка без повреждения ключа.</p>
+</details>
+
+<mark>Критически важно: При замене замка всегда проверяйте работу механизма до установки обшивки, чтобы избежать повторного разбора двери.</mark></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#суть-проблемы-и-работа-системы-блокировки">Суть проблемы и работа системы блокировки</a></li><li><a href="#основные-причины-появления-ошибки">Основные причины появления ошибки</a></li><li><a href="#диагностика-неисправности-своими-руками">Диагностика неисправности своими руками</a></li><li><a href="#пошаговая-инструкция-по-устранению">Пошаговая инструкция по устранению</a></li><li><a href="#замена-механизма-замка-и-программирование">Замена механизма замка и программирование</a></li><li><a href="#специфика-работы-с-задними-дверями">Специфика работы с задними дверями</a></li><li><a href="#профилактика-и-обслуживание-системы">Профилактика и обслуживание системы</a></li><li><a href="#таблица-кодов-ошибок-и-их-расшифровка">Таблица кодов ошибок и их расшифровка</a></li><li><a href="#критические-моменты-и-важные-замечания">Критические моменты и важные замечания</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/s/sh/shkoda-oktaviya-znak.html" class="related-card">Шкода Октавия знак: расшифровка индикаторов и значение значков</a></li><li><a href="/articles/s/sh/shkoda-oktaviya-a5-zadnie-amortizatory.html" class="related-card">Задние амортизаторы Skoda Octavia A5: выбор, замена и диагностика</a></li><li><a href="/articles/r/re/resurs-dvigatelya-u-shkoda-oktaviya.html" class="related-card">Ресурс двигателя ŠKODA Octavia: реальные цифры и советы по продлению</a></li><li><a href="/articles/s/sh/shkoda-oktaviya-zamena-zamka-zazhiganiya.html" class="related-card">Замена замка зажигания ŠKODA Octavia: инструкция и советы</a></li><li><a href="/articles/z/za/zamena-stojki-stabilizatora-shkoda-oktaviya-a5.html" class="related-card">Замена стойки стабилизатора Skoda Octavia A5: инструкция и выбор</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/s/sh/shkoda-oktaviya-znak.html" class="related-bottom-card"><span class="related-bottom-title">Шкода Октавия знак: расшифровка индикаторов и значение значков</span><span class="related-bottom-desc">Полный гид по значкам на приборной панели Skoda Octavia. Узнайте, что означают желтые, красные и зел</span></a><a href="/articles/s/sh/shkoda-oktaviya-a5-zadnie-amortizatory.html" class="related-bottom-card"><span class="related-bottom-title">Задние амортизаторы Skoda Octavia A5: выбор, замена и диагностика</span><span class="related-bottom-desc">Полный гид по замене задних амортизаторов на Skoda Octavia A5. Обзор брендов, признаки износа, пошаг</span></a><a href="/articles/r/re/resurs-dvigatelya-u-shkoda-oktaviya.html" class="related-bottom-card"><span class="related-bottom-title">Ресурс двигателя ŠKODA Octavia: реальные цифры и советы по продлению</span><span class="related-bottom-desc">Узнайте фактический ресурс двигателей ŠKODA Octavia (1.6 MPI, 1.4 TSI, 2.0 TDI) и как продлить его д</span></a><a href="/articles/s/sh/shkoda-oktaviya-zamena-zamka-zazhiganiya.html" class="related-bottom-card"><span class="related-bottom-title">Замена замка зажигания ŠKODA Octavia: инструкция и советы</span><span class="related-bottom-desc">Пошаговая инструкция по замене замка зажигания на ŠKODA Octavia всех поколений. Причины поломок, выб</span></a><a href="/articles/z/za/zamena-stojki-stabilizatora-shkoda-oktaviya-a5.html" class="related-bottom-card"><span class="related-bottom-title">Замена стойки стабилизатора Skoda Octavia A5: инструкция и выбор</span><span class="related-bottom-desc">Полное руководство по замене сайлентблоков и стоек стабилизатора на Шкода Октавия А5. Диагностика, п</span></a><a href="/articles/s/sk/skoda-octavia-a7-2019.html" class="related-bottom-card"><span class="related-bottom-title">Skoda Octavia A7 2019: обзор, характеристики, плюсы и минусы</span><span class="related-bottom-desc">Подробный разбор Skoda Octavia A7 2019: технические параметры, комплектации, отзывы владельцев, слаб</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Шкода Октавия Stage 3: Полный гид по чип-тюнингу и настройке — Skoda-Handbook</title>
+    <meta name="description" content="Узнайте всё о переходе на Stage 3 для Skoda Octavia. Выбор турбины, прошивка, интеркулер и риски. Технический разбор для энтузиастов.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/s/sh/shkoda-oktaviya-stage-3.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Шкода Октавия Stage 3: Полный гид по чип-тюнингу и настройке">
+    <meta property="og:description" content="Узнайте всё о переходе на Stage 3 для Skoda Octavia. Выбор турбины, прошивка, интеркулер и риски. Технический разбор для энтузиастов.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/octavia/">Octavia</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Шкода Октавия Stage 3: Полный гид по чип-тюнингу и настройке</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Шкода Октавия Stage 3: Глубокий анализ перехода на экстремальный чип-тюнинг</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#философия-stage-3-и-отличия-от-предыдущих-этапов">Философия Stage 3 и отличия от предыдущих этапов</a></li><li><a href="#выбор-турбины-и-ключевые-компоненты">Выбор турбины и ключевые компоненты</a></li><li><a href="#система-охлаждения-и-термодинамика">Система охлаждения и термодинамика</a></li><li><a href="#программное-обеспечение-и-калибровка">Программное обеспечение и калибровка</a></li><li><a href="#усиление-трансмиссии-и-ходовой-части">Усиление трансмиссии и ходовой части</a></li><li><a href="#сравнительная-характеристика-модификаций">Сравнительная характеристика модификаций</a></li><li><a href="#риски-и-ответственность">Риски и ответственность</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Переход автомобиля марки <em>Skoda Octavia</em> на стадию <strong>Stage 3</strong> — это не просто обновление программного обеспечения, а фундаментальное изменение конструкции силовой установки. Владельцы часто начинают с мягкого Stage 1, но желание получить реальную прибавку в мощности требует замены физических компонентов. Именно на этом этапе автомобиль превращается из семейного седана в серьезный спортивный снаряд.</p>
+
+<p>Главная цель таких манипуляций — достижение показателей мощности, недоступных при штатной настройке. Вы должны понимать, что <strong>Stage 3</strong> подразумевает замену штатной турбокомпрессорной установки на более производительную, усиление системы охлаждения и доработку выхлопной системы. Без этих аппаратных изменений программное вмешательство не только бесполезно, но и губительно для двигателя.</p>
+
+<p>Многие автолюбители ошибочно полагают, что достаточно залить новую прошивку в блок управления <em>ECU</em>. На практике же переход на <strong>Stage 3</strong> требует комплексного подхода, включающего механическую доработку узлов и тщательную калибровку топливных карт. Только при соблюдении всех условий вы получите надежный автомобиль с заявленной мощностью.</p>
+
+<h2 id="философия-stage-3-и-отличия-от-предыдущих-этапов">Философия Stage 3 и отличия от предыдущих этапов</h2>
+
+<p>Чтобы понять суть <strong>Stage 3</strong>, необходимо четко разграничить этапы тюнинга. Если <em>Stage 1</em> — это исключительно программная настройка, а <em>Stage 2</em> добавляет "железо" в виде выхлопа и впуска, то третий этап меняет саму "сердце" автомобиля — турбину. Это критическая точка, где возможности стандартного мотора исчерпаны.</p>
+
+<p>Вам нужно осознавать, что стандартный <em>турбокомпрессор</em> не способен обеспечить необходимый поток воздуха для мощностей выше 300-350 лошадиных сил без риска разрушения. Задача <strong>Stage 3</strong> — установить турбину с большими крыльчатками и улучшенной аэродинамикой, способную выдавать повышенное давление наддува.</p>
+
+<p>Кроме замены турбины, обязательно требуется пересмотр системы интеркулинга. Штатный теплообменник просто не справится с отводом тепла при таких нагрузках, что приведет к перегреву и снижению мощности. <mark>Без установки переднего интеркулера с увеличенной площадью охлаждения переход на Stage 3 невозможен физически</mark>.</p>
+
+<ul>
+<li>🔧 Замена турбокомпрессора на модели с увеличенным диаметром крыльчатки (Hybrid или Big Single)</li>
+<li>🌡️ Установка переднего интеркулера (Front Mount Intercooler) для снижения температуры воздуха</li>
+<li>💨 Модернизация выхлопной системы: удаление катализатора или установка спортивного фильтра</li>
+</ul>
+
+<h2 id="выбор-турбины-и-ключевые-компоненты">Выбор турбины и ключевые компоненты</h2>
+
+<p>Центральным элементом сборки является правильный подбор <strong>турбины</strong>. Для двигателей <em>EA888 Gen 3</em>, которые часто устанавливаются на <em>Skoda Octavia</em>, существуют проверенные варианты. Вы можете выбрать гибридную турбину, где стандартный корпус сочетается с новыми крыльчатками, или полностью заменить узел на модель от более мощных версий.</p>
+
+<p>Важно учитывать, что переход на <strong>Stage 3</strong> часто требует установки турбины с электрическим блоком управления (E-Boost), если штатная гидравлика не позволяет достичь нужного давления. Это дает возможность точнее контролировать наддув через программное обеспечение.</p>
+
+<p>Не забывайте о <strong>топливной системе</strong>. Стандартные форсунки могут не справляться с подачей необходимого объема топлива при увеличенном давлении наддува. Необходимо проверить их пропускную способность и при необходимости заменить на более производительные, например, от моделей с мотором 2.0 TSI высокой мощности.</p>
+
+<ul>
+<li>⚙️ Гибридные турбины: оптимальный баланс между откликом и пиковой мощностью</li>
+<li>🔥 Полностью кастомные решения: максимальная производительность, но сложный отклик на низких оборотах</li>
+<li>⛽ Усиленные топливные форсунки и бензонасос высокой производительности (HPFP)</li>
+</ul>
+
+<div class="attention-box attention-info"><div><strong>📊 Какой тип турбины вы рассматриваете для Skoda Octavia?</strong><ul><li>Гибридная (Hybrid)</li><li>Полная замена (Big Single)</li><li>Оставлю штатную (не подходит для Stage 3)</li><li>Еще не решил</li></ul></div></div>
+
+<h2 id="система-охлаждения-и-термодинамика">Система охлаждения и термодинамика</h2>
+
+<p>При достижении мощностей в 350+ л.с. тепловыделение двигателя <em>Skoda Octavia</em> возрастает в разы. Обычные радиаторы охлаждения двигателя и трансмиссии работают на пределе, что чревато аварийными остановками. Вам необходимо установить дополнительные теплообменники.</p>
+
+<p>Особое внимание уделите системе охлаждения масла. Стандартный масляный радиатор часто не справляется, поэтому рекомендуется установка внешнего масляного радиатора с 10-12 секциями. Это критически важно для защиты двигателя от перегрева при длительной езде в режиме <strong>Sport</strong>.</p>
+
+<p>Также стоит рассмотреть модернизацию системы вентиляции картера. При высоком давлении наддува система вентиляции может не справляться с объемом газов, что приведет к выдавливанию сальников и прокладок. Установка улавливателя масла (Oil Catch Can) станет обязательным элементом.</p>
+
+<ul>
+<li>❄️ Передний интеркулер: обязательный элемент для снижения температуры всасываемого воздуха</li>
+<li>🛢️ Внешний масляный радиатор: защита двигателя от перегрева в агрессивном режиме</li>
+<li>🌬️ Улавливатель масла (Oil Catch Can): защита от загрязнения интеркулера и повышения давления в картере</li>
+</ul>
+
+<div class="checklist-block"><h4>☑️ Подготовка к установке Stage 3</h4><label class="check-item"><input type="checkbox"><span>Замена турбины</span></label><label class="check-item"><input type="checkbox"><span>Установка FMIC</span></label><label class="check-item"><input type="checkbox"><span>Доработка выхлопа</span></label><label class="check-item"><input type="checkbox"><span>Проверка форсунок</span></label><label class="check-item"><input type="checkbox"><span>Обновление ПО</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 5</div></div>
+
+<h2 id="программное-обеспечение-и-калибровка">Программное обеспечение и калибровка</h2>
+
+<p>После установки нового "железа" наступает этап настройки <strong>ECU</strong></strong>. Это самый сложный и ответственный момент. Неправильно написанная прошивка может мгновенно уничтожить новый турбокомпрессор или поршни. Вам нужен специалист, имеющий опыт работы именно с <em>Skoda</em> и группой <em>VAG</em>.</p>
+
+<p>Процесс калибровки включает в себя пересчет карт впрыска, угла опережения зажигания и давления наддува. Необходимо найти баланс между безопасностью и мощностью. Слишком богатая смесь снизит мощность, а слишком бедная приведет к детонации и прогару поршней.</p>
+
+<p>Часто используется метод "табличной" прошивки или динамическая настройка на стенде. Динамическая настройка позволяет подстраивать параметры под конкретные условия эксплуатации вашего автомобиля и качества топлива, что невозможно при использовании готовых файлов.</p>
+
+<details class="faq-item"><summary>Что такое детонация при Stage 3?</summary><div class="faq-answer"><p>Детонация — это взрывное сгорание топливной смеси, которое происходит раньше времени. При высоких давлениях наддува риск детонации возрастает многократно. Если датчик детонации не сработает вовремя, поршень может просто расплавиться или треснуть за несколько секунд.</p></div></details>
+
+<p>Важно отметить, что переход на <strong>Stage 3</strong> часто требует изменения прошивки и блока управления турбиной (TCU), если речь идет о коробке передач <em>DSG</em>. Необходимо перенастроить точки переключения передач и лимиты крутящего момента, чтобы трансмиссия не разрушилась под нагрузкой.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед прошивкой обязательно сохраните оригинальный дамп блока управления в надежном месте. Это ваш единственный шанс вернуть автомобиль к заводскому состоянию в случае критической ошибки.</p></div>
+
+<h2 id="усиление-трансмиссии-и-ходовой-части">Усиление трансмиссии и ходовой части</h2>
+
+<p>Мощность, передаваемая на колеса, должна быть адекватна возможностям трансмиссии. Стандартная коробка <em>DSG</em> (DQ200 или DQ381) может не выдержать крутящий момент, характерный для <strong>Stage 3</strong>. Владельцам <em>Skoda Octavia</em> с мощными моторами часто приходится ставить усиленные корзины сцепления или даже менять коробку на более мощную модель.</p>
+
+<p>Ходовая часть также требует внимания. Увеличенная мощность требует улучшенного сцепления с дорогой и лучшей управляемости. Штатные амортизаторы могут не справляться с весом и динамикой разгона. Рекомендуется установка спортивной подвески или койловеров.</p>
+
+<p>Тормозная система должна соответствовать новой скорости. Стандартные тормоза на <em>Octavia</em> могут перегреться при частых торможениях на высоких скоростях. Установка Brembo или аналогичных комплектов с увеличенными дисками и суппортами станет критически важной.</p>
+
+<ul>
+<li>⚙️ Усиленное сцепление: для сохранения ресурса трансмиссии при высоком крутящем моменте</li>
+<li>🛑 Спортивные тормоза: для безопасного замедления на высоких скоростях</li>
+<li>🏎️ Спортивная подвеска: улучшение управляемости и стабильности на поворотах</li>
+</ul>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Мощность двигателя без соответствующей подготовки трансмиссии и тормозов — это не скорость, а риск аварии.</p></div>
+
+<h2 id="сравнительная-характеристика-модификаций">Сравнительная характеристика модификаций</h2>
+
+<p>Для наглядности приведем таблицу, демонстрирующую разницу между стандартным состоянием и этапами тюнинга. Обратите внимание, как меняются не только показатели мощности, но и требования к обслуживанию.</p>
+
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Stock (Завод)</th>
+<th>Stage 1</th>
+<th>Stage 2</th>
+<th>Stage 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Мощность (л.с.)</td>
+<td>150-190</td>
+<td>220-250</td>
+<td>260-300</td>
+<td>350-400+</td>
+</tr>
+<tr>
+<td>Крутящий момент (Нм)</td>
+<td>250-320</td>
+<td>350-400</td>
+<td>400-450</td>
+<td>500-600+</td>
+</tr>
+<tr>
+<td>Турбина</td>
+<td>Штатная</td>
+<td>Штатная</td>
+<td>Штатная (улучшенная)</td>
+<td>Гибрид / Большая</td>
+</tr>
+<tr>
+<td>Интеркулер</td>
+<td>Штатный</td>
+<td>Штатный</td>
+<td>Улучшенный</td>
+<td>Front Mount (FMIC)</td>
+</tr>
+<tr>
+<td>Ресурс ДВС</td>
+<td>Высокий</td>
+<td>Средний</td>
+<td>Средний</td>
+<td>Сниженный (требует ухода)</td>
+</tr>
+</tbody>
+</table>
+
+<p>Как видно из данных, переход на <strong>Stage 3</strong> кардинально меняет эксплуатационные характеристики. Автомобиль становится более требовательным к качеству топлива и регулярности обслуживания. Вам придется чаще менять масло и следить за состоянием турбины.</p>
+
+<p>Стоимость такого тюнинга также значительно возрастает. Если Stage 1 стоит относительно дешево, то Stage 3 требует серьезных инвестиций в "железо". Однако результат того стоит, если вы действительно хотите получить автомобиль с характеристиками суперкара в кузове массового седана.</p>
+
+<h2 id="риски-и-ответственность">Риски и ответственность</h2>
+
+<p>Переход на <strong>Stage 3</strong> влечет за собой потерю заводской гарантии. Дилер сразу увидит вмешательство в программное обеспечение и конструкцию двигателя. Вам нужно быть готовым к тому, что все будущие ремонты будут осуществляться за ваш счет.</p>
+
+<p>Еще одним риском является надежность. Увеличение давления наддува и температуры создает экстремальные нагрузки на все узлы двигателя. Даже при качественной сборке вероятность поломки выше, чем у штатного автомобиля. Вам придется следить за состоянием машины внимательнее обычного.</p>
+
+<blockquote>⚠️ Внимание: Неправильная настройка угла опережения зажигания при Stage 3 может привести к мгновенному разрушению поршневой группы. Доверяйте прошивку только проверенным мастерам с опытом работы именно с вашими моделями.</blockquote>
+
+<p>Также стоит учитывать юридические аспекты. Изменение мощности двигателя и конструкции выхлопной системы может потребовать внесения изменений в документы транспортного средства. В некоторых странах это невозможно без прохождения сложной процедуры регистрации.</p>
+
+<blockquote>⚠️ Внимание: Удаление каталитического нейтрализатора (катализатора) может быть незаконным в вашей юрисдикции и привести к проблемам при прохождении техосмотра.</blockquote>
+
+<details class="faq-item"><summary>Как проверить качество прошивки?</summary><div class="faq-answer"><p>Обратите внимание на отклик на педаль газа, стабильность давления наддува и отсутствие ошибок по детонации. Если на стенде наблюдаются провалы давления или перегрев, прошивка требует доработки.</p></div></details>
+
+<h2 id="faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</h2>
+
+<details>
+<summary>Сколько реально можно получить лошадиных сил на Stage 3 для Octavia 2.0 TSI?</summary>
+<p>В зависимости от выбранной турбины и качества настройки, можно получить от 350 до 420 лошадиных сил. Некоторые кастомные решения позволяют достичь и 450 л.с., но это уже крайняя граница надежности для данного блока цилиндров.</p>
+</details>
+
+<details>
+<summary>Нужно ли менять поршни и шатуны для Stage 3?</summary>
+<p>Для достижения мощностей до 400 л.с. штатные кованые поршни (если они установлены) или усиленные литые могут выдержать. Однако для запаса прочности и повышения надежности при агрессивной езде рекомендуется установка кованых шатунов и поршней.</p>
+</details>
+
+<details>
+<summary>Какое топливо нужно для Stage 3?</summary>
+<p>Обязательно использование бензина с октановым числом не ниже 98 (АИ-100). На 95-м бензине прошивка будет вынуждена сильно обеднять смесь и снижать угол опережения, что убьет потенциал турбины и может привести к перегреву.</p>
+</details>
+
+<details>
+<summary>Влияет ли Stage 3 на расход топлива?</summary>
+<p>В спокойном режиме езды расход может даже снизиться благодаря эффективной работе турбины. Однако при агрессивной езде расход топлива резко возрастает, так как система впрыска работает на пределе возможностей для обеспечения сгорания смеси.</p>
+</details>
+
+<p>Подводя итог, можно сказать, что <strong>Stage 3</strong> для <em>Skoda Octavia</em> — это серьезный шаг для истинных энтузиастов. Это путь к экстремальной производительности, который требует глубоких знаний, финансовых вложений и готовности к ответственному обслуживанию. Если вы готовы к этому вызову, ваш автомобиль превратится в уникальную машину с характеристиками, недоступными заводским аналогам.</p></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#философия-stage-3-и-отличия-от-предыдущих-этапов">Философия Stage 3 и отличия от предыдущих этапов</a></li><li><a href="#выбор-турбины-и-ключевые-компоненты">Выбор турбины и ключевые компоненты</a></li><li><a href="#система-охлаждения-и-термодинамика">Система охлаждения и термодинамика</a></li><li><a href="#программное-обеспечение-и-калибровка">Программное обеспечение и калибровка</a></li><li><a href="#усиление-трансмиссии-и-ходовой-части">Усиление трансмиссии и ходовой части</a></li><li><a href="#сравнительная-характеристика-модификаций">Сравнительная характеристика модификаций</a></li><li><a href="#риски-и-ответственность">Риски и ответственность</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/z/za/za-chto-otvechaet-blok-komforta-shkoda-oktaviya-a5.html" class="related-card">Блок комфорта Шкода Октавия А5: функции, неисправности и ремонт</a></li><li><a href="/articles/s/sh/shkoda-oktaviya-yandeks-taksi.html" class="related-card">Шкода Октавия в Яндекс Такси: требования, плюсы и минусы (2026)</a></li><li><a href="/articles/s/sh/shkoda-oktaviya-a7-stseplenie.html" class="related-card">Сцепление Skoda Octavia A7: ресурс, неисправности, замена</a></li><li><a href="/articles/s/sh/shkoda-oktaviya-a7-s-kakogo-goda-vypuskayut.html" class="related-card">Шкода Октавия А7: год начала выпуска и особенности моделей</a></li><li><a href="/articles/f/fo/forsunki-shkoda-oktaviya-a5.html" class="related-card">Форсунки Шкода Октавия А5: диагностика, замена и коды ошибок</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/z/za/za-chto-otvechaet-blok-komforta-shkoda-oktaviya-a5.html" class="related-bottom-card"><span class="related-bottom-title">Блок комфорта Шкода Октавия А5: функции, неисправности и ремонт</span><span class="related-bottom-desc">Подробный разбор функций блока комфорта на Skoda Octavia A5. Диагностика ошибок, замена реле, восста</span></a><a href="/articles/s/sh/shkoda-oktaviya-yandeks-taksi.html" class="related-bottom-card"><span class="related-bottom-title">Шкода Октавия в Яндекс Такси: требования, плюсы и минусы (2026)</span><span class="related-bottom-desc">Можно ли работать на Skoda Octavia в Яндекс Такси? Требования сервиса, реальные отзывы водителей, ра</span></a><a href="/articles/s/sh/shkoda-oktaviya-a7-stseplenie.html" class="related-bottom-card"><span class="related-bottom-title">Сцепление Skoda Octavia A7: ресурс, неисправности, замена</span><span class="related-bottom-desc">Все о сцеплении Škoda Octavia A7: признаки износа, средний ресурс, цены на замену и советы по продле</span></a><a href="/articles/s/sh/shkoda-oktaviya-a7-s-kakogo-goda-vypuskayut.html" class="related-bottom-card"><span class="related-bottom-title">Шкода Октавия А7: год начала выпуска и особенности моделей</span><span class="related-bottom-desc">Узнайте, с какого года выпускают Шкода Октавия А7, когда был рестайлинг, какие двигатели доступны и </span></a><a href="/articles/f/fo/forsunki-shkoda-oktaviya-a5.html" class="related-bottom-card"><span class="related-bottom-title">Форсунки Шкода Октавия А5: диагностика, замена и коды ошибок</span><span class="related-bottom-desc">Полный гид по топливным форсункам на Skoda Octavia A5. Симптомы неисправностей, коды ошибок, цены ор</span></a><a href="/articles/s/sh/shkoda-rasshifrovka-vin.html" class="related-bottom-card"><span class="related-bottom-title">Расшифровка VIN-кода Skoda: полное руководство по проверке</span><span class="related-bottom-desc">Как самостоятельно прочитать VIN-код автомобилей Škoda. Подробная расшифровка символов, проверка ист</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

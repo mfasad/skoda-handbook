@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Ошибка 03803 Шкода Йети: причины, диагностика и устранение — Skoda-Handbook</title>
+    <meta name="description" content="Подробный разбор ошибки 03803 на Skoda Yeti. Причины сбоя датчика угла поворота руля, методы сброса и нюансы калибровки ESP. Инструкция для владельцев.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/0/03/03803-oshibka-shkoda-jeti.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Ошибка 03803 Шкода Йети: причины, диагностика и устранение">
+    <meta property="og:description" content="Подробный разбор ошибки 03803 на Skoda Yeti. Причины сбоя датчика угла поворота руля, методы сброса и нюансы калибровки ESP. Инструкция для владельцев.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/yeti/">Yeti</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Ошибка 03803 Шкода Йети: причины, диагностика и устранение</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Ошибка 03803 Шкода Йети: диагностика и ремонт системы ESP</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#суть-проблемы-и-работа-датчика-g85">Суть проблемы и работа датчика G85</a></li><li><a href="#основные-причины-возникновения-сбоя">Основные причины возникновения сбоя</a></li><li><a href="#диагностика-и-чтение-параметров">Диагностика и чтение параметров</a></li><li><a href="#процедура-адаптации-и-сброса-ошибки">Процедура адаптации и сброса ошибки</a></li><li><a href="#замена-датчика-угла-поворота">Замена датчика угла поворота</a></li><li><a href="#профилактика-и-особенности-эксплуатации">Профилактика и особенности эксплуатации</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Многие владельцы кроссовера <em>Skoda Yeti</em> сталкиваются с внезапным появлением на приборной панели желтого индикатора системы стабилизации и ошибкой <strong>03803</strong> в сканере. Этот код указывает на неисправность в цепи датчика угла поворота рулевого колеса, что критически влияет на работу систем безопасности автомобиля. Без корректной работы этого узла блоки ABS и ESP не могут адекватно реагировать на маневры, что создает серьезную угрозу при движении.</p>
+
+<p>Игнорирование данной проблемы может привести к полной блокировке систем курсовой устойчивости и антиблокировки тормозов. В некоторых случаях ошибка сопровождается загоранием индикатора <strong>ESP</strong> и <strong>ABS</strong>, а также появлением предупреждения о неисправности системы рулевого управления. Чтобы избежать дорогостоящего ремонта и обеспечить безопасность, необходимо оперативно провести диагностику и устранить корень проблемы.</p>
+
+<h2 id="суть-проблемы-и-работа-датчика-g85">Суть проблемы и работа датчика G85</h2>
+
+<p>Код ошибки <strong>03803</strong> в технической документации <em>Skoda</em> расшифровывается как «Неисправность датчика угла поворота рулевого колеса: сигнал слишком низкий» или «Нет сигнала». Этот компонент, известный как <strong>G85</strong>, является главным источником данных для электронного блока управления <strong>ESP</strong>. Он постоянно передает информацию о том, на какой угол и в какую сторону повернут руль водителем.</p>
+
+<p>Блок управления сравнивает эти данные с показаниями датчиков скорости вращения колес и акселерометров. Если расхождение слишком велико или сигнал от G85 отсутствует, система фиксирует сбой. В результате <em>Skoda Yeti</em> отключает вспомогательные системы, оставляя водителя с только механическим управлением, что особенно опасно на скользком покрытии или при резком маневре.</p>
+
+<p>Особенностью этой неисправности является то, что датчик часто выходит из строя не из-за физического повреждения, а из-за сбоя в калибровке или потери «нулевой позиции». После проведения любых работ с рулевой рейкой или развал-схождением, система требует обязательной <strong>адаптации</strong>, иначе ошибка 03803 появится снова.</p>
+
+<h2 id="основные-причины-возникновения-сбоя">Основные причины возникновения сбоя</h2>
+
+<p>Причин появления кода <strong>03803</strong> может быть несколько, и они варьируются от программных сбоев до механических поломок. Чаще всего проблема кроется в окислении контактов разъема датчика G85, который расположен внутри рулевой колонки. Влага или вибрация могут нарушить контакт, что приведет к прерыванию сигнала.</p>
+
+<p>Другой распространенной причиной является выход из строя самого датчика угла поворота. Со временем шестерни внутри механизма могут износиться, либо электронная часть датчика перестает корректно считывать положение руля. В таких случаях простой сброс ошибки не поможет, потребуется замена узла.</p>
+
+<ul>
+<li>💡 Окисление контактов в разъеме датчика G85 из-за попадания влаги.</li>
+<li>⚙️ Физический износ механической части датчика угла поворота руля.</li>
+<li>🔌 Обрыв проводки в жгуте, идущем к блоку управления рулевой колонкой.</li>
+<li>🔄 Сбой программного обеспечения блока управления ESP после скачка напряжения.</li>
+</ul>
+
+<blockquote>
+<p>⚠️ Внимание: Если ошибка появляется сразу после замены аккумулятора или скачка напряжения в бортовой сети, проблема может быть исключительно программной. В этом случае достаточно провести процедуру базовых настроек без замены деталей.</p>
+</blockquote>
+
+<h2 id="диагностика-и-чтение-параметров">Диагностика и чтение параметров</h2>
+
+<p>Для точной установки диагноза необходимо использовать профессиональный диагностический сканер, поддерживающий протоколы <strong>VAG</strong> (VW/Audi/Škoda). Обычные дешевые адаптеры могут не считать код <strong>03803</strong> или не предоставить доступ к блоку <strong>ABS</strong> (обычно адрес 03). Подключив оборудование, первым делом следует проверить не только наличие кода, но и текущие значения параметров датчика.</p>
+
+<p>В диагностическом меню нужно перейти в блок измерения <code>03 - ABS Brakes</code> и выбрать функцию <code>08 - Read Measuring Block</code>. Найдите канал, отображающий угол поворота рулевого колеса. При прямом положении руля значение должно быть в пределах ±5 градусов. Если показывает скачки или фиксированное большое число — датчик неисправен.</p>
+
+<p>Также стоит проверить напряжение питания на разъеме датчика. Отсутствие напряжения или его нестабильность укажут на проблему в проводке или предохранителе. Обратите внимание на предохранитель, отвечающий за систему ESP, он часто расположен в блоке предохранителей со стороны водителя.</p>
+
+<div class="attention-box attention-info"><div><strong>📊 Какой у вас пробег при появлении ошибки?</strong><ul><li>Менее 100 000 км</li><li>100 000 - 200 000 км</li><li>Более 200 000 км</li><li>Ошибка появилась после ремонта</li></ul></div></div>
+
+<h2 id="процедура-адаптации-и-сброса-ошибки">Процедура адаптации и сброса ошибки</h2>
+
+<p>Если физическая проверка показала, что датчик и проводка исправны, необходимо выполнить процедуру адаптации (калибровки) датчика угла поворота. Это обязательный этап после снятия руля, замены рейки или сброса ошибок. Без этой процедуры система будет считать, что руль находится в неопределенном положении.</p>
+
+<p>Процесс адаптации выполняется через диагностический интерфейс. В блоке <code>03 - ABS Brakes</code> выберите функцию <code>10 - Adaptation</code> или <code>04 - Basic Settings</code>. Введите канал, соответствующий настройке датчика (часто это канал <code>060</code> или <code>066</code> в зависимости от версии ПО). После начала процесса руль должен быть строго прямолинейно.</p>
+
+<ul>
+<li>🛠️ Подключите сканер и зайдите в блок управления <code>03 - ABS Brakes</code>.</li>
+<li>📐 Убедитесь, что автомобиль стоит на ровной поверхности, а руль выровнен по центру.</li>
+<li>🔁 Запустите процедуру базовых настроек и дождитесь статуса <code>OK</code> или <code>Done</code>.</li>
+<li>🔴 Поверните руль влево и вправо до упора, затем верните в центр для завершения калибровки.</li>
+</ul>
+
+<div class="checklist-block"><h4>☑️ Подготовка к калибровке</h4><label class="check-item"><input type="checkbox"><span>Убедиться в исправности датчика</span></label><label class="check-item"><input type="checkbox"><span>Выровнять руль по центру</span></label><label class="check-item"><input type="checkbox"><span>Запустить процедуру в сканере</span></label><label class="check-item"><input type="checkbox"><span>Проверить результат на отсутствие ошибок</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<p>Важно понимать, что если при выполнении базовых настроек система выдает ошибку «Недостаточное сопротивление» или «Датчик не обнаружен», значит, проблема аппаратная. В этом случае попытка программной калибровки не принесет результата.</p>
+
+<details class="faq-item"><summary>Что делать, если адаптация не проходит?</summary><div class="faq-answer"><p>Если адаптация завершается ошибкой, проверьте разъемы датчика G85. Иногда помогает снятие клеммы аккумулятора на 10-15 минут для полного обесточивания блока ABS перед повторной попыткой.</p></div></details>
+
+<h2 id="замена-датчика-угла-поворота">Замена датчика угла поворота</h2>
+
+<p>В случае подтверждения неисправности самого датчика <strong>G85</strong>, потребуется его замена. На моделях <em>Skoda Yeti</em> этот датчик часто является частью подушки безопасности руля или интегрирован в контактный барабан. Это усложняет процесс ремонта, так как требует демонтажа руля и соблюдения мер предосторожности с системой SRS.</p>
+
+<p>Перед началом работ обязательно отключите минусовую клемму аккумулятора и подождите минимум 10 минут, чтобы разрядились конденсаторы в блоке подушек безопасности. Несоблюдение этого правила может привести к случайному срабатыванию подушки и травмам.</p>
+
+<p>После установки нового датчика процедура адаптации становится обязательной. Новый датчик не знает, где находится «ноль», и без настройки система ESP будет работать некорректно. Убедитесь, что вы приобрели оригинальный запчасть или качественный аналог, так как дешевые копии часто имеют погрешность в показаниях.</p>
+
+<table>
+<thead>
+<tr>
+<th>Компонент</th>
+<th>Признак неисправности</th>
+<th>Способ устранения</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Датчик G85</td>
+<td>Ошибка 03803, нет сигнала</td>
+<td>Замена узла и адаптация</td>
+</tr>
+<tr>
+<td>Разъем G85</td>
+<td>Окисление, плохой контакт</td>
+<td>Чистка контактов или замена разъема</td>
+</tr>
+<tr>
+<td>Проводка</td>
+<td>Обрыв цепи, короткое замыкание</td>
+<td>Ремонт жгута или замена проводки</td>
+</tr>
+<tr>
+<td>Блок ABS</td>
+<td>Сбой ПО, повреждение платы</td>
+<td>Прошивка или замена блока</td>
+</tr>
+</tbody>
+</table>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>При замене датчика G85 пометьте положение руля мелом или маркером перед снятием, чтобы при сборке выровнять его максимально точно в центр. Это упростит последующую калибровку.</p></div>
+
+<h2 id="профилактика-и-особенности-эксплуатации">Профилактика и особенности эксплуатации</h2>
+
+<p>Чтобы минимизировать риск появления ошибки <strong>03803</strong>, рекомендуется регулярно проверять состояние контактов в разъемах рулевой колонки, особенно если автомобиль эксплуатируется в условиях повышенной влажности. Периодическая чистка контактов и обработка их специальным спреем предотвратит окисление.</p>
+
+<p>Также важно следить за целостностью жгута проводки в области рулевой колонки. Вибрация при движении может привести к перетиранию изоляции и замыканию. Если вы заметили, что ошибка появляется после прохождения неровностей дороги, стоит уделить внимание механической защите проводов.</p>
+
+<p>Не пытайтесь самостоятельно разбирать датчик угла поворота. Внутри него находятся прецизионные элементы, которые при нарушении целостности корпуса теряют точность. Любое вмешательство в конструкцию датчика сделает его непригодным для дальнейшей эксплуатации.</p>
+
+<blockquote>
+<p>⚠️ Внимание: После проведения любых работ, связанных с отключением аккумулятора, обязательно проверьте работу системы ESP. Ошибка 03803 может проявиться не сразу, а через несколько километров пробега.</p>
+</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Регулярная проверка контактов и своевременная адаптация датчика после вмешательств в рулевое управление — залог отсутствия ошибок 03803.</p></div>
+
+<h2 id="faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</h2>
+
+<details>
+<summary>Можно ли ездить с ошибкой 03803 на Skoda Yeti?</summary>
+<p>Технически автомобиль поедет, но системы ABS и ESP будут отключены. В экстренной ситуации тормозной путь увеличится, а устойчивость при маневрах снизится. Ездить с такой неисправностью не рекомендуется, особенно в зимний период.</p>
+</details>
+
+<details>
+<summary>Поможет ли сброс ошибки без калибровки?</summary>
+<p>Нет. Если датчик исправен, но не откалиброван, ошибка 03803 вернется сразу после первого запуска двигателя или начала движения. Калибровка обязательна.</p>
+</details>
+
+<details>
+<summary>Сколько стоит датчик угла поворота G85?</summary>
+<p>Цена варьируется от 3000 до 10000 рублей в зависимости от производителя (оригинал или аналог) и наличия в комплекте контактного барабана.</p>
+</details>
+
+<details>
+<summary>Можно ли сделать адаптацию самому без сканера?</summary>
+<p>Нет. Для адаптации датчика G85 необходим диагностический прибор с поддержкой функций VAG, такой как VCDS, Carista или профессиональный сканер на СТО.</p>
+</details>
+
+<details>
+<summary>Почему ошибка появляется после замены аккумулятора?</summary>
+<p>Скачок напряжения или полное отключение питания может вызвать сбой в памяти блока ABS. Датчик теряет свои калибровочные данные, и требуется повторная адаптация.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#суть-проблемы-и-работа-датчика-g85">Суть проблемы и работа датчика G85</a></li><li><a href="#основные-причины-возникновения-сбоя">Основные причины возникновения сбоя</a></li><li><a href="#диагностика-и-чтение-параметров">Диагностика и чтение параметров</a></li><li><a href="#процедура-адаптации-и-сброса-ошибки">Процедура адаптации и сброса ошибки</a></li><li><a href="#замена-датчика-угла-поворота">Замена датчика угла поворота</a></li><li><a href="#профилактика-и-особенности-эксплуатации">Профилактика и особенности эксплуатации</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/f/fi/filtr-maslyanyj-shkoda-jeti-12.html" class="related-card">Масляный фильтр Škoda Yeti 1.2 TSI: выбор, замена, нюансы</a></li><li><a href="/articles/p/pl/plyusy-i-minusy-shkoda-jeti.html" class="related-card">Skoda Yeti: плюсы и минусы кроссовера (2026) — честный обзор</a></li><li><a href="/articles/o/ob/obuchenie-steklopodemnikov-skoda-yeti.html" class="related-card">Обучение стеклоподъемников ŠKODA Yeti: инструкция и советы</a></li><li><a href="/articles/r/ra/razmer-shin-na-shkoda-jeti.html" class="related-card">Размер шин на Škoda Yeti: таблица, рекомендации, ошибки выбора</a></li><li><a href="/articles/d/dv/dvigatel-shkoda-jeti-18.html" class="related-card">Двигатель Škoda Yeti 1.8 TSI: характеристики, проблемы, ремонт</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/f/fi/filtr-maslyanyj-shkoda-jeti-12.html" class="related-bottom-card"><span class="related-bottom-title">Масляный фильтр Škoda Yeti 1.2 TSI: выбор, замена, нюансы</span><span class="related-bottom-desc">Какой масляный фильтр подходит для Škoda Yeti 1.2 TSI? Каталожные номера, оригинал vs аналоги, пошаг</span></a><a href="/articles/p/pl/plyusy-i-minusy-shkoda-jeti.html" class="related-bottom-card"><span class="related-bottom-title">Skoda Yeti: плюсы и минусы кроссовера (2026) — честный обзор</span><span class="related-bottom-desc">Все преимущества и недостатки Skoda Yeti: надежность, расход топлива, комфорт, цены на рынке и совет</span></a><a href="/articles/o/ob/obuchenie-steklopodemnikov-skoda-yeti.html" class="related-bottom-card"><span class="related-bottom-title">Обучение стеклоподъемников ŠKODA Yeti: инструкция и советы</span><span class="related-bottom-desc">Пошаговое руководство по обучению стеклоподъемников на ŠKODA Yeti всех поколений. Причины сбоев, диа</span></a><a href="/articles/r/ra/razmer-shin-na-shkoda-jeti.html" class="related-bottom-card"><span class="related-bottom-title">Размер шин на Škoda Yeti: таблица, рекомендации, ошибки выбора</span><span class="related-bottom-desc">Какие размеры шин подходят для Škoda Yeti 1 и 2 поколения? Таблица заводских параметров, допустимые </span></a><a href="/articles/d/dv/dvigatel-shkoda-jeti-18.html" class="related-bottom-card"><span class="related-bottom-title">Двигатель Škoda Yeti 1.8 TSI: характеристики, проблемы, ремонт</span><span class="related-bottom-desc">Подробный обзор двигателя 1.8 TSI на Škoda Yeti: технические параметры, типичные неисправности, ресу</span></a><a href="/articles/s/sh/shkoda-jeti-kharakteristiki-tekhnicheskie.html" class="related-bottom-card"><span class="related-bottom-title">Шкода Йети: полные технические характеристики, двигатели и особенности</span><span class="related-bottom-desc">Подробный обзор технических характеристик Skoda Yeti. Двигатели, трансмиссия, габариты, расход топли</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

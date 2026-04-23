@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Приложение Skoda Connect для Android: обзор, функции и настройка — Skoda-Handbook</title>
+    <meta name="description" content="Полный гид по официальному приложению Skoda Connect на Android. Инструкция по установке, настройки Car2Phone, диагностика ошибок и советы по стабильной работе.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/p/pr/prilozhenie-shkoda-dlya-android.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Приложение Skoda Connect для Android: обзор, функции и настройка">
+    <meta property="og:description" content="Полный гид по официальному приложению Skoda Connect на Android. Инструкция по установке, настройки Car2Phone, диагностика ошибок и советы по стабильной работе.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/octavia/">Octavia</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Приложение Skoda Connect для Android: обзор, функции и настройка</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Полное руководство по официальному приложению Skoda Connect для Android</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#официальный-источник-и-требования-к-системе">Официальный источник и требования к системе</a></li><li><a href="#процесс-регистрации-и-привязка-автомобиля">Процесс регистрации и привязка автомобиля</a></li><li><a href="#основные-функции-управления-и-мониторинга">Основные функции управления и мониторинга</a></li><li><a href="#настройка-car2phone-и-интеграция-мультимедиа">Настройка Car2Phone и интеграция мультимедиа</a></li><li><a href="#диагностика-и-устранение-частых-ошибок">Диагностика и устранение частых ошибок</a></li><li><a href="#особенности-работы-в-разных-регионах">Особенности работы в разных регионах</a></li><li><a href="#безопасность-данных-и-конфиденциальность">Безопасность данных и конфиденциальность</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Владельцы современных автомобилей чешского бренда все чаще сталкиваются с необходимостью интеграции смартфона в экосистему транспортного средства. Официальное приложение Skoda Connect, доступное для платформы Android, становится ключевым инструментом для удаленного управления, мониторинга состояния и получения статистики поездок. Это не просто пульт дистанционного управления, а сложный программный комплекс, требующий правильной настройки и понимания принципов работы.</p>
+<p>Многие пользователи скачивают утилиты из сторонних источников, что приводит к ошибкам синхронизации или невозможности использовать функции <em>Car2Phone</em>. Для стабильной работы необходимо использовать только проверенные версии ПО, соответствующие требованиям <strong>Android 10</strong> и выше. В этой статье мы разберем все аспекты работы с официальным софтом, от первоначальной регистрации до решения сложных проблем с подключением.</p>
+
+<h2 id="официальный-источник-и-требования-к-системе">Официальный источник и требования к системе</h2>
+<p>Первым и самым важным шагом является загрузка приложения исключительно из магазина <code>Google Play</code>. Наличие сертификатов безопасности и регулярные обновления от разработчика гарантируют защиту ваших личных данных и корректную работу с серверами производителя. Сторонние APK-файлы часто содержат устаревшие библиотеки, которые конфликтуют с модулем <strong>Connect Box</strong> в автомобиле.</p>
+<p>Перед началом установки убедитесь, что ваше устройство соответствует минимальным системным требованиям. Операционная система должна быть актуальной, а свободное место на диске — достаточным для кэша геолокации и логинов. Нестабильная работа часто возникает из-за отсутствия разрешений на фоновую работу.</p>
+<ul>
+<li>📱 Минимальная версия ОС: <code>Android 8.0</code> (рекомендуется <code>Android 12+</code>)</li>
+<li>📶 Требуется стабильное подключение к интернету (4G/LTE) для инициализации сессии</li>
+<li>🔋 Заряд батареи смартфона должен быть выше 30% для первой настройки</li>
+</ul>
+<p>Игнорирование этих требований может привести к тому, что модуль связи автомобиля просто не увидит ваш телефон. В таких случаях приложение может зависать на экране загрузки или выдавать ошибку аутентификации. <strong>Модуль телематики</strong> в машине также должен быть активен, что проверяется через настройки бортового компьютера.</p>
+
+<h2 id="процесс-регистрации-и-привязка-автомобиля">Процесс регистрации и привязка автомобиля</h2>
+<p>Самый сложный этап для большинства пользователей — это создание учетной записи MySkoda и привязка конкретного транспортного средства. Вам необходимо будет ввести VIN-код автомобиля, который состоит из 17 символов и уникален для каждого экземпляра. Этот код служит ключом доступа ко всем цифровым сервисам вашего <em>Octavia</em> или <em>Kodiaq</em>.</p>
+<p>После ввода данных система запросит подтверждение через SMS или email. Важно не пропустить это сообщение, так как оно содержит одноразовый код активации. Если вы не получили письмо, проверьте папку «Спам» или подождите несколько минут, так как серверы могут испытывать нагрузку. <mark>Без успешной активации аккаунта невозможно получить доступ к функциям удаленного запуска двигателя или проверки уровня топлива.</mark></p>
+<p>Привязка автомобиля может занять от 15 минут до нескольких часов. Это время необходимо для синхронизации данных между сервером производителя и бортовым компьютером. В этот период приложение может показывать статус «Ожидание подтверждения» или «Синхронизация данных». Не пытайтесь удалить аккаунт и создать его заново, это сбросит таймер активации.</p>
+
+<h2 id="основные-функции-управления-и-мониторинга">Основные функции управления и мониторинга</h2>
+<p>После успешной привязки открывается доступ к широкому спектру возможностей. Вы можете удаленно проверить уровень топлива, заряд гибридной батареи или положение дверей и окон. Эти данные обновляются в реальном времени, если в автомобиле активирован режим передачи телеметрии. Функция <strong>Remote Services</strong> позволяет управлять климат-контролем еще до посадки в салон.</p>
+<p>Для владельцев электромобилей или гибридов приложение становится незаменимым инструментом планирования поездок. Вы можете настроить расписание зарядки, чтобы использовать ночные тарифы на электроэнергию. Также доступна функция прогрева салона перед выездом, что особенно актуально в зимний период. Управление осуществляется через интуитивно понятный интерфейс с визуализацией состояния автомобиля.</p>
+<ul>
+<li>❄️ Удаленная настройка температуры климат-системы до <code>22°C</code></li>
+<li>🔓 Блокировка и разблокировка дверей через интернет</li>
+<li>🔋 Мониторинг статуса зарядки и расчет времени до полного заряда</li>
+</ul>
+<p>Интерфейс приложения адаптирован под разные размеры экранов, но на планшетах он может выглядеть менее комфортно из-за отсутствия оптимизации верстки. Тем не менее, все ключевые кнопки управления остаются доступными. Важно отметить, что некоторые функции, такие как звуковой сигнал или включение фар, могут быть отключены в настройках приватности.</p>
+
+<div class="attention-box attention-info"><div><strong>📊 Какой тип трансмиссии у вашего автомобиля?</strong><ul><li>ДВС</li><li>Гибрид</li><li>Полный электро</li><li>Не знаю</li></ul></div></div>
+
+<h2 id="настройка-car2phone-и-интеграция-мультимедиа">Настройка Car2Phone и интеграция мультимедиа</h2>
+<p>Одной из самых полезных функций является модуль <em>Car2Phone</em>, который позволяет использовать смартфон как ключ доступа и источник мультимедиа. Для работы этой функции необходимо включить Bluetooth на обоих устройствах и разрешить обмен контактами. После сопряжения телефон автоматически подключается при приближении к машине.</p>
+<p>Вы можете настроить автоматическую загрузку адресной книги и истории звонков на бортовой компьютер. Это упрощает управление звонками через руль или голосовое управление. Важно правильно настроить права доступа в системе Android, чтобы приложение имело разрешение на использование микрофона и контактов. Без этих разрешений функция <strong>Hands-free</strong> работать не будет.</p>
+<p>Для стабильной работы мультимедийной системы рекомендуется отключить энергосберегающие режимы для приложения в настройках телефона. Иначе система может прерывать соединение при блокировке экрана. Проверьте настройки в разделе <code>Приложения → Skoda Connect → Экономия заряда</code> и выберите опцию «Не ограничивать».</p>
+<div class="checklist-block"><h4>☑️ Настройка Car2Phone</h4><label class="check-item"><input type="checkbox"><span>Включить Bluetooth</span></label><label class="check-item"><input type="checkbox"><span>Разрешить контакты</span></label><label class="check-item"><input type="checkbox"><span>Отключить экономию заряда</span></label><label class="check-item"><input type="checkbox"><span>Сопрячь устройство</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="диагностика-и-устранение-частых-ошибок">Диагностика и устранение частых ошибок</h2>
+<p>Даже при правильной настройке могут возникать сбои в работе. Самая частая проблема — потеря связи с автомобилем. Это может быть вызвано слабым сигналом сотовой связи в паркинге или временной недоступностью серверов. В таких случаях приложение должно автоматически переподключиться, но иногда требуется ручная перезагрузка.</p>
+<p>Если статус автомобиля не обновляется долгое время, попробуйте выполнить полный сброс соединения. Для этого зайдите в <code>Настройки → Сеть → Сброс настроек сети</code> на телефоне и заново авторизуйтесь в приложении. Также стоит проверить, не отключен ли модуль телематики в самом автомобиле через меню бортового компьютера.</p>
+<details class="faq-item"><summary>Что делать, если приложение вылетает при запуске?</summary><div class="faq-answer"><p>Попробуйте очистить кэш приложения в настройках Android. Если это не помогло, удалите приложение и установите его заново, предварительно сохранив данные аккаунта.</p></div></details>
+<p>Иногда возникает ошибка авторизации, когда пароль принимается неверным, хотя вы вводите его правильно. Это может быть связано с кэшем браузера или проблемами на стороне сервера. В таком случае рекомендуется воспользоваться функцией восстановления пароля через официальный сайт производителя. <strong>Двухфакторная аутентификация</strong> также может вызывать проблемы, если вы сменили номер телефона.</p>
+<blockquote>
+<p>⚠️ Внимание: Не пытайтесь сбросить настройки автомобиля через меню диагностики, если не уверены в своих действиях. Это может привести к блокировке некоторых систем и необходимости обращения в дилерский центр.</p>
+</blockquote>
+
+<h2 id="особенности-работы-в-разных-регионах">Особенности работы в разных регионах</h2>
+<p>Функционал приложения может различаться в зависимости от страны регистрации автомобиля. В некоторых регионах недоступны функции удаленного запуска или геолокации из-за законодательных ограничений. Также могут отличаться тарифные планы на использование сервиса <em>Skoda Connect</em>. Уточняйте актуальные условия у официального дилера в вашем городе.</p>
+<p>Для автомобилей, ввезенных из других стран (серый импорт), функционал может быть ограничен. Модуль телематики может быть настроен на другой регион, что приведет к ошибкам при попытке привязки. В таких случаях требуется перепрошивка модуля или специальная кодировка. <strong>Региональная блокировка</strong> часто касается функций, связанных с навигацией и онлайн-сервисами.</p>
+<ul>
+<li>🌍 Проверьте регион в личном кабинете на сайте Skoda</li>
+<li>📡 Убедитесь, что SIM-карта в автомобиле имеет roaming-доступ</li>
+<li>🔧 Для серых импортов может потребоваться обновление ПО у дилера</li>
+</ul>
+<p>При переезде в другую страну важно обновить данные о месте регистрации в приложении. Это обеспечит корректную работу сервисов экстренной помощи и навигации. Если вы переезжаете в регион с другими стандартами связи, возможно, потребуется замена SIM-карты в модуле телематики.</p>
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Сохраняйте скриншоты всех ошибок и кодов неисправностей. Это поможет техническим специалистам быстрее диагностировать проблему при обращении в сервис.</p></div>
+
+<h2 id="безопасность-данных-и-конфиденциальность">Безопасность данных и конфиденциальность</h2>
+<p>Приложение собирает значительный объем данных о вашем автомобиле и привычках вождения. Эти данные передаются на серверы производителя и могут использоваться для улучшения сервиса или аналитики. В настройках приложения можно отключить сбор некоторых статистических данных, но это может ограничить функционал.</p>
+<p>Для защиты аккаунта используйте сложные пароли и регулярно меняйте их. Включите двухфакторную аутентификацию, если эта функция доступна в вашем регионе. Никогда не передавайте свои учетные данные третьим лицам, даже сотрудникам сервисных центров. <strong>Шифрование данных</strong> защищает вашу информацию от перехвата, но физическая безопасность телефона также важна.</p>
+<p>Если вы продаете автомобиль, не забудьте удалить его из своего аккаунта и отвязать от приложения. Новый владелец должен создать свой аккаунт и привязать машину самостоятельно. Это гарантирует, что у вас не останется доступа к данным о местоположении и состоянии проданного автомобиля.</p>
+<blockquote>
+<p>⚠️ Внимание: При продаже автомобиля обязательно отвяжите его в приложении и смените пароль от аккаунта. Иначе новый владелец не сможет полноценно использовать все цифровые функции.</p>
+</blockquote>
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Регулярное обновление приложения и ОС смартфона — гарантия стабильной работы всех функций Skoda Connect и защиты ваших данных от уязвимостей.</p></div>
+
+<h2 id="faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</h2>
+<details>
+<summary>Почему приложение не видит автомобиль после обновления?</summary>
+<p>Это может быть связано с кэшем приложения или временной недоступностью сервера. Попробуйте перезагрузить телефон и автомобиль, а затем повторите попытку подключения. Если проблема сохраняется, проверьте статус серверов на официальном сайте.</p>
+</details>
+<details>
+<summary>Можно ли использовать приложение без интернета?</summary>
+<p>Нет, для большинства функций требуется постоянное подключение к интернету. Только некоторые локальные данные, такие как история поездок, могут сохраняться без сети, но синхронизация произойдет только при появлении соединения.</p>
+</details>
+<details>
+<summary>Как обновить приложение Skoda Connect?</summary>
+<p>Обновление происходит автоматически через Google Play, если включена соответствующая настройка. Также можно проверить наличие обновлений вручную, зайдя в магазин приложений и найдя страницу Skoda Connect.</p>
+</details>
+<details>
+<summary>Что делать, если не работает удаленный запуск двигателя?</summary>
+<p>Проверьте уровень топлива и состояние замков. Убедитесь, что в настройках автомобиля разрешен удаленный запуск. Если проблема не решается, обратитесь в техническую поддержку через приложение.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#официальный-источник-и-требования-к-системе">Официальный источник и требования к системе</a></li><li><a href="#процесс-регистрации-и-привязка-автомобиля">Процесс регистрации и привязка автомобиля</a></li><li><a href="#основные-функции-управления-и-мониторинга">Основные функции управления и мониторинга</a></li><li><a href="#настройка-car2phone-и-интеграция-мультимедиа">Настройка Car2Phone и интеграция мультимедиа</a></li><li><a href="#диагностика-и-устранение-частых-ошибок">Диагностика и устранение частых ошибок</a></li><li><a href="#особенности-работы-в-разных-регионах">Особенности работы в разных регионах</a></li><li><a href="#безопасность-данных-и-конфиденциальность">Безопасность данных и конфиденциальность</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/s/sh/shkoda-piter-klub-forum.html" class="related-card">Шкода Питер Клуб Форум: Где найти сообщество и советы по ремонту</a></li><li><a href="/articles/s/sk/skrip-pri-povorote-rulya-shkoda-oktaviya-a7.html" class="related-card">Скрип при повороте руля ŠKODA Octavia A7: причины и решения</a></li><li><a href="/articles/k/ka/kak-snyat-dvorniki-shkoda-oktaviya-a7.html" class="related-card">Как снять дворники на ŠKODA Octavia A7: пошаговая инструкция</a></li><li><a href="/articles/r/ra/rasshiritelnyj-bachok-shkoda-oktaviya-a7-18.html" class="related-card">Расширительный бачок ŠKODA Octavia A7 1.8 TSI: замена, неисправности, выбор</a></li><li><a href="/articles/s/sh/shkoda-oktaviya-1998-goda-otzyvy.html" class="related-card">Шкода Октавия 1998 года: отзывы владельцев, плюсы и минусы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/s/sh/shkoda-piter-klub-forum.html" class="related-bottom-card"><span class="related-bottom-title">Шкода Питер Клуб Форум: Где найти сообщество и советы по ремонту</span><span class="related-bottom-desc">Полный гид по форуму Шкода Питер Клуб: поиск актуальных тем, общение с владельцами, технические реше</span></a><a href="/articles/s/sk/skrip-pri-povorote-rulya-shkoda-oktaviya-a7.html" class="related-bottom-card"><span class="related-bottom-title">Скрип при повороте руля ŠKODA Octavia A7: причины и решения</span><span class="related-bottom-desc">Почему скрипит руль на Octavia A7? Разбираем причины, диагностику и ремонт. Пошаговые инструкции для</span></a><a href="/articles/k/ka/kak-snyat-dvorniki-shkoda-oktaviya-a7.html" class="related-bottom-card"><span class="related-bottom-title">Как снять дворники на ŠKODA Octavia A7: пошаговая инструкция</span><span class="related-bottom-desc">Подробное руководство по демонтажу дворников на ŠKODA Octavia A7: инструменты, нюансы и советы для б</span></a><a href="/articles/r/ra/rasshiritelnyj-bachok-shkoda-oktaviya-a7-18.html" class="related-bottom-card"><span class="related-bottom-title">Расширительный бачок ŠKODA Octavia A7 1.8 TSI: замена, неисправности, выбор</span><span class="related-bottom-desc">Подробное руководство по расширительному бачку Octavia A7 1.8 TSI: признаки неисправности, оригиналь</span></a><a href="/articles/s/sh/shkoda-oktaviya-1998-goda-otzyvy.html" class="related-bottom-card"><span class="related-bottom-title">Шкода Октавия 1998 года: отзывы владельцев, плюсы и минусы</span><span class="related-bottom-desc">Честные отзывы о Skoda Octavia 1998 года выпуска. Разбор двигателей, коробок, проблемных мест и реал</span></a><a href="/articles/s/sn/snyat-zadnij-bamper-shkoda-oktaviya-a5.html" class="related-bottom-card"><span class="related-bottom-title">Как снять задний бампер на Škoda Octavia A5: пошаговая инструкция</span><span class="related-bottom-desc">Детальное руководство по демонтажу заднего бампера на Octavia A5 с фото, советами и нюансами. Подход</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

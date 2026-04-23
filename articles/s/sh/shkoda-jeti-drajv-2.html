@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Skoda Yeti Drive 2: как обновить прошивку и настроить систему — Skoda-Handbook</title>
+    <meta name="description" content="Подробная инструкция по обновлению Drive 2 на Škoda Yeti: где скачать прошивку, как установить через USB, ошибки и их решения. Пошаговое руководство с советами экспертов.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/s/sh/shkoda-jeti-drajv-2.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Skoda Yeti Drive 2: как обновить прошивку и настроить систему">
+    <meta property="og:description" content="Подробная инструкция по обновлению Drive 2 на Škoda Yeti: где скачать прошивку, как установить через USB, ошибки и их решения. Пошаговое руководство с советами экспертов.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/yeti/">Yeti</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Skoda Yeti Drive 2: как обновить прошивку и настроить систему</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Прошивка Drive 2 на Škoda Yeti: полное руководство по обновлению и настройке</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#что-такое-drive-2-и-почему-её-нужно-обновлять">Что такое Drive 2 и почему её нужно обновлять</a></li><li><a href="#официальные-и-неофициальные-источники-прошивок">Официальные и неофициальные источники прошивок</a></li><li><a href="#подготовка-к-обновлению-что-нужно-сделать-до-прошивки">Подготовка к обновлению: что нужно сделать до прошивки</a></li><li><a href="#пошаговая-инструкция-как-прошить-drive-2-через-usb">Пошаговая инструкция: как прошить Drive 2 через USB</a></li><li><a href="#обновление-через-интернет-ota-и-альтернативные-методы">Обновление через интернет (OTA) и альтернативные методы</a></li><li><a href="#расширенные-настройки-drive-2-после-обновления">Расширенные настройки Drive 2 после обновления</a></li><li><a href="#типичные-проблемы-после-обновления-и-их-решения">Типичные проблемы после обновления и их решения</a></li><li><a href="#faq-частые-вопросы-по-прошивке-drive-2-на-škoda-yeti">FAQ: Частые вопросы по прошивке Drive 2 на Škoda Yeti</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Мультимедийная система <em>Drive 2</em> от <em>Škoda</em> — это сердце информационно-развлекательного комплекса в <em>Yeti</em>, но со временем её прошивка устаревает, а интерфейс начинает «тормозить». Обновление ПО не только добавляет новые функции (например, поддержку <strong>Apple CarPlay</strong> или <strong>Android Auto</strong>), но и исправляет критические баги, влияющие на работу навигации и звука. Однако процесс прошивки таит подводные камни: от несовместимости версий до риска «окирпичивания» системы при неправильных действиях.</p>
+
+<p>В этой статье мы разберём <strong>все способы обновления <em>Drive 2</strong></em> — от официального метода через дилерский центр до ручной установки прошивки с USB-накопителя. Вы узнаете, где скачать актуальные файлы, как избежать типичных ошибок (например, <code>ERROR 0x12</code> или зависания на логотипе <em>Škoda</em>), и что делать, если система перестала реагировать на команды. А ещё — <mark>уникальные советы по оптимизации работы <em>Drive 2</em> после обновления, которые не найдёте в стандартных инструкциях</mark>.</p>
+
+<h2 id="что-такое-drive-2-и-почему-её-нужно-обновлять">Что такое <em>Drive 2</em> и почему её нужно обновлять</h2>
+
+<p><em>Drive 2</em> — это вторая генерация мультимедийных систем от <em>Škoda</em>, пришедшая на смену <em>Bolero</em> и <em>Swing</em>. Она устанавливалась на <em>Yeti</em> с 2014 по 2017 годы и отличалась сенсорным экраном (5 или 6,5 дюймов), поддержкой <strong> MirrorLink</strong>, встроенной навигацией и возможностью подключения смартфонов. Однако со временем даже самая надёжная техника требует обновлений:</p>
+
+<ul>
+  <li>🔄 <strong>Исправление багов</strong>: Устаревшие версии ПО могут вызывать зависания при подключении Bluetooth или сбои в работе навигации (например, неправильное отображение карт).</li>
+  <li>📱 <strong>Совместимость со смартфонами</strong>: Новые версии <strong>Android Auto</strong> и <strong>Apple CarPlay</strong> часто требуют актуальной прошивки.</li>
+  <li>🎵 <strong>Качество звука</strong>: Обновления оптимизируют работу аудиосистемы, особенно при подключении через <code>USB</code> или <code>AUX</code>.</li>
+  <li>🚗 <strong>Интеграция с бортовой электроникой</strong>: Например, корректное отображение данных с <strong>CAN-шины</strong> (уровень топлива, температура двигателя).</li>
+</ul>
+
+<p>Производитель рекомендует обновлять <em>Drive 2</em> не реже одного раза в 2–3 года, но на практике многие владельцы <em>Yeti</em> сталкиваются с необходимостью срочного апгрейда из-за неработающих функций. Например, после обновления iOS 17 многие пользователи потеряли возможность подключения <strong>CarPlay</strong> — проблема решается только прошивкой системы до версии <code>0526</code> или выше.</p>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Если ваш <em>Yeti</em>Released до 2016 года, проверьте модель <em>Drive 2</em> по VIN-коду. Системы с индексом <code>5F0</code> в номере требуют специальных прошивок — стандартные файлы с сайта <em>Škoda</em> могут не подойти!</blockquote>
+
+<h2 id="официальные-и-неофициальные-источники-прошивок">Официальные и неофициальные источники прошивок</h2>
+
+<p>Существует три легальных способа получить актуальную прошивку для <em>Drive 2</em>:</p>
+
+<ol>
+  <li><strong>Дилерский центр <em>Škoda</strong></em> — самый надёжный, но и самый дорогой вариант (от 3 000 до 8 000 рублей). Мастера используют официальное ПО и гарантируют работоспособность системы. Минус: не все центры работают с устаревшими моделями <em>Yeti</em>.</li>
+  <li><strong>Портал <a href="https://www.skoda-auto.com" target="_blank" rel="nofollow">Skoda Auto</a></strong> — в разделе «Поддержка» можно найти прошивки для некоторых версий <em>Drive 2</em>. Однако файлы часто «обрезаны» и не включают карты навигации.</li>
+  <li><strong>Форумы владельцев</strong> (например, <a href="https://www.yeticlub.ru" target="_blank" rel="nofollow">YetiClub</a> или <a href="https://www.drive2.ru" target="_blank" rel="nofollow">Drive2</a>) — здесь выкладывают «кастомные» прошивки с расширенными функциями (например, с поддержкой <strong>YouTube</strong> или <strong>Яндекс.Навигатора</strong>). Риск: возможны нестабильная работа или конфликты с бортовой электроникой.</li>
+</ol>
+
+<p>Неофициальные источники (например, торренты или файлообменники) использовать <strong>крайне не рекомендуется</strong>. Такие прошивки могут содержать вирусы или быть собраны для других регионов (например, европейские версии не поддерживают русские голосовые подсказки).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Источник</th>
+      <th>Плюсы</th>
+      <th>Минусы</th>
+      <th>Стоимость</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Дилерский центр</td>
+      <td>Гарантия, оригинальное ПО</td>
+      <td>Дорого, долгий процесс</td>
+      <td>3 000–8 000 ₽</td>
+    </tr>
+    <tr>
+      <td>Официальный сайт <em>Škoda</em></td>
+      <td>Бесплатно, безопасно</td>
+      <td>Ограниченный выбор версий</td>
+      <td>0 ₽</td>
+    </tr>
+    <tr>
+      <td>Форумы владельцев</td>
+      <td>Бесплатно, расширенные функции</td>
+      <td>Риск нестабильной работы</td>
+      <td>0 ₽ (донат)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Если вы решили скачивать прошивку с форума, обязательно проверьте:</p>
+<ul>
+  <li>🔍 Совместимость с вашей версией <em>Drive 2</em> (указано на наклейке под бардачком или в меню <code>Настройки → Информация о системе</code>).</li>
+  <li>📅 Дату выпуска файла — прошивки старше 2020 года могут не поддерживать современные смартфоны.</li>
+  <li>💬 Отзывы других пользователей — ищите комментарии с такой же моделью <em>Yeti</em>.</li>
+</ul>
+
+<div class="attention-box attention-info"><div><strong>📊 Откуда вы обычно скачиваете прошивки для авто?</strong><ul><li>С официального сайта</li><li>С форумов владельцев</li><li>У дилера</li><li>Никогда не обновлял</li><li>Другой вариант</li></ul></div></div>
+
+<h2 id="подготовка-к-обновлению-что-нужно-сделать-до-прошивки">Подготовка к обновлению: что нужно сделать до прошивки</h2>
+
+<p>Неправильная подготовка — главная причина сбоев при обновлении <em>Drive 2</em>. Следуйте этому чек-листу, чтобы избежать ошибок:</p>
+
+
+<p>Скачать прошивку с проверенного источника|Проверить версию текущего ПО в меню <code>Настройки → Информация</code>|Отформатировать USB-накопитель в <code>FAT32</code> (не <code>NTFS</code>!)|Создать резервную копию настроек (фото или запись параметров)|Зарядить аккумулятор авто или подключить зарядное устройство--></p>
+
+<p>Особое внимание уделите <strong>USB-накопителю</strong>:</p>
+<ul>
+  <li>📁 Используйте флешку объёмом <strong>не более 32 ГБ</strong> (система может не распознать большие накопители).</li>
+  <li>🔄 Форматируйте её в <code>FAT32</code> с размером кластера <code>4096 байт</code> (в Windows: <code>Правый клик → Форматировать → FAT32 → 4096</code>).</li>
+  <li>🚫 Не используйте флешки с <strong>LED-индикатором</strong> — они могут вызвать конфликты при обновлении.</li>
+</ul>
+
+<p>Также проверьте <strong>версию текущего ПО</strong>. Для этого:</p>
+<ol>
+  <li>Зажмите кнопку <code>SETUP</code> на панели <em>Drive 2</em> на 5 секунд.</li>
+  <li>Перейдите в <code>Настройки → Информация о системе</code>.</li>
+  <li>Запишите строку вида <code>SW: 0526, HW: 5F0</code> — это пригодится для выбора правильной прошивки.</li>
+</ol>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Если ваша <em>Drive 2</em> имеет версию <code>HW: 3F0</code>, не устанавливайте прошивки для <code>5F0</code> — это приведёт к поломке! Эти модели отличаются аппаратной платформой.</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед обновлением сфотографируйте экран с текущими настройками <em>Drive 2</em> (громкость, равняйзер, любимые радиостанции). После прошивки их придётся настраивать заново!</p></div>
+
+<h2 id="пошаговая-инструкция-как-прошить-drive-2-через-usb">Пошаговая инструкция: как прошить <em>Drive 2</em> через USB</h2>
+
+<p>Самый распространённый способ обновления — с помощью USB-накопителя. Он подходит для большинства версий <em>Drive 2</em> и не требует специального оборудования. Следуйте инструкции:</p>
+
+<ol>
+  <li><strong>Скачайте прошивку</strong> и распакуйте архив. В папке должны быть файлы с расширением <code>.up</code> или <code>.sig</code>.</li>
+  <li><strong>Копируйте файлы</strong> на отформатированную флешку <strong>в корневой каталог</strong> (не в папки!). Имена файлов менять нельзя!</li>
+  <li><strong>Вставьте USB</strong> в порт <em>Drive 2</em> (обычно расположен под экраном или в бардачке).</li>
+  <li><strong>Запустите обновление</strong>:
+    <ol>
+      <li>Нажмите и удерживайте кнопку <code>SETUP</code> 10 секунд, пока не появится меню.</li>
+      <li>Выберите <code>Обновление ПО → С USB</code>.</li>
+      <li>Подтвердите начало процесса (может потребоваться ввод кода <code>1234</code> или <code>0000</code>).</li>
+    </ol>
+  </li>
+  <li><strong>Дождитесь завершения</strong>. Процесс занимает 15–30 минут. Экран будет мигать, а система — перезагружаться. <strong>Не выключайте зажигание!</strong></li>
+</ol>
+
+<p>Если обновление прошло успешно, вы увидите сообщение <code>Update complete</code>. Если нет — запишите код ошибки (например, <code>ERROR 0x12</code>) и проверьте его значение в таблице ниже:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Код ошибки</th>
+      <th>Причина</th>
+      <th>Решение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ERROR 0x12</code></td>
+      <td>Несовместимая версия прошивки</td>
+      <td>Скачайте правильную версию для вашей <code>HW</code></td>
+    </tr>
+    <tr>
+      <td><code>ERROR 0x21</code></td>
+      <td>Повреждённые файлы на USB</td>
+      <td>Отформатируйте флешку и скопируйте файлы заново</td>
+    </tr>
+    <tr>
+      <td><code>ERROR 0x30</code></td>
+      <td>Низкое напряжение аккумулятора</td>
+      <td>Подключите зарядное устройство или заведите двигатель</td>
+    </tr>
+    <tr>
+      <td><code>NO UPDATE FILE</code></td>
+      <td>Файлы не найдены</td>
+      <td>Проверьте названия файлов и формат USB</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Если система зависла на логотипе <em>Škoda</em> или перестала реагировать на кнопки, попробуйте <strong>принудительный сброс</strong>:</p>
+<ol>
+  <li>Выключите зажигание.</li>
+  <li>Зажмите кнопку <code>SETUP</code> и, не отпуская её, включите зажигание.</li>
+  <li>Удерживайте кнопку 15–20 секунд, пока экран не погаснет и не начнётся перезагрузка.</li>
+</ol>
+
+<details class="faq-item"><summary>Что делать, если <em>Drive 2</em> не включается после прошивки?</summary><div class="faq-answer"><p>
+<p>Если система не реагирует на сброс, возможно, повреждена микропрограмма. В этом случае потребуется перепрошивка через диагностический разъём <strong>OBD-II</strong> с помощью программы <em>VCDS</em> или <em>ODIS</em>. Обратитесь к специалистам — самостоятельные манипуляции могут привести к полному выходу устройства из строя.</p></div></details></p>
+
+<h2 id="обновление-через-интернет-ota-и-альтернативные-методы">Обновление через интернет (OTA) и альтернативные методы</h2>
+
+<p>Некоторые версии <em>Drive 2</em> (начиная с <code>SW: 0520</code>) поддерживают обновление по воздуху (<strong>OTA</strong>). Для этого:</p>
+<ol>
+  <li>Подключите <em>Yeti</em> к Wi-Fi (через меню <code>Настройки → Сети</code>).</li>
+  <li>Перейдите в <code>Настройки → Обновление ПО → Проверить обновления</code>.</li>
+  <li>Если обновление найдено, подтвердите установку.</li>
+</ol>
+
+<p>Преимущества OTA:</p>
+<ul>
+  <li>✅ Не нужно скачивать файлы вручную.</li>
+  <li>✅ Автоматическая проверка совместимости.</li>
+  <li>✅ Сохранение пользовательских настроек.</li>
+</ul>
+
+<p>Однако у этого метода есть ограничения:</p>
+<ul>
+  <li>🚫 Работает только с последними версиями <em>Drive 2</em>.</li>
+  <li>🚫 Требует стабильного интернет-соединения (лучше использовать мобильный хот-спот).</li>
+  <li>🚫 Не все регионы поддерживаются (например, для России обновления могут приходить с задержкой).</li>
+</ul>
+
+<p>Альтернативный метод — обновление через <strong>SD-карту</strong>. Он подходит для систем с навигацией:</p>
+<ol>
+  <li>Скачайте прошивку и распакуйте её на SD-карту (формат <code>FAT32</code>).</li>
+  <li>Вставьте карту в слот <em>Drive 2</em> (обычно расположен за экраном).</li>
+  <li>Запустите обновление через меню <code>Настройки → Обновление с SD</code>.</li>
+</ol>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Если ваша <em>Drive 2</em> оснащена модулем <strong>3G</strong> (опция <code>Phonebox</code>), перед обновлением отключите SIM-карту! В редких случаях прошивка может сбросить настройки модуля, и его придётся настраивать заново у дилера.</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Обновление через интернет (OTA) — самый безопасный способ, но он доступен только для последних версий <em>Drive 2</em> (SW: 0520 и выше).</p></div>
+
+<h2 id="расширенные-настройки-drive-2-после-обновления">Расширенные настройки <em>Drive 2</em> после обновления</h2>
+
+<p>После успешного обновления рекомендуется выполнить несколько действий для оптимизации работы системы:</p>
+
+<ul>
+  <li>🔊 <strong>Сброс звуковых настроек</strong>: Перейдите в <code>Настройки → Звук → Сброс</code>, чтобы избежать искажений после прошивки.</li>
+  <li>📡 <strong>Обновление карт навигации</strong>: Скачайте актуальные карты с сайта <a href="https://www.naviextras.com" target="_blank" rel="nofollow">Naviextras</a> (для этого потребуется регистрация и код активации, который можно получить у дилера).</li>
+  <li>📱 <strong>Переподключение смартфонов</strong>: Удалите старые устройства из памяти <em>Drive 2</em> и подключите их заново (меню <code>Настройки → Bluetooth</code>).</li>
+  <li>🔄 <strong>Калибровка сенсорного экрана</strong>: Если экран стал менее отзывчивым, выполните калибровку в меню <code>Настройки → Экран → Калибровка</code>.</li>
+</ul>
+
+<p>Для опытных пользователей доступны <strong>скрытые настройки</strong> (вход в инженерное меню):</p>
+<ol>
+  <li>Выключите зажигание.</li>
+  <li>Зажмите кнопки <code>SETUP</code> + <code>MEDIA</code> + <code>TEL</code> одновременно.</li>
+  <li>Включите зажигание, не отпуская кнопки, пока не появится меню <code>Diagnostic</code>.</li>
+</ol>
+
+<p>В инженерном меню можно:</p>
+<ul>
+  <li>🔧 Отключить анимации интерфейса для ускорения работы.</li>
+  <li>📶 Вручную настроить параметры <strong>CAN-шины</strong> (только для опытных пользователей!).</li>
+  <li>🔇 Изменить уровень громкости системных звуков.</li>
+</ul>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если после обновления пропал звук в <strong>Android Auto</strong>, проверьте настройки аудиовыхода в смартфоне. Иногда помогает переключение с <code>A2DP</code> на <code>SCO</code> в меню Bluetooth.</p></div>
+
+<h2 id="типичные-проблемы-после-обновления-и-их-решения">Типичные проблемы после обновления и их решения</h2>
+
+<p>Даже при успешной прошивке могут возникнуть неполадки. Рассмотрим самые распространённые:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Проблема</th>
+      <th>Возможная причина</th>
+      <th>Решение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Не работает <strong>CarPlay</strong>/<strong>Android Auto</strong></td>
+      <td>Несовместимость версий ПО смартфона и <em>Drive 2</em></td>
+      <td>Обновите прошивку до <code>SW: 0526</code> или выше</td>
+    </tr>
+    <tr>
+      <td>Навигация не находит спутники</td>
+      <td>Сбились настройки GPS-антенны</td>
+      <td>Выполните сброс настроек навигации в меню <code>Настройки → Навигация → Сброс</code></td>
+    </tr>
+    <tr>
+      <td>Экран мерцает или тускнеет</td>
+      <td>Неправильная калибровка после прошивки</td>
+      <td>Перекалибруйте экран в меню <code>Настройки → Экран</code></td>
+    </tr>
+    <tr>
+      <td>Не сохраняются радиостанции</td>
+      <td>Сброс пользовательских данных</td>
+      <td>Заново сохраните станции вручную</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Если после обновления <em>Drive 2</em> начала «глючить» (самопроизвольные перезагрузки, зависания), попробуйте:</p>
+<ol>
+  <li><strong>Сбросить настройки</strong> до заводских (<code>Настройки → Сброс → Полный сброс</code>).</li>
+  <li><strong>Откатить прошивку</strong> на предыдущую версию (если сохранена резервная копия).</li>
+  <li><strong>Проверить подключение антенны GPS</strong> — иногда при обновлении сбиваются контакты.</li>
+</ol>
+
+<p>Если проблемы не исчезли, возможно, прошивка была установлена с ошибками. В этом случае поможет только перепрошивка через <strong>OBD-II</strong> с использованием диагностического оборудования.</p>
+
+<h2 id="faq-частые-вопросы-по-прошивке-drive-2-на-škoda-yeti">FAQ: Частые вопросы по прошивке <em>Drive 2</em> на <em>Škoda Yeti</em></h2>
+
+<details>
+  <summary>Можно ли обновить <em>Drive 2</em> самостоятельно, если нет опыта?</summary>
+  <p>Да, но только если вы уверены в совместимости прошивки с вашей версией системы. Начните с резервного копирования настроек и следуйте инструкции пошагово. В случае ошибок (например, <code>ERROR 0x12</code>) обратитесь к специалисту.</p>
+</details>
+
+<details>
+  <summary>Как узнать текущую версию прошивки <em>Drive 2</em>?</summary>
+  <p>Зажмите кнопку <code>SETUP</code> на 5 секунд, затем перейдите в <code>Настройки → Информация о системе</code>. Ищите строки <code>SW</code> (версия ПО) и <code>HW</code> (версия железа).</p>
+</details>
+
+<details>
+  <summary>Что делать, если после обновления пропал звук?</summary>
+  <p>Проверьте:
+  <ol>
+    <li>Уровень громкости в настройках <em>Drive 2</em>.</li>
+    <li>Подключение динамиков (возможно, сбились настройки аудиовыхода).</li>
+    <li>Настройки Bluetooth, если звук пропал при подключении смартфона.</li>
+  </ol>
+<p>Если проблема осталась, выполните сброс звуковых настроек.</p></p>
+</details>
+
+<details>
+  <summary>Можно ли установить <strong>Яндекс.Навигатор</strong> на <em>Drive 2</em>?</summary>
+  <p>Официально — нет, но некоторые пользователи устанавливают его через <strong>MirrorLink</strong> или кастомные прошивки с форумов. Однако это может привести к нестабильной работе системы.</p>
+</details>
+
+<details>
+  <summary>Сколько стоит прошивка <em>Drive 2</em> у дилера?</summary>
+  <p>Стоимость варьируется от 3 000 до 8 000 рублей в зависимости от региона и версии ПО. В некоторых случаях дилеры предлагают бесплатное обновление в рамках гарантийного обслуживания (если автомобиль младше 5 лет).</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#что-такое-drive-2-и-почему-её-нужно-обновлять">Что такое Drive 2 и почему её нужно обновлять</a></li><li><a href="#официальные-и-неофициальные-источники-прошивок">Официальные и неофициальные источники прошивок</a></li><li><a href="#подготовка-к-обновлению-что-нужно-сделать-до-прошивки">Подготовка к обновлению: что нужно сделать до прошивки</a></li><li><a href="#пошаговая-инструкция-как-прошить-drive-2-через-usb">Пошаговая инструкция: как прошить Drive 2 через USB</a></li><li><a href="#обновление-через-интернет-ota-и-альтернативные-методы">Обновление через интернет (OTA) и альтернативные методы</a></li><li><a href="#расширенные-настройки-drive-2-после-обновления">Расширенные настройки Drive 2 после обновления</a></li><li><a href="#типичные-проблемы-после-обновления-и-их-решения">Типичные проблемы после обновления и их решения</a></li><li><a href="#faq-частые-вопросы-по-прошивке-drive-2-на-škoda-yeti">FAQ: Частые вопросы по прошивке Drive 2 на Škoda Yeti</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/m/ma/mashina-shkoda-etti.html" class="related-card">Škoda Yeti 2026: обзор, цены, технические характеристики и отзывы</a></li><li><a href="/articles/s/sk/skoda-yeti-razmery.html" class="related-card">Skoda Yeti размеры: габариты, объем багажника и клиренс</a></li><li><a href="/articles/s/sh/shkoda-jeti-1-2-105-l-s-otzyvy.html" class="related-card">Škoda Yeti 1.2 TSI 105 л.с.: реальные отзывы владельцев 2026</a></li><li><a href="/articles/z/za/zamena-zadnikh-pruzhin-shkoda-jeti.html" class="related-card">Замена задних пружин Škoda Yeti: причины провисания и инструкция</a></li><li><a href="/articles/s/sh/shkoda-jeti-tyuning.html" class="related-card">Шкода Йети тюнинг: Полное руководство по стайлингу и апгрейду</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/m/ma/mashina-shkoda-etti.html" class="related-bottom-card"><span class="related-bottom-title">Škoda Yeti 2026: обзор, цены, технические характеристики и отзывы</span><span class="related-bottom-desc">Полный разбор Škoda Yeti: сравнение комплектаций, расход топлива, плюсы и минусы, советы по выбору и</span></a><a href="/articles/s/sk/skoda-yeti-razmery.html" class="related-bottom-card"><span class="related-bottom-title">Skoda Yeti размеры: габариты, объем багажника и клиренс</span><span class="related-bottom-desc">Полный обзор габаритов Skoda Yeti: длина, ширина, высота, клиренс и объем багажника в разных модифик</span></a><a href="/articles/s/sh/shkoda-jeti-1-2-105-l-s-otzyvy.html" class="related-bottom-card"><span class="related-bottom-title">Škoda Yeti 1.2 TSI 105 л.с.: реальные отзывы владельцев 2026</span><span class="related-bottom-desc">Правдивые отзывы о Škoda Yeti с мотором 1.2 TSI (105 л.с.): расход топлива, надежность, слабые места</span></a><a href="/articles/z/za/zamena-zadnikh-pruzhin-shkoda-jeti.html" class="related-bottom-card"><span class="related-bottom-title">Замена задних пружин Škoda Yeti: причины провисания и инструкция</span><span class="related-bottom-desc">Полный гайд по диагностике и замене задних пружин на Škoda Yeti. Причины просадки, выбор деталей, по</span></a><a href="/articles/s/sh/shkoda-jeti-tyuning.html" class="related-bottom-card"><span class="related-bottom-title">Шкода Йети тюнинг: Полное руководство по стайлингу и апгрейду</span><span class="related-bottom-desc">Как сделать тюнинг Шкода Йети своими руками: обзор внешних изменений, подвески, двигателя и салона. </span></a><a href="/articles/s/sh/shkoda-jeti-12-turbo-kharakteristiki.html" class="related-bottom-card"><span class="related-bottom-title">Škoda Yeti 1.2 TSI: технические характеристики и отзывы владельцев</span><span class="related-bottom-desc">Подробный обзор двигателя 1.2 TSI на Škoda Yeti: мощность, расход топлива, динамика, плюсы и минусы.</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

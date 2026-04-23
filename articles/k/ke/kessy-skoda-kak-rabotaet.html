@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Как работает система KESSY в Skoda: принцип действия и неисправности — Skoda-Handbook</title>
+    <meta name="description" content="Подробный разбор технологии KESSY на автомобилях Skoda. Узнайте принцип работы, причины поломок, нюансы замены батареек и алгоритм диагностики.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/k/ke/kessy-skoda-kak-rabotaet.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как работает система KESSY в Skoda: принцип действия и неисправности">
+    <meta property="og:description" content="Подробный разбор технологии KESSY на автомобилях Skoda. Узнайте принцип работы, причины поломок, нюансы замены батареек и алгоритм диагностики.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/octavia/">Octavia</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как работает система KESSY в Skoda: принцип действия и неисправности</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Принцип работы и особенности системы KESSY на автомобилях Skoda</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#архитектура-и-основные-компоненты-системы">Архитектура и основные компоненты системы</a></li><li><a href="#алгоритм-взаимодействия-ключа-и-автомобиля">Алгоритм взаимодействия ключа и автомобиля</a></li><li><a href="#диагностика-неисправностей-и-типичные-сбои">Диагностика неисправностей и типичные сбои</a></li><li><a href="#экстренный-запуск-двигателя-и-резервные-методы">Экстренный запуск двигателя и резервные методы</a></li><li><a href="#влияние-внешних-факторов-и-помех">Влияние внешних факторов и помех</a></li><li><a href="#техническое-обслуживание-и-профилактика">Техническое обслуживание и профилактика</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Система <strong>KESSY</strong> (Keyless Entry Start and Stop System) стала одним из ключевых удобств, которое владельцы автомобилей <em>Skoda</em> перестают замечать, лишь когда она выходит из строя. Эта технология позволяет управлять доступом в салон и запуском двигателя без физического использования ключа, используя радиосигналы низкой частоты. Для многих водителей это превращается в привычный ритуал: просто подойти к машине, потянуть за ручку двери и нажать кнопку старта.</p>
+<p>Однако за кажущейся простотой скрывается сложная электронная архитектура, включающая в себя антенны, модули управления и защищенные каналы связи. Понимание того, как именно <em>Skoda</em> обнаруживает присутствие ключа, помогает быстрее диагностировать проблемы, возникающие при разряде батарейки или помехах в эфире. В этой статье мы детально разберем физические и программные аспекты работы системы.</p>
+
+<h2 id="архитектура-и-основные-компоненты-системы">Архитектура и основные компоненты системы</h2>
+<p>В основе функционирования <strong>KESSY</strong> лежит взаимодействие нескольких модулей, расположенных по периметру кузова автомобиля. Центральным элементом является сам брелок, который генерирует уникальный цифровой код, и антенны, размещенные в дверных ручках и в районе багажного отделения. Когда вы подносите руку к ручке двери, система активирует процесс опроса ключа, отправляя запрос на частоте 125 кГц.</p>
+<p>Брелок, получив этот сигнал, отвечает своим кодом на частоте 433 МГц или 868 МГц. Модуль <em>KESSY</em> сверяет полученный ответ с записанным в памяти автомобиля. Если код совпадает, блокировка двери снимается, а система готовности двигателя переходит в активное состояние. Важно отметить, что антенны работают не постоянно, а только в момент касания ручки или при попытке запуска двигателя, что экономит энергию бортовой сети.</p>
+<p>Ключевыми узлами системы являются:</p>
+<ul>
+<li>🔑 <strong>Брелок-ответчик</strong> с встроенной антенной и источником питания.</li>
+<li>📡 <strong>Наружные антенны</strong> в дверных ручках для обнаружения ключа снаружи.</li>
+<li>📶 <strong>Внутренние антенны</strong> в салоне для контроля присутствия ключа внутри.</li>
+<li>🔌 <strong>Модуль управления KESSY</strong>, обрабатывающий данные и управляющий замками.</li>
+</ul>
+
+<h2 id="алгоритм-взаимодействия-ключа-и-автомобиля">Алгоритм взаимодействия ключа и автомобиля</h2>
+<p>Процесс доступа к автомобилю начинается с того, что вы касаетесь сенсорной зоны на дверной ручке. В этот момент контроллер <strong>KESSY</strong> подает напряжение на внешнюю антенну, создавая электромагнитное поле. Если брелок находится в радиусе действия (обычно 1-2 метра), он активируется и передает зашифрованный сигнал. Это происходит мгновенно, и замок открывается без каких-либо действий с вашей стороны, кроме касания ручки.</p>
+<p>Особое внимание стоит уделить работе системы при запуске двигателя. Для активации мотора ключ должен находиться внутри салона. Это контролируется внутренней антенной, расположенной обычно под центральной консолью или в районе подлокотника. Если система не «видит» брелок внутри, кнопка <code>Start/Stop</code> не сработает, даже если вы нажмете на нее с усилием. В таком случае требуется экстренный метод запуска.</p>
+<p>Алгоритм проверки присутствия выглядит следующим образом:</p>
+<ul>
+<li>🚗 <strong>Опрос салона</strong> — антенны сканируют пространство внутри кузова на наличие сигнала.</li>
+<li>🔒 <strong>Проверка авторизации</strong> — подтверждение, что ключ является оригинальным и не заблокирован.</li>
+<li>⚡ <strong>Активация стартера</strong> — подача команды на стартер при нажатии кнопки.</li>
+</ul>
+
+<p>Интересный факт заключается в том, что система постоянно мониторит состояние сигнала. Если ключ находится слишком близко к мощным источникам помех, например, к другому радиопередатчику или смартфону, реакция может замедлиться. Владельцы <em>Skoda Octavia</em> и <em>Superb</em> часто отмечают, что при наличии помех система может потребовать повторного касания ручки.</p>
+
+<div class="attention-box attention-info"><div><strong>📊 В какой модели Skoda вы используете систему KESSY?</strong><ul><li>Octavia</li><li>Superb</li><li>Kodiaq</li><li>Karoq</li><li>Rapid</li></ul></div></div>
+
+<h2 id="диагностика-неисправностей-и-типичные-сбои">Диагностика неисправностей и типичные сбои</h2>
+<p>Несмотря на высокую надежность, система <strong>KESSY</strong> подвержена сбоям, чаще всего связанным с разрядом батарейки в брелоке. Когда заряд падает ниже критического уровня, сигнал становится слишком слабым для нормальной работы антенн. В этом случае вы можете заметить, что система не реагирует на касание ручки, но центральный замок все еще открывается с кнопки на самом брелоке.</p>
+<p>Другой распространенной проблемой является попадание влаги в дверные ручки. Поскольку антенны и контакты находятся в герметичном, но не вечном корпусе, со временем уплотнители могут деградировать. Влага вызывает окисление контактов, что приводит к ложным срабатываниям или полному отказу модуля. Ошибки в таком случае фиксируются в блоке управления как «обрыв цепи антенны» или «короткое замыкание». Также стоит учитывать, что замена аккумулятора в брелоке требует аккуратности, так как неправильная установка может привести к потере синхронизации.</p>
+
+<blockquote>⚠️ Внимание: Если система KESSY перестала работать после мойки автомобиля, не пытайтесь сразу же использовать кнопку запуска. Это может указывать на попадание воды в датчики дверных ручек, и продолжение эксплуатации может привести к короткому замыканию проводки.</blockquote>
+
+<p>Иногда проблема кроется не в самом ключе, а в программном сбое модуля управления. В таких случаях помогает перепрошивка или сброс настроек через диагностический сканер. Важно различать, когда проблема аппаратная, а когда программная. Если брелок реагирует на нажатие кнопки открытия, но не работает при касании ручки, с вероятностью 90% проблема в антенне или блоке управления, а не в батарейке.</p>
+
+<h2 id="экстренный-запуск-двигателя-и-резервные-методы">Экстренный запуск двигателя и резервные методы</h2>
+<p>В случае полной разрядки батарейки в брелоке или отказа электроники автомобиля, предусмотрен механизм аварийного запуска. Для большинства моделей <em>Skoda</em> с системой <strong>KESSY</strong> это делается путем физического прикладывания брелока к специальному месту в салоне. Обычно это зона под рулевой колонкой, где нарисован значок ключа, или центральная консоль рядом с подстаканниками.</p>
+<p>В этой зоне расположена приемная антенна с очень высоким коэффициентом усиления, способная считать сигнал даже от полностью разряженного брелока за счет энергии, передаваемой самим автомобилем. Вам нужно просто приложить брелок к этому месту и удерживать его там, пока нажимаете кнопку запуска двигателя. Это активирует резервный канал связи, обходящий стандартные антенны.</p>
+
+<div class="checklist-block"><h4>☑️ Алгоритм аварийного запуска</h4><label class="check-item"><input type="checkbox"><span>Приложить брелок к метке на руле</span></label><label class="check-item"><input type="checkbox"><span>Нажать педаль тормоза</span></label><label class="check-item"><input type="checkbox"><span>Удерживая брелок, нажать кнопку Start</span></label><label class="check-item"><input type="checkbox"><span>Дождаться запуска двигателя</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<p>Если метка отсутствует или вы не помните ее местоположение, можно воспользоваться механическим ключом, спрятанным внутри брелока. Он нужен не только для открытия двери, но и для доступа к определенным элементам салона в некоторых модификациях. Однако для запуска двигателя именно прикладывание к антенне является наиболее эффективным способом.</p>
+
+<details class="faq-item"><summary>Где находится резервная антенна в разных моделях?</summary><div class="faq-answer"><p>В модели Octavia A7 и A8 она находится под рулевой колонкой. В Superb III — в центральной консоли под отделением для мелочей. В Kodiaq — в зоне подстаканников. Точное расположение всегда указано в инструкции по эксплуатации конкретного года выпуска.</p></div></details>
+
+<h2 id="влияние-внешних-факторов-и-помех">Влияние внешних факторов и помех</h2>
+<p>Работа системы <strong>KESSY</strong> зависит от электромагнитной обстановки вокруг автомобиля. Сильные радиопомехи, создаваемые радарными установками, мощными передатчиками или даже другими автомобилями с системами бесключевого доступа, могут блокировать сигнал. В таких ситуациях система может временно отключать функцию бесключевого доступа, переключаясь на работу только с кнопкой на брелоке.</p>
+<p>Также стоит учитывать влияние материалов, из которых изготовлен брелок. Металлические чехлы или чехлы с фольгированным слоем могут экранировать сигнал, делая ключ «невидимым» для антенн автомобиля. Если вы используете такой аксессуар, система может работать нестабильно. Рекомендуется использовать силиконовые или кожаные чехлы, не содержащие металлических вставок.</p>
+<p>Параметры, влияющие на работу системы:</p>
+<ul>
+<li>🌡️ <strong>Температура окружающей среды</strong> — при экстремально низких температурах емкость батарейки падает.</li>
+<li>📶 <strong>Плотность застройки</strong> — в гаражах с толстыми бетонными стенами сигнал может затухать.</li>
+<li>🔋 <strong>Состояние аккумулятора авто</strong> — низкое напряжение бортовой сети может отключать не основные функции.</li>
+</ul>
+
+<h2 id="техническое-обслуживание-и-профилактика">Техническое обслуживание и профилактика</h2>
+<p>Чтобы система работала бесперебойно, необходимо регулярно проверять состояние элементов. Первым делом стоит следить за зарядом батарейки в брелоке. Обычно это элемент типа CR2032, который меняется каждые 2-3 года. При замене важно соблюдать полярность и использовать качественные элементы питания, так как дешевые батарейки часто имеют низкую емкость и нестабильное напряжение.</p>
+
+<blockquote>⚠️ Внимание: При замене батарейки в брелоке Skoda не рекомендуется использовать металлические инструменты для поддевания крышки, чтобы не повредить корпус и контакты. Используйте пластиковую карту или специальный инструмент из комплекта.</blockquote>
+
+<p>Также рекомендуется периодически проверять работу дверных ручек на предмет загрязнения. Пыль, грязь и реагенты могут скапливаться в щелях, где расположены сенсоры. Очистка производится мягкой влажной тряпкой без использования агрессивной химии. Если система начала работать с задержкой, стоит обратиться в сервис для диагностики антенн, так как проблема может быть в обрыве проводки внутри двери, что часто случается из-за постоянных перегибов жгута при открывании створки.</p>
+
+<table>
+<thead>
+<tr>
+<th>Симптом</th>
+<th>Возможная причина</th>
+<th>Рекомендуемое действие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Не открывается дверь касанием</td>
+<td>Разряжена батарейка брелока</td>
+<td>Заменить элемент питания CR2032</td>
+</tr>
+<tr>
+<td>Не запускается двигатель</td>
+<td>Нет ключа внутри салона</td>
+<td>Приложить брелок к месту аварийного старта</td>
+</tr>
+<tr>
+<td>Замок открывается, но не закрывается</td>
+<td>Сбой модуля KESSY</td>
+<td>Перепрошивка или замена блока управления</td>
+</tr>
+<tr>
+<td>Система работает с задержкой</td>
+<td>Помехи или загрязнение сенсоров</td>
+<td>Очистка ручек, проверка на помехи</td>
+</tr>
+</tbody>
+</table>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если вы меняете батарейку в брелоке, сделайте это до того, как она полностью сядет. Система может перестать распознавать ключ при напряжении ниже 2.5В, даже если светодиод на брелоке еще загорается при нажатии кнопки.</p></div>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Регулярная замена батарейки и чистка сенсоров дверных ручек — это 90% успеха в бесперебойной работе системы KESSY. Не ждите полного отказа, меняйте элемент питания планово.</p></div>
+
+<h2 id="faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</h2>
+
+<details>
+<summary>Можно ли завести машину, если брелок полностью разряжен?</summary>
+<p>Да, можно. В большинстве моделей <em>Skoda</em> предусмотрен резервный способ запуска. Вам нужно приложить брелок к специальной метке (обычно под рулем или в центральной консоли) и удерживать его там, нажимая кнопку запуска двигателя. Антенна в этом месте считывает сигнал за счет энергии, передаваемой от автомобиля.</p>
+</details>
+
+<details>
+<summary>Почему система KESSY не работает при нажатии кнопки на двери?</summary>
+<p>Это может быть вызвано разрядом батарейки в брелоке, попаданием влаги в дверную ручку или неисправностью антенны. Также возможно, что система временно заблокирована из-за электромагнитных помех. Попробуйте открыть дверь с помощью кнопки на брелоке и запустить двигатель аварийным способом.</p>
+</details>
+
+<details>
+<summary>Как часто нужно менять батарейку в брелоке Skoda?</summary>
+<p>Рекомендуется менять элемент питания типа CR2032 каждые 2-3 года или при появлении первых признаков снижения дальности действия. Если система KESSY стала реагировать только при очень близком поднесении ключа, это верный признак того, что батарейку пора менять.</p>
+</details>
+
+<details>
+<summary>Можно ли использовать чехол для брелока с металлическими вставками?</summary>
+<p>Не рекомендуется. Металлические элементы могут экранировать сигнал брелока, делая систему KESSY неработоспособной. Если вы используете такой чехол, вам придется снимать его каждый раз, чтобы открыть или завести машину, что полностью нивелирует удобство бесключевого доступа.</p>
+</details>
+
+<details>
+<summary>Что делать, если система KESSY работает с большой задержкой?</summary>
+<p>В первую очередь проверьте батарейку в брелоке. Если она свежая, возможно, в районе вашего местоположения есть сильные радиопомехи. Попробуйте переместиться в другое место. Если проблема сохраняется, необходимо провести компьютерную диагностику для проверки состояния антенн и модулей управления.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#архитектура-и-основные-компоненты-системы">Архитектура и основные компоненты системы</a></li><li><a href="#алгоритм-взаимодействия-ключа-и-автомобиля">Алгоритм взаимодействия ключа и автомобиля</a></li><li><a href="#диагностика-неисправностей-и-типичные-сбои">Диагностика неисправностей и типичные сбои</a></li><li><a href="#экстренный-запуск-двигателя-и-резервные-методы">Экстренный запуск двигателя и резервные методы</a></li><li><a href="#влияние-внешних-факторов-и-помех">Влияние внешних факторов и помех</a></li><li><a href="#техническое-обслуживание-и-профилактика">Техническое обслуживание и профилактика</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/z/za/zamena-sharovykh-shkoda-oktaviya.html" class="related-card">Замена шаровых опор на ŠKODA Octavia: инструкция и советы</a></li><li><a href="/articles/o/os/oshibka-u112100-shkoda-oktaviya-a7.html" class="related-card">Ошибка U112100 Skoda Octavia A7: причины, диагностика и ремонт</a></li><li><a href="/articles/s/sb/sbrosit-servisnyj-interval-shkoda-oktaviya-a5.html" class="related-card">Как сбросить сервисный интервал на ŠKODA Octavia A5: пошаговая инструкция</a></li><li><a href="/articles/s/sh/shkoda-oktaviya-turbirovannaya.html" class="related-card">Škoda Octavia с турбомотором: характеристики, плюсы и минусы</a></li><li><a href="/articles/k/ko/komplekt-stsepleniya-shkoda-oktaviya-a7-14-mkpp.html" class="related-card">Комплект сцепления Skoda Octavia A7 1.4 MKПП: выбор, замена и цены</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/z/za/zamena-sharovykh-shkoda-oktaviya.html" class="related-bottom-card"><span class="related-bottom-title">Замена шаровых опор на ŠKODA Octavia: инструкция и советы</span><span class="related-bottom-desc">Пошаговое руководство по замене шаровых опор на ŠKODA Octavia A5/A7/FL. Признаки неисправности, выбо</span></a><a href="/articles/o/os/oshibka-u112100-shkoda-oktaviya-a7.html" class="related-bottom-card"><span class="related-bottom-title">Ошибка U112100 Skoda Octavia A7: причины, диагностика и ремонт</span><span class="related-bottom-desc">Подробный разбор ошибки U112100 на Skoda Octavia A7. Причины сбоя шины CAN, диагностика мультимедиа </span></a><a href="/articles/s/sb/sbrosit-servisnyj-interval-shkoda-oktaviya-a5.html" class="related-bottom-card"><span class="related-bottom-title">Как сбросить сервисный интервал на ŠKODA Octavia A5: пошаговая инструкция</span><span class="related-bottom-desc">Подробное руководство по сбросу сервисного интервала на ŠKODA Octavia A5 (FL). Способы через меню, V</span></a><a href="/articles/s/sh/shkoda-oktaviya-turbirovannaya.html" class="related-bottom-card"><span class="related-bottom-title">Škoda Octavia с турбомотором: характеристики, плюсы и минусы</span><span class="related-bottom-desc">Подробный обзор турбированных версий Škoda Octavia: технические данные, отзывы владельцев, сравнение</span></a><a href="/articles/k/ko/komplekt-stsepleniya-shkoda-oktaviya-a7-14-mkpp.html" class="related-bottom-card"><span class="related-bottom-title">Комплект сцепления Skoda Octavia A7 1.4 MKПП: выбор, замена и цены</span><span class="related-bottom-desc">Полный гид по комплектующим сцепления для Skoda Octavia A7 с двигателем 1.4 TSI. Обзор брендов, приз</span></a><a href="/articles/s/sh/shkoda-oktaviya-a5-2011.html" class="related-bottom-card"><span class="related-bottom-title">Шкода Октавия А5 2011: Обзор, характеристики, особенности эксплуатации</span><span class="related-bottom-desc">Подробный анализ Шкода Октавия А5 2011 года выпуска. Технические характеристики двигателей, проблемы</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

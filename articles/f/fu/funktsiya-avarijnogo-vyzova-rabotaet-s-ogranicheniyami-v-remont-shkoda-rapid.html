@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Аварийный вызов в ŠKODA Rapid: ограничения при ремонте и их причины — Skoda-Handbook</title>
+    <meta name="description" content="Почему функция экстренного вызова (eCall) работает с ограничениями в ŠKODA Rapid во время ремонта? Разбираем технические нюансы, способы диагностики и решения проблемы.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/f/fu/funktsiya-avarijnogo-vyzova-rabotaet-s-ogranicheniyami-v-remont-shkoda-rapid.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Аварийный вызов в ŠKODA Rapid: ограничения при ремонте и их причины">
+    <meta property="og:description" content="Почему функция экстренного вызова (eCall) работает с ограничениями в ŠKODA Rapid во время ремонта? Разбираем технические нюансы, способы диагностики и решения проблемы.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/rapid/">Rapid</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Аварийный вызов в ŠKODA Rapid: ограничения при ремонте и их причины</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Функция аварийного вызова в ŠKODA Rapid: почему работает с ограничениями при ремонте?</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#1-почему-ecall-переходит-в-режим-ограниченной-работы">1. Почему eCall переходит в режим ограниченной работы?</a></li><li><a href="#2-последствия-игнорирования-проблемы">2. Последствия игнорирования проблемы</a></li><li><a href="#3-как-диагностировать-проблему-самостоятельно">3. Как диагностировать проблему самостоятельно?</a></li><li><a href="#4-официальные-способы-решения-проблемы">4. Официальные способы решения проблемы</a></li><li><a href="#5-альтернативные-методы-если-сервис-недоступен">5. Альтернативные методы (если сервис недоступен)</a></li><li><a href="#6-профилактика-как-избежать-проблем-с-ecall-при-ремонте">6. Профилактика: как избежать проблем с eCall при ремонте?</a></li><li><a href="#faq-частые-вопросы-по-ecall-в-škoda-rapid">FAQ: Частые вопросы по eCall в ŠKODA Rapid</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Владельцы <em>ŠKODA Rapid</em> нередко сталкиваются с уведомлением о том, что <strong>функция аварийного вызова (eCall)</strong> работает с ограничениями — особенно после посещения сервиса или во время ремонта. Эта проблема может проявляться как временное отключение экстренной связи, так и полная неработоспособность системы. В чём причина такого поведения, и как вернуть eCall в штатный режим?</p>
+
+<p>Система <strong>eCall</strong> в <em>Rapid</em> интегрирована в бортовой компьютер и зависит от нескольких ключевых компонентов: антенны, SIM-карты, блока управления и программного обеспечения. При ремонте автомобиля — будь то замена аккумулятора, обновление прошивки или вмешательство в электропроводку — эти элементы могут временно потерять связь или требуют переинициализации. В некоторых случаях ограничение работы eCall является <mark>защитной мерой производителя</mark>, предотвращающей ложные срабатывания во время технических работ.</p>
+
+<p>В этой статье мы разберём:</p>
+<ul>
+  <li>🔧 <strong>Технические причины</strong> ограничения eCall при ремонте <em>Rapid</em>.</li>
+  <li>⚠️ <strong>Последствия</strong> игнорирования проблемы для безопасности.</li>
+  <li>🔍 <strong>Способы диагностики</strong> неисправности самостоятельно.</li>
+  <li>🛠️ <strong>Официальные и альтернативные</strong> методы решения.</li>
+</ul>
+
+<h2 id="1-почему-ecall-переходит-в-режим-ограниченной-работы">1. Почему eCall переходит в режим ограниченной работы?</h2>
+
+<p>Основная причина — <strong>сброс настроек системы</strong> после отключения питания или вмешательства в электронику. В <em>ŠKODA Rapid</em> (особенно моделей 2017–2023 годов) блок управления eCall (<code>J949</code>) тесно связан с:</p>
+<ul>
+  <li>📡 <strong>Антенным модулем</strong> (расположен под потолком или в багажнике).</li>
+  <li>📱 <strong>Встроенной SIM-картой</strong> (может требовать перерегистрации в сети).</li>
+  <li>🔌 <strong>Центральным блоком комфорта</strong> (<code>BCM</code>), отвечающим за питание.</li>
+</ul>
+
+<p>При ремонте, например, при замене аккумулятора или обновлении прошивки через <code>ODIS</code>, система eCall может:</p>
+<ol>
+  <li>Потерять связь с серверами <em>ŠKODA</em> (требуется повторная авторизация).</li>
+  <li>Войти в <strong>тестовый режим</strong>, блокирующий реальные вызовы.</li>
+  <li>Ожидать ручной активации через диагностическое оборудование.</li>
+</ol>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Если после ремонта на приборной панели горит значок <strong>«eCall неактивен»</strong> более 24 часов, это может указывать на аппаратную неисправность антенны или блока <code>J949</code>. В этом случае требуется диагностика в сервисе.</blockquote>
+
+<div class="attention-box attention-info"><div><strong>📊 Сталкивались ли вы с проблемой eCall в ŠKODA Rapid?</strong><ul><li>Да, после замены аккумулятора</li><li>Да, после обновления ПО</li><li>Да, но проблема решилась сама</li><li>Нет, не сталкивался</li><li>Не знаю, что такое eCall</li></ul></div></div>
+
+<h2 id="2-последствия-игнорирования-проблемы">2. Последствия игнорирования проблемы</h2>
+
+<p>Многие владельцы <em>Rapid</em> ошибочно считают, что ограниченная работа eCall — это «мелкая» неисправность, которую можно проигнорировать. Однако это чревато:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Риск</th>
+      <th>Последствия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ложное срабатывание eCall</td>
+      <td>Вызов экстренных служб без причины, возможный штраф за злоупотребление.</td>
+    </tr>
+    <tr>
+      <td>Отсутствие связи в ДТП</td>
+      <td>Задержка прибытия помощи, особенно в безлюдных местах.</td>
+    </tr>
+    <tr>
+      <td>Блокировка функций <em>ŠKODA Connect</em></td>
+      <td>Потеря доступа к удалённому управлению автомобилем (например, <code>Honk & Flash</code>).</td>
+    </tr>
+    <tr>
+      <td>Проблемы при прохождении ТО</td>
+      <td>Сервисный центр может отказать в гарантийном обслуживании из-за неисправной системы безопасности.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Критический момент:</strong> В некоторых странах ЕС (например, Германия, Франция) <mark>неработающий eCall может стать причиной отказа в регистрации автомобиля</mark> при продаже или переоформлении. Это связано с европейским регламентом <code>EU 2015/758</code>, обязывающим все новые машины оснащать системой экстренного вызова.</p>
+
+<h2 id="3-как-диагностировать-проблему-самостоятельно">3. Как диагностировать проблему самостоятельно?</h2>
+
+<p>Прежде чем ехать в сервис, проверьте несколько ключевых моментов:</p>
+
+
+<p>Проверьте, горит ли значок eCall на панели приборов (жёлтый треугольник с телефоном)|</p>
+<p>Убедитесь, что SIM-карта eCall не извлечена (расположена под пластиковой крышкой в багажнике)|</p>
+<p>Попробуйте вручную активировать тестовый вызов через меню <code>Настройки → Аварийный вызов → Тест</code>|</p>
+<p>Проверьте, не сбросились ли дата/время в системе (это указывает на разрядку резервной батареи блока <code>J949</code>)</p>
+<p>--></p>
+
+<p>Если тестовый вызов не проходит, обратите внимание на <strong>коды ошибок</strong>, которые могут высветиться в диагностическом меню (доступно через <code>VCDS</code> или <code>ODIS</code>):</p>
+<ul>
+  <li>🔴 <code>U112100</code> — нет связи с сервером eCall.</li>
+  <li>🔴 <code>B1000</code> — неисправность антенны.</li>
+  <li>🔴 <code>U112300</code> — ошибка SIM-карты.</li>
+</ul>
+
+<details class="faq-item"><summary>Как войти в скрытое меню диагностики eCall?</summary><div class="faq-answer"><p>
+<p>1. Выключите зажигание.</p>
+<p>2. Зажмите кнопку <code>SET</code> на руле (левый подрулевой переключатель).</p>
+<p>3. Включите зажигание, не отпуская кнопку, пока не появится меню <code>Diagnostic Mode</code>.</p>
+<p>4. Выберите пункт <code>eCall Status</code> для проверки связи.</p>
+<p></p></div></details></p>
+
+<h2 id="4-официальные-способы-решения-проблемы">4. Официальные способы решения проблемы</h2>
+
+<p>Если самостоятельная диагностика не помогла, следуйте алгоритму от <em>ŠKODA</em>:</p>
+
+<ol>
+  <li><strong>Сброс системы:</strong>
+    <ul>
+      <li>Отключите аккумулятор на 10–15 минут (снимите минусовую клемму).</li>
+      <li>Подключите обратно и дождитесь перезагрузки всех систем (может занять до 5 минут).</li>
+    </ol>
+  </li>
+  <li><strong>Перерегистрация SIM-карты:</strong>
+    <p>В сервисе через <code>ODIS</code> выполняется команда <code>Recoding eCall SIM</code>. Это занимает ~30 минут и требует стабильного интернет-соединения.</p>
+  </li>
+  <li><strong>Обновление прошивки:</strong>
+    <p>Если проблема возникла после апгрейда ПО, возможно, потребуется откат на предыдущую версию или установка патча.</p>
+  </li>
+</ol>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Не пытайтесь вручную извлекать или заменять SIM-карту eCall! Она привязана к VIN автомобиля, и неправильные манипуляции могут заблокировать систему навсегда.</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если после сброса аккумулятора eCall не восстановился, попробуйте проехать 5–10 км на скорости выше 50 км/ч. Иногда система активируется только после движения (это связано с инициализацией GPS-модуля).</p></div>
+
+<h2 id="5-альтернативные-методы-если-сервис-недоступен">5. Альтернативные методы (если сервис недоступен)</h2>
+
+<p>В случаях, когда обратиться в дилерский центр нет возможности, можно попробовать:</p>
+
+<ul>
+  <li>🔌 <strong>Использовать сканер ELM327 с поддержкой eCall</strong> (например, <em>Vgate iCar Pro</em>) для сброса ошибок. Подключитесь через <code>Bluetooth</code>, выберите модуль <code>19-CAN Gateway</code> и выполните команду <code>Clear DTCs</code>.</li>
+  <li>📱 <strong>Активировать eCall через мобильное приложение <em>ŠKODA Connect</strong>:</strong>
+    <ol>
+      <li>Откройте раздел «Безопасность».</li>
+      <li>Нажмите «Активировать eCall».</li>
+      <li>Следуйте инструкциям (может потребоваться ввод кода из SMS).</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Важно:</em> Альтернативные методы работают не на всех версиях <em>Rapid</em>. Например, в моделях до 2019 года мобильное приложение не поддерживает активацию eCall — только диагностика через <code>VCDS</code>.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если после всех манипуляций eCall остаётся неактивным, проблема может крыться в аппаратной неисправности антенны или блока <code>J949</code>. В этом случае требуется замена детали (стоимость ~15–25 тыс. руб. с работой).</p></div>
+
+<h2 id="6-профилактика-как-избежать-проблем-с-ecall-при-ремонте">6. Профилактика: как избежать проблем с eCall при ремонте?</h2>
+
+<p>Чтобы не сталкиваться с ограничением eCall после сервисных работ, придерживайтесь правил:</p>
+
+<ul>
+  <li>🔋 <strong>Всегда предупреждайте мастеров</strong> о необходимости сохранения настроек eCall при замене аккумулятора или сбросе ECU.</li>
+  <li>🔧 <strong>Используйте оригинальные запчасти</strong> для антенны и блока <code>J949</code> (неоригинальные могут не поддерживать eCall).</li>
+  <li>📡 <strong>Проверяйте покрытие сети</strong> перед активацией: eCall работает через <code>GSM 900/1800 МГц</code>, и в глухих зонах может не функционировать.</li>
+</ul>
+
+<p>Если планируете <strong>обновление прошивки</strong> через <code>ODIS</code>, уточните у дилера, включены ли в пакет обновления файлы для модуля eCall. В некоторых случаях требуется отдельная прошивка для блока <code>J949</code>.</p>
+
+<h2 id="faq-частые-вопросы-по-ecall-в-škoda-rapid">FAQ: Частые вопросы по eCall в ŠKODA Rapid</h2>
+
+<details>
+  <summary>Можно ли ездить с неработающим eCall?</summary>
+  <p>Технически — да, но это <strong>нарушает требования безопасности</strong>. В ЕС с 2018 года eCall обязателен для всех новых автомобилей. В России штрафов нет, но при ДТП отсутствие вызова может усложнить страховые выплаты.</p>
+</details>
+
+<details>
+  <summary>Сколько стоит ремонт eCall в сервисе?</summary>
+  <p>Стоимость зависит от причины:
+  <ul>
+    <li>Диагностика: 1 500–3 000 руб.</li>
+    <li>Перерегистрация SIM: 2 000–4 000 руб.</li>
+    <li>Замена антенны: 8 000–15 000 руб.</li>
+    <li>Замена блока <code>J949</code>: 20 000–35 000 руб.</li>
+  </ul>
+  </p>
+</details>
+
+<details>
+  <summary>Может ли eCall срабатывать сам по себе?</summary>
+  <p>Да, если:</p>
+  <ul>
+    <li>Повреждена проводка датчиков удара.</li>
+    <li>Произошёл сбой в блоке <code>J949</code>.</li>
+    <li>Автомобиль подвергся сильной вибрации (например, при езде по бездорожью).</li>
+  </ol>
+  <p>В этом случае требуется сбросить ошибки через диагностику.</p>
+</details>
+
+<details>
+  <summary>Работает ли eCall за пределами Европы?</summary>
+  <p>Функция eCall в <em>ŠKODA Rapid</em> использует <strong>европейские серверы</strong>, но в России, Белоруссии и Казахстане система также активна благодаря роумингу. Однако в некоторых регионах (например, Дальний Восток) связь может быть нестабильной.</p>
+</details>
+
+<details>
+  <summary>Можно ли отключить eCall навсегда?</summary>
+  <p>Нет, это <strong>запрещено производителем</strong>. Система является частью безопасности автомобиля, и её отключение может аннулировать гарантию. Единственный легальный способ — временно деактивировать через меню <code>Настройки → Аварийный вызов</code>, но функция автоматически включится при следующем запуске двигателя.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#1-почему-ecall-переходит-в-режим-ограниченной-работы">1. Почему eCall переходит в режим ограниченной работы?</a></li><li><a href="#2-последствия-игнорирования-проблемы">2. Последствия игнорирования проблемы</a></li><li><a href="#3-как-диагностировать-проблему-самостоятельно">3. Как диагностировать проблему самостоятельно?</a></li><li><a href="#4-официальные-способы-решения-проблемы">4. Официальные способы решения проблемы</a></li><li><a href="#5-альтернативные-методы-если-сервис-недоступен">5. Альтернативные методы (если сервис недоступен)</a></li><li><a href="#6-профилактика-как-избежать-проблем-с-ecall-при-ремонте">6. Профилактика: как избежать проблем с eCall при ремонте?</a></li><li><a href="#faq-частые-вопросы-по-ecall-в-škoda-rapid">FAQ: Частые вопросы по eCall в ŠKODA Rapid</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/s/sh/shkoda-rapid-2013.html" class="related-card">Škoda Rapid 2013 года: технические характеристики, проблемы и отзывы</a></li><li><a href="/articles/s/sh/shkoda-rapid-obem-bagazhnika-v-litrakh-liftbek.html" class="related-card">Škoda Rapid объем багажника лифтбек: точные цифры и секреты трансформации</a></li><li><a href="/articles/s/sh/shkoda-rapid-moshchnost-dvigatelya.html" class="related-card">Шкода Рапид мощность двигателя: обзор моторов, характеристики и выбор</a></li><li><a href="/articles/s/sh/shkoda-rapid-zamena-masla-v-akpp.html" class="related-card">Замена масла в АКПП Шкода Рапид: Интервалы, жидкости и инструкция</a></li><li><a href="/articles/s/sh/shkoda-rapid-zamena-batarejki-v-klyuche.html" class="related-card">Замена батарейки в ключе ŠKODA Rapid: пошаговая инструкция 2026</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/s/sh/shkoda-rapid-2013.html" class="related-bottom-card"><span class="related-bottom-title">Škoda Rapid 2013 года: технические характеристики, проблемы и отзывы</span><span class="related-bottom-desc">Подробный обзор Škoda Rapid 2013: двигатели, расход топлива, слабые места, цены на вторичном рынке и</span></a><a href="/articles/s/sh/shkoda-rapid-obem-bagazhnika-v-litrakh-liftbek.html" class="related-bottom-card"><span class="related-bottom-title">Škoda Rapid объем багажника лифтбек: точные цифры и секреты трансформации</span><span class="related-bottom-desc">Узнайте реальный объем багажника Škoda Rapid лифтбек в литрах: стандартные 530 л, с разложенными сид</span></a><a href="/articles/s/sh/shkoda-rapid-moshchnost-dvigatelya.html" class="related-bottom-card"><span class="related-bottom-title">Шкода Рапид мощность двигателя: обзор моторов, характеристики и выбор</span><span class="related-bottom-desc">Полный разбор двигателей Skoda Rapid: от 82 до 110 л.с. Сравнение бензиновых агрегатов 1.6 MPI и 1.4</span></a><a href="/articles/s/sh/shkoda-rapid-zamena-masla-v-akpp.html" class="related-bottom-card"><span class="related-bottom-title">Замена масла в АКПП Шкода Рапид: Интервалы, жидкости и инструкция</span><span class="related-bottom-desc">Полное руководство по замене масла в коробке автомат Шкода Рапид. Интервалы, выбор оригинальной жидк</span></a><a href="/articles/s/sh/shkoda-rapid-zamena-batarejki-v-klyuche.html" class="related-bottom-card"><span class="related-bottom-title">Замена батарейки в ключе ŠKODA Rapid: пошаговая инструкция 2026</span><span class="related-bottom-desc">Как самостоятельно поменять батарейку в брелке ŠKODA Rapid: типы ключей, выбор элемента питания, под</span></a><a href="/articles/s/sa/salonnyj-filtr-shkoda-rapid-2019.html" class="related-bottom-card"><span class="related-bottom-title">Замена салонного фильтра Skoda Rapid 2019: выбор, инструкция и нюансы</span><span class="related-bottom-desc">Полное руководство по замене салонного фильтра на Skoda Rapid 2019 года. Артикулы, отличия угольных </span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

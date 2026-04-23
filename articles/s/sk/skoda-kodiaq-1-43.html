@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Skoda Kodiaq 1.43: Полный обзор обновлений и нюансов — Skoda-Handbook</title>
+    <meta name="description" content="Разбор версии ПО 1.43 для Škoda Kodiaq. Особенности мультимедиа, настройки двигателя и частые ошибки. Экспертный гайд по диагностике и улучшению комфорта.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/s/sk/skoda-kodiaq-1-43.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Skoda Kodiaq 1.43: Полный обзор обновлений и нюансов">
+    <meta property="og:description" content="Разбор версии ПО 1.43 для Škoda Kodiaq. Особенности мультимедиа, настройки двигателя и частые ошибки. Экспертный гайд по диагностике и улучшению комфорта.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/kodiaq/">Kodiaq</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Skoda Kodiaq 1.43: Полный обзор обновлений и нюансов</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Версия ПО 1.43 для Škoda Kodiaq: Анализ изменений и инструкции по настройке</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#ключевые-изменения-в-системе-infotainment">Ключевые изменения в системе Infotainment</a></li><li><a href="#особенности-работы-двигателей-и-трансмиссии">Особенности работы двигателей и трансмиссии</a></li><li><a href="#инструкция-по-проверке-и-установке-обновления">Инструкция по проверке и установке обновления</a></li><li><a href="#решение-частых-проблем-и-ошибок">Решение частых проблем и ошибок</a></li><li><a href="#влияние-на-экономию-топлива-и-экологию">Влияние на экономию топлива и экологию</a></li><li><a href="#рекомендации-по-обслуживанию-после-обновления">Рекомендации по обслуживанию после обновления</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Владельцы кроссовера <em>Škoda Kodiaq</em> часто сталкиваются с необходимостью разобраться в деталях программного обеспечения, особенно при появлении обновлений с маркировкой 1.43. Данная версия прошивки несет в себе не только стандартные патчи безопасности, но и ряд специфических изменений в работе мультимедийной системы и логики управления двигателем. Понимание нюансов этой версии поможет избежать проблем с подключением смартфонов и оптимизировать расход топлива в городском цикле.</p>
+
+<p>Многие пользователи ошибочно полагают, что цифровое обозначение версии — это просто номер сборки. На самом деле, обновление до <strong>1.43</strong> затрагивает критические модули <em>Infotainment</em> и системы помощи водителю. Если ваш автомобиль оснащен двигателем 2.0 TSI или 1.4 TSI, поведение трансмиссии может измениться после установки этого ПО. Важно заранее проверить совместимость вашего оборудования, чтобы не столкнуться с некорректной работой навигации или камеры заднего вида.</p>
+
+<h2 id="ключевые-изменения-в-системе-infotainment">Ключевые изменения в системе Infotainment</h2>
+<p>Основным нововведением версии 1.43 стало переработанное меню навигации и улучшенная стабильность соединения по протоколу CarPlay. Система стала быстрее реагировать на голосовые команды, что критично для безопасности при вождении. Однако, не все функции работают идеально сразу после обновления, и иногда требуется ручная калибровка сенсорного экрана.</p>
+
+<p>Пользователи отмечают, что графический интерфейс стал более отзывчивым, но в некоторых случаях наблюдается задержка при переключении между приложениями. Это связано с оптимизацией фоновых процессов, которые теперь потребляют меньше ресурсов процессора. Для максимального комфорта рекомендуется сбросить настройки к заводским, если вы заметили «подвисания».</p>
+<ul>
+<li>🚀 Увеличена скорость загрузки карты при холодном старте системы</li>
+<li>📱 Исправлены ошибки при подключении iPhone через кабель USB-C</li>
+<li>🎵 Обновлен эквалайзер с новыми пресетами для акустики Canton</li>
+</ul>
+
+<blockquote>⚠️ Внимание: Не отключайте зажигание во время установки обновления версии 1.43, так как это может привести к полной неработоспособности мультимедийного модуля и необходимости перепрошивки через дилерский сканер.</blockquote>
+
+<h2 id="особенности-работы-двигателей-и-трансмиссии">Особенности работы двигателей и трансмиссии</h2>
+<p>Версия 1.43 вносит коррективы в алгоритмы работы коробки передач DSG, особенно в режимах движения «Start-Stop». Переключения стали более плавными, что снижает утомляемость водителя в пробках. Однако, если у вас установлен двигатель <em>1.4 TSI</em> или <em>2.0 TDI</em>, вы можете заметить изменение характера разгона на низких оборотах.</p>
+
+<p>Инженеры скорректировали карту впрыска топлива, чтобы соответствовать новым экологическим нормам. Это привело к тому, что расход топлива в смешанном цикле снизился, но динамика разгона до 100 км/ч стала чуть менее агрессивной. Владельцы спортивных версий Sportline часто жалуются на это, предпочитая более резкие отклики педали газа.</p>
+
+<p>Для тех, кто хочет вернуть прежнюю динамику, существует возможность перепрошивки через чип-тюнинг, но это лишает гарантии на двигатель. Стандартное поведение системы после обновления до 1.43 является оптимальным для долгосрочной эксплуатации без перегрузки узлов.</p>
+<ul>
+<li>⚙️ Улучшена работа системы рекуперации энергии при торможении</li>
+<li>🌡️ Оптимизирован прогрев катализатора в холодное время года</li>
+<li>🛡️ Добавлены новые алгоритмы защиты от перегрева турбины</li>
+</ul>
+
+<div class="attention-box attention-info"><div><strong>📊 Как вы оцениваете работу мультимедиа после обновления 1.43?</strong><ul><li>Отлично, всё быстро</li><li>Хорошо, есть мелкие баги</li><li>Плохо, появились лаги</li><li>Не обновлял, не знаю</li></ul></div></div>
+
+<h2 id="инструкция-по-проверке-и-установке-обновления">Инструкция по проверке и установке обновления</h2>
+<p>Процесс обновления программного обеспечения до версии 1.43 можно выполнить самостоятельно через интернет или обратившись в сервисный центр. Самостоятельная установка экономит время и деньги, но требует внимательности и стабильного подключения к Wi-Fi. Перед началом процедуры убедитесь, что заряд аккумулятора не ниже 50%.</p>
+
+<p>Если вы решите выполнить обновление через <code>Настройки → Система → Обновление ПО</code>, система автоматически проверит наличие новых файлов. Скачивание может занять от 15 до 45 минут в зависимости от скорости вашего соединения. Не закрывайте меню и не выключайте двигатель в этот период.</p>
+<div class="checklist-block"><h4>☑️ Подготовка к обновлению ПО 1.43</h4><label class="check-item"><input type="checkbox"><span>Зарядить аккумулятор до 80%</span></label><label class="check-item"><input type="checkbox"><span>Подключиться к стабильному Wi-Fi</span></label><label class="check-item"><input type="checkbox"><span>Закрыть все приложения</span></label><label class="check-item"><input type="checkbox"><span>Очистить кэш карты памяти</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<p>После скачивания начнется процесс установки, который сопровождается перезагрузкой системы. Экран может погаснуть на несколько минут, что является нормой. Не пытайтесь вмешиваться в процесс, нажимая кнопки или пытаясь открыть двери.</p>
+<ul>
+<li>📶 Проверьте наличие сигнала сети не менее 4G для быстрой загрузки</li>
+<li>🔋 Убедитесь, что бортовая сеть выдает стабильное напряжение</li>
+<li>💾 Освободите место на карте памяти, если используется внешний накопитель</li>
+</ul>
+
+<blockquote>⚠️ Внимание: Если обновление прервалось на этапе установки (например, из-за отключения интернета), система может войти в аварийный режим. В таком случае необходимо обратиться к дилеру для восстановления модуля через диагностический порт OBDII.</blockquote>
+
+<details class="faq-item"><summary>Что делать, если обновление зависло?</summary><div class="faq-answer"><p>Если индикатор загрузки не двигается более 30 минут, попробуйте мягко перезагрузить систему, удерживая кнопку питания на блоке управления. Если это не помогло, дождитесь полной разрядки аккумулятора (около 2-3 часов), после чего автомобиль попытается загрузиться с резервной прошивки.</p></div></details>
+
+<h2 id="решение-частых-проблем-и-ошибок">Решение частых проблем и ошибок</h2>
+<p>После обновления до версии 1.43 некоторые пользователи сталкиваются с ошибками датчиков парковки или некорректной работой системы климат-контроля. Это часто связано с тем, что новые алгоритмы требуют перекалибровки сенсоров. В большинстве случаев проблема решается простым перезапуском системы или сбросом настроек.</p>
+
+<p>Особое внимание стоит уделить работе камеры заднего вида, которая может отображать изображение с задержкой. Это связано с изменением приоритетов обработки видеопотока. Если задержка превышает 1 секунду, необходимо проверить подключение шлейфа камеры и обновить драйверы через сервисное меню.</p>
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед сбросом настроек мультимедиа сохраните список ваших радиостанций и навигационные маршруты на флешку, так как они будут удалены безвозвратно.</p></div>
+
+<p>Для диагностики ошибок используйте диагностический сканер или встроенное меню самопроверки. Ошибки, начинающиеся с кодом U, часто указывают на проблемы связи между модулями, что может быть исправлено обновлением прошивки конкретного узла.</p>
+<ul>
+<li>🔧 Сбросьте настройки до заводских, если проблема не решается перезагрузкой</li>
+<li>🔍 Проверьте целостность разъемов в районе багажника и переднего бампера</li>
+<li>📡 Обновите карту навигации до последней версии через веб-портал</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>Тип ошибки</th>
+<th>Код ошибки</th>
+<th>Причина</th>
+<th>Способ устранения</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Сбой камеры</td>
+<td>00045</td>
+<td>Устаревший драйвер</td>
+<td>Обновление ПО модуля камеры</td>
+</tr>
+<tr>
+<td>Ошибка датчика давления</td>
+<td>00092</td>
+<td>Потеря сигнала</td>
+<td>Калибровка датчиков TPMS</td>
+</tr>
+<tr>
+<td>Проблема с Bluetooth</td>
+<td>00118</td>
+<td>Конфликт версий</td>
+<td>Удаление старых устройств</td>
+</tr>
+<tr>
+<td>Сбой климат-контроля</td>
+<td>00201</td>
+<td>Неверная калибровка</td>
+<td>Сброс настроек климата</td>
+</tr>
+</tbody>
+</table>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Регулярная диагностика и своевременное обновление ПО — залог стабильной работы всех электронных систем Škoda Kodiaq.</p></div>
+
+<h2 id="влияние-на-экономию-топлива-и-экологию">Влияние на экономию топлива и экологию</h2>
+<p>Версия 1.43 оптимизирует работу двигателя внутреннего сгорания, снижая выбросы вредных веществ и расход топлива. Это достигается за счет более точного управления впрыском и изменением алгоритмов работы турбонаддува. В городском цикле разница может составлять до 0.5 л/100 км по сравнению с предыдущими версиями.</p>
+
+<p>Однако, чтобы достичь максимальной экономии, необходимо адаптировать стиль вождения под новые настройки. Система будет чаще отключать двигатель в режиме Stop-Start, что может показаться неудобным, но значительно экономит ресурс. <mark>Снижение расхода топлива напрямую зависит от качества топлива и регулярности обслуживания системы зажигания.</mark></p>
+
+<p>Экологические стандарты Евро-6d требуют строгого контроля выбросов, и обновление 1.43 помогает автомобилю соответствовать этим нормам без потери мощности. Это особенно важно для владельцев, планирующих поездку в страны Евросоюза, где действуют жесткие ограничения на въезд автомобилей с устаревшими экологическими классами.</p>
+
+<h2 id="рекомендации-по-обслуживанию-после-обновления">Рекомендации по обслуживанию после обновления</h2>
+<p>После установки версии 1.43 рекомендуется провести полное техническое обслуживание, чтобы убедиться в корректной работе всех систем. Замените воздушный фильтр и проверьте уровень технических жидкостей, так как новые алгоритмы могут изменить нагрузку на двигатель.</p>
+
+<p>Также стоит уделить внимание проверке тормозной системы, так как работа ABS и ESP была переработана. Новые алгоритмы могут требовать более точной настройки тормозных суппортов и колодок. Не игнорируйте предупреждения на приборной панели, даже если они кажутся ложными.</p>
+<ul>
+<li>🛢️ Проверьте уровень масла в двигателе и коробке передач</li>
+<li>🔩 Осмотрите тормозные диски на предмет износа и биения</li>
+<li>🔋 Протестируйте аккумуляторную батарею на предмет емкости</li>
+</ul>
+
+<blockquote>⚠️ Внимание: Если после обновления появились новые ошибки в системе безопасности, не пытайтесь их игнорировать. Это может привести к отказу подушек безопасности или ABS в критической ситуации.</blockquote>
+
+<details class="faq-item"><summary>Как проверить совместимость деталей?</summary><div class="faq-answer"><p>Для проверки совместимости запчастей используйте VIN-код вашего автомобиля на официальном сайте Škoda или в специализированных каталогах. Это поможет избежать ошибок при покупке фильтров, свечей зажигания или тормозных колодок.</p></div></details>
+
+<h2 id="faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</h2>
+<details>
+<summary>Сколько времени занимает обновление версии 1.43?</summary>
+<p>Обновление обычно занимает от 45 до 90 минут, включая скачивание файлов и установку. Время зависит от скорости интернет-соединения и мощности процессора вашего автомобиля.</p>
+</details>
+<details>
+<summary>Можно ли откатиться на предыдущую версию ПО?</summary>
+<p>Официально откатиться на предыдущую версию невозможно. Вернуться к старой версии можно только через перепрошивку у официального дилера с использованием специализированного оборудования, что может быть платной услугой.</p>
+</details>
+<details>
+<summary>Влияет ли обновление на гарантию автомобиля?</summary>
+<p>Официальное обновление через дилерский центр или через встроенную систему OTA не влияет на гарантию. Самопроизвольное вмешательство в ПО может стать причиной отказа в гарантийном обслуживании.</p>
+</details>
+<details>
+<summary>Что делать, если после обновления пропал звук?</summary>
+<p>Проверьте настройки громкости и баланс. Если проблема не решена, выполните сброс настроек мультимедиа до заводских. В редких случаях требуется замена модуля усилителя звука.</p>
+</details>
+<details>
+<summary>Нужно ли менять масло после обновления?</summary>
+<p>Нет, обновление программного обеспечения не требует обязательной замены масла. Однако, если вы давно не меняли масло, стоит сделать это для поддержания оптимального состояния двигателя.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#ключевые-изменения-в-системе-infotainment">Ключевые изменения в системе Infotainment</a></li><li><a href="#особенности-работы-двигателей-и-трансмиссии">Особенности работы двигателей и трансмиссии</a></li><li><a href="#инструкция-по-проверке-и-установке-обновления">Инструкция по проверке и установке обновления</a></li><li><a href="#решение-частых-проблем-и-ошибок">Решение частых проблем и ошибок</a></li><li><a href="#влияние-на-экономию-топлива-и-экологию">Влияние на экономию топлива и экологию</a></li><li><a href="#рекомендации-по-обслуживанию-после-обновления">Рекомендации по обслуживанию после обновления</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/s/sk/skoda-kodiaq-dizel.html" class="related-card">Skoda Kodiaq дизель: технические характеристики, плюсы и минусы</a></li><li><a href="/articles/s/sh/shkoda-kodiak-obem-bagazhnika.html" class="related-card">Объем багажника Skoda Kodiaq: реальные размеры и практические советы</a></li><li><a href="/articles/s/sh/shkoda-kodiak-laurin-klement.html" class="related-card">Škoda Kodiaq Laurin &amp; Klement: обзор, цены, характеристики 2026</a></li><li><a href="/articles/s/sh/shkoda-kodiak-test-drajv-video.html" class="related-card">Шкода Кодиак тест драйв видео: обзор характеристик и поведения на дороге</a></li><li><a href="/articles/s/sh/shkoda-kodiak-snaryazhennaya-massa.html" class="related-card">Škoda Kodiaq: снаряженная масса и её влияние на эксплуатацию</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/s/sk/skoda-kodiaq-dizel.html" class="related-bottom-card"><span class="related-bottom-title">Skoda Kodiaq дизель: технические характеристики, плюсы и минусы</span><span class="related-bottom-desc">Подробный обзор дизельных версий Skoda Kodiaq: расход топлива, надежность, сравнение с бензиновыми а</span></a><a href="/articles/s/sh/shkoda-kodiak-obem-bagazhnika.html" class="related-bottom-card"><span class="related-bottom-title">Объем багажника Skoda Kodiaq: реальные размеры и практические советы</span><span class="related-bottom-desc">Подробный разбор объема багажника ŠKODA Kodiaq: сравнение с конкурентами, практические советы по заг</span></a><a href="/articles/s/sh/shkoda-kodiak-laurin-klement.html" class="related-bottom-card"><span class="related-bottom-title">Škoda Kodiaq Laurin &amp; Klement: обзор, цены, характеристики 2026</span><span class="related-bottom-desc">Подробный обзор флагманского кроссовера Škoda Kodiaq в топовой комплектации Laurin &amp; Klement: технич</span></a><a href="/articles/s/sh/shkoda-kodiak-test-drajv-video.html" class="related-bottom-card"><span class="related-bottom-title">Шкода Кодиак тест драйв видео: обзор характеристик и поведения на дороге</span><span class="related-bottom-desc">Полный тест драйв видео Шкода Кодиак: анализ динамики, комфорта, работы подвески и мультимедиа. Узна</span></a><a href="/articles/s/sh/shkoda-kodiak-snaryazhennaya-massa.html" class="related-bottom-card"><span class="related-bottom-title">Škoda Kodiaq: снаряженная масса и её влияние на эксплуатацию</span><span class="related-bottom-desc">Узнайте точную снаряженную массу Škoda Kodiaq разных поколений, как она влияет на динамику, расход т</span></a><a href="/articles/z/za/zamena-vozdushnogo-filtra-shkoda-kodiak.html" class="related-bottom-card"><span class="related-bottom-title">Замена воздушного фильтра Skoda Kodiaq: Пошаговая инструкция</span><span class="related-bottom-desc">Как самостоятельно заменить воздушный фильтр на Skoda Kodiaq. Инструкция по доступу, выбору оригинал</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

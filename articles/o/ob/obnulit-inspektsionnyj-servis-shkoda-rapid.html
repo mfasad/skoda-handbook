@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Как обнулить инспекционный сервис Škoda Rapid: пошаговая инструкция — Skoda-Handbook</title>
+    <meta name="description" content="Подробное руководство по сбросу инспекционного сервиса на Škoda Rapid (2012–2023). Способы через меню, VCDS и сканеры ELM327. Разбор ошибок и советы по диагностике.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/o/ob/obnulit-inspektsionnyj-servis-shkoda-rapid.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как обнулить инспекционный сервис Škoda Rapid: пошаговая инструкция">
+    <meta property="og:description" content="Подробное руководство по сбросу инспекционного сервиса на Škoda Rapid (2012–2023). Способы через меню, VCDS и сканеры ELM327. Разбор ошибок и советы по диагностике.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/rapid/">Rapid</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как обнулить инспекционный сервис Škoda Rapid: пошаговая инструкция</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Обнуление инспекционного сервиса на Škoda Rapid: все рабочие методы</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#почему-нельзя-игнорировать-инспекционное-сообщение">Почему нельзя игнорировать инспекционное сообщение</a></li><li><a href="#способ-1-сброс-через-меню-бортового-компьютера-для-моделей-до-2017-года">Способ 1: Сброс через меню бортового компьютера (для моделей до 2017 года)</a></li><li><a href="#способ-2-обнуление-через-диагностический-сканер-vcds-obdeleven-carista">Способ 2: Обнуление через диагностический сканер (VCDS, OBDeleven, Carista)</a></li><li><a href="#способ-3-ручное-обнуление-через-скрытое-меню-для-цифровой-панели">Способ 3: Ручное обнуление через скрытое меню (для цифровой панели)</a></li><li><a href="#ошибки-при-сбросе-и-их-решения">Ошибки при сбросе и их решения</a></li><li><a href="#как-проверить-что-сброс-прошёл-успешно">Как проверить, что сброс прошёл успешно</a></li><li><a href="#частые-вопросы-о-сбросе-инспекционного-сервиса">Частые вопросы о сбросе инспекционного сервиса</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Инспекционный сервис на <em>Škoda Rapid</em> — это не просто напоминание о плановом ТО, а часть электронной системы контроля за состоянием автомобиля. Когда на приборной панели загорается надпись <code>INSPECTION</code> или <code>SERVICE</code> с отсчётом километров/дней, это сигнал о необходимости сброса интервала после проведения технического обслуживания. Однако не все владельцы знают, что процедуру можно выполнить самостоятельно — без посещения дилерского центра.</p>
+
+<p>В этой статье разберём <strong>все актуальные способы обнуления сервисного интервала</strong> на <em>Rapid</em> (включая рестайлинговые модели 2017+ и версии с цифровой приборной панелью <em>Virtual Cockpit</em>). От простого сброса через меню бортового компьютера до работы с диагностическими сканерами — выберете метод под ваш уровень подготовки. Также обсудим <strong>распространённые ошибки</strong>, которые приводят к сбою процедуры, и дадим рекомендации по выбору оборудования для диагностики.</p>
+
+<h2 id="почему-нельзя-игнорировать-инспекционное-сообщение">Почему нельзя игнорировать инспекционное сообщение</h2>
+
+<p>Многие водители ошибочно считают, что надпись <code>INSPECTION</code> — это лишь "совет" от производителя, который можно проигнорировать. На самом деле <strong>отсутствие сброса после ТО ведёт к накоплению системных ошибок</strong> в блоке управления <em>ECU</em> (Engine Control Unit). Вот чем это чревато:</p>
+
+<ul>
+  <li>🔴 <strong>Ложные ошибки двигателя</strong>: ЭБУ может начать фиксировать "пропуски зажигания" или "неисправность датчиков" из-за несброшенного сервисного интервала.</li>
+  <li>🔴 <strong>Блокировка диагностики</strong>: При подключении сканера некоторые параметры (например, адаптации дроссельной заслонки) могут быть недоступны.</li>
+  <li>🔴 <strong>Проблемы при продаже</strong>: Покупатели и дилеры проверяют историю ТО через <code>ODIS</code> или <code>VCDS</code> — несброшенный интервал вызовет подозрения.</li>
+  <li>🔴 <strong>Риск пропуска критического ТО</strong>: Надпись <code>INSPECTION -500 km</code> означает, что до планового обслуживания осталось 500 км, а не что "можно ездить ещё 500 км".</li>
+</ul>
+
+<p>Более того, на моделях <em>Rapid</em> с двигателями <code>1.4 TSI (CZDA)</code> и <code>1.6 TDI (CRTD)</code> несброшенный сервисный интервал может привести к <strong>активации аварийного режима</strong> при превышении лимита пробега на 2 000+ км. В этом случае автомобиль ограничит мощность до 60–70% и включит <code>Check Engine</code>.</p>
+
+<blockquote>⚠️ <strong>Внимание:</strong> На автомобилях с пробегом свыше 150 000 км сброс инспекционного сервиса может временно активировать ошибку <code>P1636</code> (несоответствие данных ЭБУ). Это нормально — ошибка исчезнет после 2–3 циклов запуска двигателя.</blockquote>
+
+<h2 id="способ-1-сброс-через-меню-бортового-компьютера-для-моделей-до-2017-года">Способ 1: Сброс через меню бортового компьютера (для моделей до 2017 года)</h2>
+
+<p>Самый простой метод, который работает на <em>Škoda Rapid</em> первого поколения (2012–2016) с аналоговой приборной панелью. Подходит для сброса <strong>интервалов масла и инспекции</strong>, но не затрагивает дополнительные сервисные метки (например, замену тормозной жидкости).</p>
+
+<p>Инструкция:</p>
+<ol>
+  <li>Вставьте ключ в замок зажигания и поверните его в положение <code>ON</code> (не запускайте двигатель!).</li>
+  <li>Нажмите и удерживайте кнопку <code>0.0/SET</code> на подрулевом переключателе (справа).</li>
+  <li>Поверните ключ в положение <code>OFF</code>, затем снова в <code>ON</code>, не отпуская кнопку.</li>
+  <li>Через 5–10 секунд на дисплее появится надпись <code>SERVICE RESET</code> или <code>INSPECTION RESET</code>.</li>
+  <li>Кратко нажмите кнопку <code>0.0/SET</code> для подтверждения сброса.</li>
+  <li>Выключите зажигание и подождите 30 секунд — интервал обнулен.</li>
+</ol>
+
+<p>Если после этих действий надпись <code>INSPECTION</code> не исчезла, проверьте:</p>
+<ul>
+  <li>🔧 Правильность выполнения шагов (кнопка должна удерживаться <strong>до появления меню сброса</strong>).</li>
+  <li>🔧 Состояние аккумулятора — при низком напряжении (<code>11.8 В</code>) меню может не открыться.</li>
+  <li>🔧 Версию прошивки бортового компьютера (на рестайлинговых моделях 2015+ может потребоваться другой метод).</li>
+</ul>
+
+
+<p>Убедитесь, что зажигание в положении ON (двигатель выключен)|</p>
+<p>Проверьте напряжение аккумулятора (минимум 12.2 В)|</p>
+<p>Используйте оригинальную кнопку 0.0/SET (не подрулевой переключатель от других моделей VW)|</p>
+<p>Не отпускайте кнопку до появления меню RESET</p>
+<p>--></p>
+
+<h2 id="способ-2-обнуление-через-диагностический-сканер-vcds-obdeleven-carista">Способ 2: Обнуление через диагностический сканер (VCDS, OBDeleven, Carista)</h2>
+
+<p>Для владельцев <em>Rapid</em> 2017+ годов (включая рестайлинговые версии с цифровой панелью <em>Virtual Cockpit</em>) сброс через меню бортового компьютера часто недоступен. В этом случае потребуется диагностический адаптер. Рассмотрим <strong>три популярных варианта</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сканер</th>
+      <th>Стоимость (руб.)</th>
+      <th>Поддержка Rapid</th>
+      <th>Особенности</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>VCDS (VAG-COM)</em></td>
+      <td>15 000–25 000</td>
+      <td>Все модели (2012–2023)</td>
+      <td>Профессиональный инструмент, требует ПК. Поддерживает адаптации и кодирование.</td>
+    </tr>
+    <tr>
+      <td><em>OBDeleven Pro</em></td>
+      <td>8 000–12 000</td>
+      <td>Все модели (кроме 2023 MY)</td>
+      <td>Мобильное приложение, однократная покупка кредитов для сброса.</td>
+    </tr>
+    <tr>
+      <td><em>Carista</em></td>
+      <td>5 000–7 000</td>
+      <td>Модели до 2020 года</td>
+      <td>Простой интерфейс, но ограниченные функции для новых версий.</td>
+    </tr>
+    <tr>
+      <td><em>ELM327 (китайские)</em></td>
+      <td>500–1 500</td>
+      <td>Частично (только базовый сброс)</td>
+      <td>Ненадёжны для новых моделей, могут повредить ЭБУ.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Пошаговая инструкция для <em>VCDS</em> (актуально для версий <code>20.4.1+</code>):</p>
+<ol>
+  <li>Подключите адаптер к порту <code>OBD-II</code> (расположен под рулём, слева от педалей).</li>
+  <li>Запустите программу <em>VCDS</em> и выберите модель <code>Skoda Rapid (MQB)</code>.</li>
+  <li>Перейдите в блок <code>17 – Instruments</code> (Приборная панель).</li>
+  <li>Выберите <code>Adaptation → Channel 02</code> (или <code>IDE03246</code> для новых версий).</li>
+  <li>В поле <code>New Value</code> введите <code>0</code> (для полного сброса) или укажите новый интервал (например, <code>15000</code> км).</li>
+  <li>Сохраните изменения и перезагрузите приборную панель (выключите/включите зажигание).</li>
+</ol>
+
+<p>Для <em>OBDeleven</em>:</p>
+<ol>
+  <li>Подключите адаптер и откройте приложение.</li>
+  <li>Выберите <code>Diagnostics → Skoda → Rapid → Service Reset</code>.</li>
+  <li>Нажмите <code>Read</code>, затем <code>Reset</code> и подтвердите действие.</li>
+</ol>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если после сброса через VCDS надпись <code>INSPECTION</code> осталась, проверьте блок <code>01 – Engine</code>. Иногда требуется сбросить сервисный интервал и там (канал <code>IDE00820</code>).</p></div>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Использование дешёвых <em>ELM327</em>-адаптеров (особенно версии <code>1.5</code>) может привести к <strong>потере связи с ЭБУ</strong> или записи некорректных данных. Для <em>Rapid</em> 2018+ годов рекомендуется использовать только оригинальные сканеры с поддержкой протокола <code>UDS</code>.</blockquote>
+
+<h2 id="способ-3-ручное-обнуление-через-скрытое-меню-для-цифровой-панели">Способ 3: Ручное обнуление через скрытое меню (для цифровой панели)</h2>
+
+<p>Модели <em>Škoda Rapid</em> 2017–2023 годов с цифровой приборной панелью <em>Virtual Cockpit</em> имеют скрытое инженерное меню, через которое можно сбросить сервисный интервал без сканера. Этот метод работает не на всех прошивках, но стоит попробовать перед покупкой диагностического оборудования.</p>
+
+<p>Инструкция:</p>
+<ol>
+  <li>Включите зажигание (двигатель выключен).</li>
+  <li>Нажмите и удерживайте кнопку <code>OK</code> на подрулевом переключателе (справа) в течение 10 секунд.</li>
+  <li>Не отпуская <code>OK</code>, нажмите кнопку <code>MENU</code> (слева) 3 раза подряд.</li>
+  <li>Отпустите обе кнопки — должно открыться скрытое меню с надписью <code>Diagnostic Mode</code>.</li>
+  <li>Прокрутите до пункта <code>Service Reset</code> (или <code>INSP Reset</code>) с помощью кнопок <code>↑/↓</code>.</li>
+  <li>Нажмите <code>OK</code> для сброса и подтвердите действие.</li>
+</ol>
+
+<p>Если меню не открывается:</p>
+<ul>
+  <li>🔧 Попробуйте повторить процедуру с <strong>выключенным светом фар</strong> (на некоторых прошивках это мешает активации режима).</li>
+  <li>🔧 Проверьте, что руль находится в нейтральном положении (датчики углового положения могут блокировать доступ).</li>
+  <li>🔧 Обновите прошивку приборной панели через <em>VCDS</em> (если доступна новая версия).</li>
+</ul>
+
+<details class="faq-item"><summary>Что делать, если после сброса появилась ошибка <code>PR-958</code>?</summary><div class="faq-answer"><p>
+<p>Эта ошибка означает, что данные сервисного интервала не были корректно записаны в блок <code>17 – Instruments</code>. Чтобы исправить:</p>
+<p>1. Подключите <em>VCDS</em> и перейдите в <code>17 – Instruments → Security Access</code>.</p>
+<p>2. Введите код <code>13861</code> (для <em>Rapid</em> 2017–2020).</p>
+<p>3. Повторно выполните сброс через канал <code>IDE03246</code>.</p>
+<p>4. Перезагрузите приборную панель, отключив аккумулятор на 5 минут.</p>
+<p></p></div></details></p>
+
+<h2 id="ошибки-при-сбросе-и-их-решения">Ошибки при сбросе и их решения</h2>
+
+<p>Даже при правильном выполнении инструкций владельцы <em>Rapid</em> сталкиваются с проблемами. Рассмотрим <strong>самые распространённые ошибки</strong> и способы их устранения:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ошибка</th>
+      <th>Причина</th>
+      <th>Решение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>No response from controller</code> (в VCDS)</td>
+      <td>Неисправен адаптер или блок <code>17 – Instruments</code></td>
+      <td>Проверьте соединение OBD-II, попробуйте другой адаптер. Если ошибка остаётся — диагностируйте приборную панель.</td>
+    </tr>
+    <tr>
+      <td>После сброса надпись <code>INSPECTION</code> возвращается через 100 км</td>
+      <td>Не сброшен интервал в блоке <code>01 – Engine</code></td>
+      <td>Выполните сброс в обоих блоках: <code>17</code> и <code>01</code> (канал <code>IDE00820</code>).</td>
+    </tr>
+    <tr>
+      <td>Меню сброса не открывается (кнопка <code>0.0/SET</code> не работает)</td>
+      <td>Износ контактов кнопки или неисправность подрулевого переключателя</td>
+      <td>Попробуйте использовать сканер. Если не поможет — замените переключатель (артикул <code>5E0-953-513-BX7</code>).</td>
+    </tr>
+    <tr>
+      <td><code>Adaptation channel not available</code></td>
+      <td>Устаревшая версия VCDS или несовместимая прошивка ЭБУ</td>
+      <td>Обновите <em>VCDS</em> до версии <code>22.3.0+</code> или используйте <em>OBDeleven</em>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Особое внимание стоит уделить модели <em>Rapid Monte Carlo</em> (2019–2023): на этих автомобилях сервисный интервал привязан к <strong>двум блокам одновременно</strong> — <code>17</code> (приборная панель) и <code>A5</code> (блок комфорта). Если сбросить только один из них, надпись <code>INSPECTION</code> появится снова через 500–1000 км.</p>
+
+
+<p>Через меню бортового компьютера|</p>
+<p>Сканер VCDS/OBDeleven|</p>
+<p>Скрытое инженерное меню|</p>
+<p>Обращался к дилеру|Другой способ--></p>
+
+<h2 id="как-проверить-что-сброс-прошёл-успешно">Как проверить, что сброс прошёл успешно</h2>
+
+<p>Многие владельцы допускают ошибку, считая, что исчезновение надписи <code>INSPECTION</code> с панели приборов означает успешный сброс. На самом деле <strong>нужно проверить три параметра</strong>:</p>
+
+<ol>
+  <li><strong>Визуальная проверка:</strong> Надпись <code>INSPECTION</code> или <code>SERVICE</code> должна исчезнуть с дисплея. На цифровых панелях также пропадает значок гаечного ключа.</li>
+  <li><strong>Проверка через бортовой компьютер:</strong>
+    <ul>
+      <li>Зажмите кнопку <code>0.0/SET</code> на 3 секунды.</li>
+      <li>Прокрутите до пункта <code>Service</code> или <code>Inspection</code>.</li>
+      <li>Должно отобразиться <code>--- km</code> или <code>No service required</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Диагностика сканером:</strong> Подключите <em>VCDS</em> и проверьте значения в блоках <code>17</code> и <code>01</code>:
+    <ul>
+      <li>В <code>17 – Instruments → Adaptation → Channel 02</code> должно быть <code>0</code>.</li>
+      <li>В <code>01 – Engine → Measuring Blocks → Group 18</code> поле <code>Service Inspection</code> должно показывать <code>No</code>.</li>
+    </ol>
+  </li>
+</ol>
+
+<p>Если хотя бы один из пунктов не выполнен, сброс прошёл <strong>некорректно</strong>. Например, на <em>Rapid</em> с двигателем <code>1.0 TSI (CHZB)</code> часто остаётся несброшенным интервал замены <strong>воздушного фильтра</strong>, который контролируется отдельно (блок <code>08 – HVAC</code>).</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>На автомобилях с пробегом свыше 100 000 км после сброса рекомендуется выполнить <strong>адаптацию дроссельной заслонки</strong> (блок <code>01 – Engine → Basic Settings → Group 060</code>). Это предотвратит плавающие обороты в первые 100 км после обнуления.</p></div>
+
+<h2 id="частые-вопросы-о-сбросе-инспекционного-сервиса">Частые вопросы о сбросе инспекционного сервиса</h2>
+
+<details>
+  <summary>Можно ли сбросить инспекционный сервис без сканера на Rapid 2020 года?</summary>
+  <p>На моделях 2017+ годов с цифровой панелью <em>Virtual Cockpit</em> сброс через меню бортового компьютера (кнопка <code>0.0/SET</code>) <strong>не работает</strong>. Вам потребуется:</p>
+  <ul>
+    <li>Сканер <em>VCDS</em>/<em>OBDeleven</em> (наиболее надёжный способ).</li>
+    <li>Или попытка активации скрытого меню (см. <strong>Способ 3</strong> в статье), но это работает не на всех прошивках.</li>
+  </ul>
+  <p>Дилеры используют программу <em>ODIS</em>, но её легальная версия стоит от 50 000 рублей, поэтому покупка <em>OBDeleven Pro</em> (8–12 тыс.) будет оптимальным решением.</p>
+</details>
+
+<details>
+  <summary>После сброса через VCDS появилась ошибка P1636. Что делать?</summary>
+  <p>Ошибка <code>P1636</code> (<code>Engine Control Module – Implausible Data Received</code>) возникает из-за несовпадения данных между блоками <code>17</code> (приборная панель) и <code>01</code> (ЭБУ двигателя). Чтобы устранить:</p>
+  <ol>
+    <li>Подключите <em>VCDS</em> и перейдите в блок <code>01 – Engine</code>.</li>
+    <li>Выберите <code>Measuring Blocks → Group 18</code>.</li>
+    <li>Проверьте поле <code>Service Inspection</code> — если там стоит <code>Yes</code>, выполните сброс через канал <code>IDE00820</code>.</li>
+    <li>Перезагрузите ЭБУ, отключив аккумулятор на 10 минут.</li>
+  </ol>
+  <p>Если ошибка остаётся, обновите прошивку блока <code>17</code> до последней версии (через <em>ODIS</em> или у дилера).</p>
+</details>
+
+<details>
+  <summary>Как сбросить интервал замены тормозной жидкости? Он не сбрасывается вместе с инспекцией.</summary>
+  <p>Интервал замены тормозной жидкости (<code>Brake Fluid</code>) на <em>Rapid</em> контролируется отдельно и сбрасывается через блок <code>03 – ABS</code>. Инструкция:</p>
+  <ol>
+    <li>Подключите <em>VCDS</em> и выберите <code>03 – ABS → Adaptation</code>.</li>
+    <li>Найдите канал <code>IDE01165</code> (<code>Brake fluid change</code>).</li>
+    <li>В поле <code>New Value</code> введите <code>0</code> (или дату следующей замены в формате <code>YYYY-MM-DD</code>).</li>
+    <li>Сохраните и перезагрузите блок <code>ABS</code> (выключите/включите зажигание).</li>
+  </ol>
+  <p>На приборной панели этот интервал отображается отдельно (значок тормозной системы с капелькой).</p>
+</details>
+
+<details>
+  <summary>Можно ли сбросить инспекционный сервис на Rapid с пробегом 200 000+ км?</summary>
+  <p>Да, но есть нюансы:</p>
+  <ul>
+    <li>На автомобилях с большим пробегом (<code>180 000+ км</code>) после сброса может активироваться <strong>режим "пожизненного сервиса"</strong> (<code>Permanent Inspection</code>), когда интервал перестаёт отсчитываться. Это нормально для старых машин.</li>
+    <li>Если после сброса появляется ошибка <code>PR-958</code>, значит, блок <code>17</code> требует перепрошивки (см. спойлер выше).</li>
+    <li>На двигателях <code>1.6 TDI (CRTD)</code> с пробегом >200 000 км рекомендуется сбрасывать интервал <strong>только через VCDS</strong>, так как ручные методы могут вызвать ошибки в <code>ECU</code>.</li>
+  </ul>
+</details>
+
+<details>
+  <summary>Сколько стоит сброс инспекционного сервиса у дилера?</summary>
+  <p>Стоимость услуги у официальных дилеров <em>Škoda</em> в 2026 году:</p>
+  <ul>
+    <li><strong>Базовый сброс</strong> (только инспекция/масло): 1 500–2 500 рублей.</li>
+    <li><strong>Полный сброс</strong> (все интервалы, включая тормозную жидкость и фильтры): 3 000–4 500 рублей.</li>
+    <li><strong>Диагностика + сброс</strong> (если есть ошибки): 5 000–7 000 рублей.</li>
+  </ul>
+  <p>Цены могут варьироваться в зависимости от региона и модели (например, для <em>Rapid Spaceback</em> или <em>Monte Carlo</em> иногда берут на 20–30% дороже).</p>
+  <p><mark>Важно: некоторые дилеры отказываются сбрасывать интервал без предъявления чеков о проведённом ТО. В этом случае покупка сканера <em>OBDeleven</em> (8–12 тыс.) окупится уже после 3–4 сбросов.</mark></p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#почему-нельзя-игнорировать-инспекционное-сообщение">Почему нельзя игнорировать инспекционное сообщение</a></li><li><a href="#способ-1-сброс-через-меню-бортового-компьютера-для-моделей-до-2017-года">Способ 1: Сброс через меню бортового компьютера (для моделей до 2017 года)</a></li><li><a href="#способ-2-обнуление-через-диагностический-сканер-vcds-obdeleven-carista">Способ 2: Обнуление через диагностический сканер (VCDS, OBDeleven, Carista)</a></li><li><a href="#способ-3-ручное-обнуление-через-скрытое-меню-для-цифровой-панели">Способ 3: Ручное обнуление через скрытое меню (для цифровой панели)</a></li><li><a href="#ошибки-при-сбросе-и-их-решения">Ошибки при сбросе и их решения</a></li><li><a href="#как-проверить-что-сброс-прошёл-успешно">Как проверить, что сброс прошёл успешно</a></li><li><a href="#частые-вопросы-о-сбросе-инспекционного-сервиса">Частые вопросы о сбросе инспекционного сервиса</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/kl/klirens-shkoda-rapid-2015.html" class="related-card">Клиренс Škoda Rapid 2015: реальные цифры и как увеличить дорожный просвет</a></li><li><a href="/articles/s/sh/shkoda-rapid-zamena-masla-v-kpp.html" class="related-card">Замена масла в КПП Шкода Рапид: инструкция, объём и выбор смазки</a></li><li><a href="/articles/k/ka/kak-otkryt-bak-v-shkoda-rapid.html" class="related-card">Как открыть лючок бензобака Skoda Rapid: 3 способа и поломки</a></li><li><a href="/articles/s/sk/skoda-rapid-loshadinye-sily.html" class="related-card">Škoda Rapid: мощность двигателей, л.с. и технические особенности</a></li><li><a href="/articles/s/sh/shkoda-rapid-tsep-ili-remen.html" class="related-card">Škoda Rapid: цепь или ремень ГРМ? Ответ эксперта (2026)</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/kl/klirens-shkoda-rapid-2015.html" class="related-bottom-card"><span class="related-bottom-title">Клиренс Škoda Rapid 2015: реальные цифры и как увеличить дорожный просвет</span><span class="related-bottom-desc">Узнайте точный клиренс ŠKODA Rapid 2015 года: заводские параметры, как измерить самостоятельно и спо</span></a><a href="/articles/s/sh/shkoda-rapid-zamena-masla-v-kpp.html" class="related-bottom-card"><span class="related-bottom-title">Замена масла в КПП Шкода Рапид: инструкция, объём и выбор смазки</span><span class="related-bottom-desc">Полное руководство по замене масла в механической и роботизированной коробке передач Skoda Rapid. Об</span></a><a href="/articles/k/ka/kak-otkryt-bak-v-shkoda-rapid.html" class="related-bottom-card"><span class="related-bottom-title">Как открыть лючок бензобака Skoda Rapid: 3 способа и поломки</span><span class="related-bottom-desc">Инструкция как открыть бак на Шкода Рапид: механический трос, кнопка в салоне и аварийный метод. Реш</span></a><a href="/articles/s/sk/skoda-rapid-loshadinye-sily.html" class="related-bottom-card"><span class="related-bottom-title">Škoda Rapid: мощность двигателей, л.с. и технические особенности</span><span class="related-bottom-desc">Подробный обзор лошадиных сил Škoda Rapid всех поколений: сравнение моторов, динамика, расход топлив</span></a><a href="/articles/s/sh/shkoda-rapid-tsep-ili-remen.html" class="related-bottom-card"><span class="related-bottom-title">Škoda Rapid: цепь или ремень ГРМ? Ответ эксперта (2026)</span><span class="related-bottom-desc">Что стоит в приводе ГРМ Škoda Rapid — цепь или ремень? Сравнение ресурса, стоимости замены и рисков </span></a><a href="/articles/p/pr/predokhranitel-shkoda-rapid-2018.html" class="related-bottom-card"><span class="related-bottom-title">Предохранители ŠKODA Rapid 2018: схема, расположение, замена</span><span class="related-bottom-desc">Где находятся предохранители в ŠKODA Rapid 2018? Расшифровка блоков, схемы, инструкция по замене и т</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

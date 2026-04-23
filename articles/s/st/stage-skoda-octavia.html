@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Stage Skoda Octavia: как обновить прошивку мультимедиа MIB2/MIB3 — Skoda-Handbook</title>
+    <meta name="description" content="Пошаговая инструкция по установке Stage на Skoda Octavia (2017-2026). Разбор версий, совместимости и ошибок при прошивке MIB2/MIB3.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/s/st/stage-skoda-octavia.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Stage Skoda Octavia: как обновить прошивку мультимедиа MIB2/MIB3">
+    <meta property="og:description" content="Пошаговая инструкция по установке Stage на Skoda Octavia (2017-2026). Разбор версий, совместимости и ошибок при прошивке MIB2/MIB3.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/octavia/">Octavia</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Stage Skoda Octavia: как обновить прошивку мультимедиа MIB2/MIB3</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Stage для Skoda Octavia: руководство по обновлению мультимедийной системы</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#что-такое-stage-и-зачем-она-нужна-на-skoda-octavia">Что такое Stage и зачем она нужна на Skoda Octavia</a></li><li><a href="#совместимость-stage-с-поколениями-skoda-octavia">Совместимость Stage с поколениями Skoda Octavia</a></li><li><a href="#подготовка-к-прошивке-что-нужно-сделать-до-установки-stage">Подготовка к прошивке: что нужно сделать до установки Stage</a></li><li><a href="#пошаговая-инструкция-по-установке-stage-на-skoda-octavia">Пошаговая инструкция по установке Stage на Skoda Octavia</a></li><li><a href="#распространённые-ошибки-и-их-решения">Распространённые ошибки и их решения</a></li><li><a href="#дополнительные-настройки-и-скрытые-функции-stage">Дополнительные настройки и скрытые функции Stage</a></li><li><a href="#как-откатиться-на-заводскую-прошивку">Как откатиться на заводскую прошивку</a></li><li><a href="#faq-частые-вопросы-по-stage-на-skoda-octavia">FAQ: Частые вопросы по Stage на Skoda Octavia</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Прошивка <strong>Stage</strong> (или <em>Stage3</em>) для <em>Skoda Octavia</em> третьего и четвёртого поколений (2017–2026) — это неофициальное обновление мультимедийной системы <em>MIB2</em> и <em>MIB3</em>, которое добавляет функции премиум-класса: беспроводной <em>CarPlay/Android Auto</em>, расширенные настройки звука, виджеты и даже возможность установки сторонних приложений. Однако процесс прошивки требует точности — ошибка может привести к "окирпичиванию" головного устройства.</p>
+
+<p>В этой статье разберём <strong>все этапы установки Stage</strong> на <em>Octavia A7 (FL)</em> и <em>Octavia A8</em>, включая выбор версии прошивки, подготовку USB-накопителя и решение типичных проблем. Акцент сделан на <mark>уникальные нюансы для моделей с <em>Virtual Cockpit</em> и системой <em>Columbus</em></mark>, которые часто упускают в общих инструкциях.</p>
+
+<h2 id="что-такое-stage-и-зачем-она-нужна-на-skoda-octavia">Что такое Stage и зачем она нужна на Skoda Octavia</h2>
+
+<p>Прошивка <strong>Stage</strong> — это модифицированное программное обеспечение для мультимедийных систем <em>Volkswagen Group</em> (включая <em>Skoda</em>), созданное энтузиастами. Она расширяет стандартные возможности <em>MIB2</em> (2015–2019) и <em>MIB3</em> (2020–н.в.), добавляя:</p>
+
+<ul>
+  <li>📱 <strong>Беспроводной CarPlay/Android Auto</strong> (даже на системах, где это не предусмотрено заводом).</li>
+  <li>🎵 <strong>Эквалайзер с настройками</strong> (в стандартной прошивке доступны только пресеты).</li>
+  <li>📊 <strong>Виджеты</strong> на главном экране (погода, календарь, давление в шинах).</li>
+  <li>🔧 <strong>Скрытые меню инженерных настроек</strong> (например, корректировка яркости экрана).</li>
+  <li>🚗 <strong>Поддержка видео во время движения</strong> (отключение блокировки).</li>
+</ul>
+
+<p>На <em>Skoda Octavia A7 FL (2017–2020)</em> и <em>A8 (2020–н.в.)</em> Stage позволяет обойти ограничения заводской прошивки. Например, на <em>MIB3</em> с <em>Virtual Cockpit</em> появляется возможность выводить навигацию <em>Google Maps</em> прямо на приборную панель — функция, которая официально доступна только на <em>Audi</em> и <em>VW</em> премиум-класса.</p>
+
+<p>Однако есть и риски: неверная версия прошивки может вызвать <strong>потерю связи с блоком управления</strong> (<em>CAN-шиной</em>), а неправильное прерывание процесса — к необходимости перепрошивки через <em>ODIS</em> в сервисе. Поэтому перед началом проверьте:</p>
+
+<blockquote>⚠️ <strong>Внимание:</strong> На <em>Octavia A8</em> с <em>MIB3</em> и <strong>аппаратной версией H</strong> (проверяется в <code>Настройки → Информация о системе</code>) требуется специальная прошивка <em>Stage3 H</em>. Установка неподходящей версии приведёт к ошибке <code>0x0005</code> и блокировке системы.</blockquote>
+
+<h2 id="совместимость-stage-с-поколениями-skoda-octavia">Совместимость Stage с поколениями Skoda Octavia</h2>
+
+<p>Прошивка Stage поддерживает не все версии <em>Octavia</em>. Ниже таблица совместимости с учётом аппаратных платформ:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Модель</th>
+      <th>Годы выпуска</th>
+      <th>Тип мультимедиа</th>
+      <th>Поддерживаемая версия Stage</th>
+      <th>Примечания</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>Octavia A7 FL</em></td>
+      <td>2017–2020</td>
+      <td><em>MIB2 High</em> (Columbus)</td>
+      <td>Stage2, Stage3</td>
+      <td>Требуется проверка версий <code>SW: 035x</code> или <code>036x</code></td>
+    </tr>
+    <tr>
+      <td><em>Octavia A7 FL</em></td>
+      <td>2017–2020</td>
+      <td><em>MIB2 Standard</em> (Bolshoi)</td>
+      <td>Stage2 (ограниченно)</td>
+      <td>Без <em>Virtual Cockpit</em> и <em>CarPlay</em> по USB-C</td>
+    </tr>
+    <tr>
+      <td><em>Octavia A8</em></td>
+      <td>2020–2023</td>
+      <td><em>MIB3 Standard</em></td>
+      <td>Stage3 (только для <code>HW: H</code>)</td>
+      <td>Не совместима с <code>HW: J</code> (новые ревизии 2026 года)</td>
+    </tr>
+    <tr>
+      <td><em>Octavia A8</em></td>
+      <td>2020–2026</td>
+      <td><em>MIB3 High</em> (Columbus)</td>
+      <td>Stage3 H</td>
+      <td>Поддержка <em>Wireless CarPlay</em> и <em>Android Auto 12+</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Чтобы узнать версию вашей системы:</p>
+<ol>
+  <li>Зажмите <code>Menu</code> + <code>Назад</code> на 10 секунд.</li>
+  <li>Перейдите в <code>Информация о системе → Версия ПО</code>.</li>
+  <li>Запишите значения <code>SW</code> (программная версия) и <code>HW</code> (аппаратная ревизия).</li>
+</ol>
+
+<p>Для <em>MIB3</em> критично различие между <code>HW: H</code> и <code>HW: J</code>. Последние (2026 года) используют новый процессор <em>Renesas R-Car H3</em>, для которого пока нет стабильных прошивок Stage. Если ваша машина выпущена после <strong>сентября 2023</strong>, проверьте совместимость на форуме <a href="https://www.mibsolution.one/" target="_blank">MIB Solution</a>.</p>
+
+<div class="attention-box attention-info"><div><strong>📊 Какая мультимедийная система установлена в вашей Octavia?</strong><ul><li>MIB2 (до 2020 года)</li><li>MIB3 (2020–2023)</li><li>MIB3 (2026, HW: J)</li><li>Не знаю</li></ul></div></div>
+
+<h2 id="подготовка-к-прошивке-что-нужно-сделать-до-установки-stage">Подготовка к прошивке: что нужно сделать до установки Stage</h2>
+
+<p>Перед началом прошивки выполните <strong>обязательные шаги</strong>, чтобы избежать ошибок:</p>
+
+<ol>
+  <li><strong>Скачайте правильную версию Stage</strong>:
+    <ul>
+      <li>Для <em>MIB2</em>: <a href="https://www.mibsolution.one/" target="_blank">Stage2 5.5.1</a> (последняя стабильная).</li>
+      <li>Для <em>MIB3 HW: H</em>: <a href="https://www.mibsolution.one/" target="_blank">Stage3 0.9.8.6</a> (с поддержкой <em>Wireless AA/CP</em>).</li>
+    </ul>
+  </li>
+  <li><strong>Подготовьте USB-накопитель</strong>:
+    <ul>
+      <li>Формат: <code>FAT32</code> (не <code>exFAT</code> или <code>NTFS</code>).</li>
+      <li>Объём: до <code>32 ГБ</code> (большие флешки могут не распознаваться).</li>
+      <li>Файловая система: кластер <code>4096 байт</code> (проверить можно через <code>Properties → Hardware</code> в Windows).</li>
+    </ul>
+  </li>
+  <li><strong>Создайте резервную копию</strong>:
+    <ul>
+      <li>Скопируйте папку <code>\Skoda\MIB\</code> с флешки на ПК.</li>
+      <li>Сфотографируйте текущие настройки звука и Bluetooth (они сбросятся).</li>
+    </ol>
+  </li>
+</ol>
+
+<p>Критически важно: <strong>не используйте USB-хабы или удлинители</strong>. Подключайте флешку напрямую в порт мультимедиа (обычно расположен под экраном или в бардачке). На <em>Octavia A8</em> с <em>MIB3</em> рекомендуется порт <code>USB-C</code> (если есть) — он обеспечивает более стабильное питание.</p>
+
+
+<p>Скачал правильную версию Stage для своей HW-ревизии|</p>
+<p>Отформатировал USB в FAT32 с кластером 4096 байт|</p>
+<p>Создал резервную копию папки MIB|</p>
+<p>Зарядил аккумулятор автомобиля (напряжение >12.3В)|</p>
+<p>Отключил все потребители энергии (фары, кондиционер)--></p>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Если напряжение бортовой сети ниже <code>12.3В</code>, прошивка может прерваться. На <em>Octavia A8</em> с системой <em>Start-Stop</em> рекомендуется отключить её через меню <code>Настройки → Экономия топлива</code> или подключить внешнее питание (например, <em>CTEK</em>).</blockquote>
+
+<h2 id="пошаговая-инструкция-по-установке-stage-на-skoda-octavia">Пошаговая инструкция по установке Stage на Skoda Octavia</h2>
+
+<p>Процесс прошивки занимает <strong>20–40 минут</strong> в зависимости от версии. Следуйте инструкции строго по шагам:</p>
+
+<ol>
+  <li><strong>Копирование файлов на USB</strong>:
+    <p>Распакуйте архив с прошивкой и скопируйте папку <code>\Skoda\</code> на флешку. Структура должна выглядеть так:</p>
+    <pre><code>USB:\
+<p>├── Skoda\</p>
+<p>│   ├── MIB\</p>
+<p>│   │   ├── SWDL\</p>
+<p>│   │   │   ├── update.swu</p>
+<p>│   │   │   └── ...</p>
+<p>│   └── ...</p>
+<p>└── (другие файлы отсутствуют)</code></pre></p>
+    <p>Убедитесь, что на флешке нет лишних файлов — они могут вызвать ошибку <code>0x0003</code>.</p>
+  </li>
+  <li><strong>Активация режима обновления</strong>:
+    <p>Вставьте USB в порт мультимедиа. На <em>MIB2</em>:
+    <ol>
+      <li>Зажмите <code>Menu</code> + <code>Назад</code> + <code>Power</code> на 15 секунд.</li>
+      <li>Отпустите кнопки, когда появится логотип <em>Skoda</em>.</li>
+    </ol>
+<p>На <em>MIB3</em>:</p>
+    <ol>
+      <li>Перейдите в <code>Настройки → Система → Обновление ПО</code>.</li>
+      <li>Выберите <code>Обновить с USB</code>.</li>
+    </ol>
+    </p>
+  </li>
+  <li><strong>Процесс прошивки</strong>:
+    <p>Система автоматически найдёт файл <code>update.swu</code> и начнёт обновление. На экране появится прогресс-бар с надписью <code>Do not switch off!</code>. <strong>Не выключайте зажигание</strong> и не извлекайте USB.</p>
+    <p>На <em>MIB3</em> процесс может "зависнуть" на <code>99%</code> до 10 минут — это нормально. На <em>MIB2</em> перезагрузка происходит быстрее (2–3 минуты).</p>
+  </li>
+  <li><strong>Первая настройка после обновления</strong>:
+    <p>После перезагрузки система запросит настройки языка и региона. Выберите <code>Чехия</code> (для полного набора функций) или <code>Германия</code> (если нужны европейские радиостанции).</p>
+    <p>Затем перейдите в <code>Настройки → Звук</code> и активируйте <strong>скрытый эквалайзер</strong>: зажмите <code>Bass</code> + <code>Treble</code> на 5 секунд.</p>
+  </li>
+</ol>
+
+<p>Если после прошивки экран остаётся чёрным более 5 минут, а индикатор USB мигает — это признак ошибки <code>0x0005</code>. В этом случае:</p>
+<details class="faq-item"><summary>Что делать при ошибке 0x0005?</summary><div class="faq-answer"><p>
+<p>1. Извлеките USB и выключите зажигание на 2 минуты.</p>
+<p>2. Повторите прошивку с другой флешки (проверьте формат FAT32).</p>
+<p>3. Если ошибка повторяется — скачайте прошивку для другой HW-ревизии (например, вместо <em>Stage3 H</em> попробуйте <em>Stage3 J</em>, если ваша система 2026 года).</p>
+<p>4. В крайнем случае потребуется прошивка через <em>ODIS</em> в сервисе (стоимость ~15 000 ₽).</p></div></details></p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>На <em>Octavia A8</em> с <em>Virtual Cockpit</em> после установки Stage можно активировать вывод <em>Google Maps</em> на приборную панель. Для этого в инженерном меню (<code>Menu + Назад + Power</code>) выберите <code>VP_Coding → Navigation_Map_Style → FullScreen</code>.</p></div>
+
+<h2 id="распространённые-ошибки-и-их-решения">Распространённые ошибки и их решения</h2>
+
+<p>Даже при точном следовании инструкции возможны сбои. Ниже — типичные ошибки и способы их устранения:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Код ошибки</th>
+      <th>Причина</th>
+      <th>Решение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>0x0003</code></td>
+      <td>Неправильная структура папок на USB</td>
+      <td>Переформатируйте флешку, проверьте путь <code>\Skoda\MIB\SWDL\</code></td>
+    </tr>
+    <tr>
+      <td><code>0x0005</code></td>
+      <td>Несовместимая HW-ревизия</td>
+      <td>Проверьте версию <code>HW: H</code> или <code>J</code> в информации о системе</td>
+    </tr>
+    <tr>
+      <td><code>0x0010</code></td>
+      <td>Низкое напряжение бортовой сети</td>
+      <td>Подключите зарядное устройство или отключите <em>Start-Stop</em></td>
+    </tr>
+    <tr>
+      <td><code>No update found</code></td>
+      <td>USB не распознаётся</td>
+      <td>Попробуйте другой порт или флешку (макс. 32 ГБ, FAT32)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Если после успешной прошивки <strong>не работает CarPlay/Android Auto</strong>:</p>
+<ul>
+  <li>🔌 Проверьте кабель: на <em>MIB3</em> требуется <strong>оригинальный USB-C</strong> (дешёвые кабели могут не передавать данные).</li>
+  <li>📱 Обновите прошивку смартфона: <em>Android Auto</em> 8.0+ и <em>iOS 15+</em> обязательны для <em>Wireless</em>.</li>
+  <li>🔄 Сбросьте настройки мультимедиа: <code>Настройки → Система → Сброс</code>.</li>
+</ul>
+
+<p>На <em>Octavia A7 FL</em> с <em>MIB2</em> может отсутствовать звук в <em>CarPlay</em>. Решение:</p>
+<ol>
+  <li>Перейдите в <code>Настройки → Звук → Источник</code>.</li>
+  <li>Выберите <code>Media</code> вместо <code>Bluetooth</code>.</li>
+  <li>Отключите и снова подключите телефон.</li>
+</ol>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если после прошивки пропала связь с <em>Virtual Cockpit</em> (не отображается скорость или навигация), проверьте кодировку в блоке <code>5F</code> через <em>VCDS</em>. Часто помогает сброс адаптации (<code>Basic Settings → Channel 002</code>).</p></div>
+
+<h2 id="дополнительные-настройки-и-скрытые-функции-stage">Дополнительные настройки и скрытые функции Stage</h2>
+
+<p>Прошивка Stage открывает доступ к <strong>инженерным меню</strong> и скрытым функциям. Вот наиболее полезные:</p>
+
+<ul>
+  <li>🎛️ <strong>Эквалайзер с 10 полосами</strong>:
+    <p>Aктивируется удержанием <code>Bass</code> + <code>Treble</code>. Позволяет точную настройку звука под акустику автомобиля.</p>
+  </li>
+  <li>📡 <strong>Расширенные настройки радио</strong>:
+    <p>В меню <code>Radio Settings</code> (доступно через <code>Menu + Назад</code>) можно включить <em>RDS</em> для иностранных станций и отключить автоматическое сканирование.</p>
+  </li>
+  <li>🚗 <strong>Виджеты на главном экране</strong>:
+    <p>Добавьте виджеты давления в шинах (<em>TPMS</em>), календаря или погоды. Для этого зажмите пустую область на главном экране и выберите <code>Add Widget</code>.</p>
+  </li>
+  <li>🔒 <strong>Отключение блокировки видео</strong>:
+    <p>Чтобы смотреть видео во время движения, перейдите в <code>Настройки → Безопасность → Video in Motion</code> и активируйте опцию.</p>
+  </li>
+</ul>
+
+<p>На <em>Octavia A8</em> с <em>MIB3</em> и <em>Virtual Cockpit</em> можно вывести <strong>полноэкранную навигацию</strong> на приборную панель. Для этого:</p>
+<ol>
+  <li>Подключите телефон через <em>CarPlay</em>.</li>
+  <li>Запустите <em>Google Maps</em> или <em>Waze</em>.</li>
+  <li>Нажмите и удерживайте кнопку <code>VIEW</code> на руле до появления меню.</li>
+  <li>Выберите <code>Full Screen Navigation</code>.</li>
+</ol>
+
+<p>Для владельцев <em>Octavia RS</em> полезна функция <strong>Sport Display</strong> — отображение оборотов двигателя, температуры масла и давления турбины на экране мультимедиа. Активируется через инженерное меню:</p>
+<pre><code>Menu + Назад + Power → VP_Coding → SportDisplay → ON</code></pre>
+
+<h2 id="как-откатиться-на-заводскую-прошивку">Как откатиться на заводскую прошивку</h2>
+
+<p>Если Stage работает нестабильно или вам нужна гарантийная поддержка, можно вернуть заводскую прошивку. Для этого:</p>
+
+<ol>
+  <li><strong>Скачайте оригинальное ПО</strong>:
+    <p>Для <em>MIB2</em>: <a href="https://www.vw-nav.com/" target="_blank">официальный сайт VW</a> (выберите модель <em>Skoda Octavia</em> и год выпуска).</p>
+    <p>Для <em>MIB3</em>: обратитесь к дилеру или используйте <em>ODIS</em> (программа для сервисных центров).</p>
+  </li>
+  <li><strong>Подготовьте USB</strong>:
+    <p>Формат и структура папок аналогичны прошивке Stage (см. раздел 3).</p>
+  </li>
+  <li><strong>Запустите откат</strong>:
+    <p>На <em>MIB2</em>:
+    <ol>
+      <li>Вставьте USB и зажмите <code>Menu + Назад + Power</code>.</li>
+      <li>Выберите <code>Update from USB</code>.</li>
+    </ol>
+<p>На <em>MIB3</em>:</p>
+    <ol>
+      <li>Перейдите в <code>Настройки → Система → Обновление ПО → Локальное обновление</code>.</li>
+    </ol>
+    </p>
+  </li>
+</ol>
+
+<p>После отката <strong>все настройки сбросятся</strong>, включая сохранённые радиостанции и контакты Bluetooth. Если мультимедиа не включается после отката, проверьте:</p>
+<ul>
+  <li>🔋 Напряжение аккумулятора (должно быть >12.4В).</li>
+  <li>🔌 Правильность подключения USB (порт должен быть оригинальным, не через хаб).</li>
+  <li>📁 Структуру папок на флешке (должен быть файл <code>update.swu</code> в <code>\Skoda\MIB\SWDL\</code>).</li>
+</ul>
+
+<blockquote>⚠️ <strong>Внимание:</strong> На <em>Octavia A8</em> с <em>MIB3 HW: J</em> (2026 год) откат на заводскую прошивку может потребовать авторизации через <em>VW Server</em>. Без доступа к <em>ODIS</em> это невозможно сделать самостоятельно — потребуется обращение в сервис.</blockquote>
+
+<h2 id="faq-частые-вопросы-по-stage-на-skoda-octavia">FAQ: Частые вопросы по Stage на Skoda Octavia</h2>
+
+<details>
+  <summary>Можно ли установить Stage на Octavia 2026 года с MIB3 HW: J?</summary>
+  <p>На данный момент (июнь 2026) стабильных прошивок для <code>HW: J</code> нет. Есть экспериментальные версии, но они могут вызвать ошибки с <em>CAN-шиной</em> (например, отказ климат-контроля). Рекомендуем следить за обновлениями на <a href="https://www.mibsolution.one/" target="_blank">MIB Solution</a>.</p>
+</details>
+
+<details>
+  <summary>Почему после прошивки Stage не работает Wireless CarPlay?</summary>
+  <p>Причины могут быть следующие:</p>
+  <ul>
+    <li>📱 На <em>iPhone</em> не включён <em>Wi-Fi</em> и <em>Bluetooth</em>.</li>
+    <li>🔌 Используется неоригинальный USB-кабель (для первой настройки <em>Wireless CarPlay</em> нужен проводное подключение).</li>
+    <li>🔄 Прошивка Stage установлена без модуля <em>Wireless</em> (скачайте версию с пометкой <code>+WLS</code>).</li>
+  </ul>
+  <p>Решение: подключите телефон по кабелю, дождитесь синхронизации, затем отключите кабель — <em>Wireless</em> должен заработать.</p>
+</details>
+
+<details>
+  <summary>Как обновить Stage до новой версии?</summary>
+  <p>Обновление выполняется так же, как и первоначальная установка:</p>
+  <ol>
+    <li>Скачайте новую версию Stage.</li>
+    <li>Скопируйте файлы на USB (заменив старые).</li>
+    <li>Запустите обновление через <code>Настройки → Система → Обновить с USB</code>.</li>
+  </ol>
+  <p>⚠️ Не обновляйтесь "по воздуху" (<em>OTA</em>) — это приведёт к сбою!</p>
+</details>
+
+<details>
+  <summary>Можно ли установить Stage на Octavia с системой Amundsen?</summary>
+  <p>Нет. <em>Amundsen</em> (установлен на базовых версиях <em>Octavia A7</em> до 2017 года) работает на платформе <em>MIB1</em>, для которой нет прошивок Stage. Максимум, что можно сделать — обновить карты через <em>Skoda Portal</em>.</p>
+</details>
+
+<details>
+  <summary>Легальна ли установка Stage? Не потеряю ли я гарантию?</summary>
+  <p>Прошивка Stage <strong>неофициальная</strong>, поэтому:</p>
+  <ul>
+    <li>✅ Гарантия на автомобиль сохраняется, если не затрагиваются механические узлы.</li>
+    <li>❌ Гарантия на мультимедиа <strong>сгорает</strong> при обращении в дилерский центр (они видят следы модификации).</li>
+  </ul>
+  <p>Рекомендуем перед визитом в сервис <strong>откатиться на заводскую прошивку</strong> (см. раздел 6).</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#что-такое-stage-и-зачем-она-нужна-на-skoda-octavia">Что такое Stage и зачем она нужна на Skoda Octavia</a></li><li><a href="#совместимость-stage-с-поколениями-skoda-octavia">Совместимость Stage с поколениями Skoda Octavia</a></li><li><a href="#подготовка-к-прошивке-что-нужно-сделать-до-установки-stage">Подготовка к прошивке: что нужно сделать до установки Stage</a></li><li><a href="#пошаговая-инструкция-по-установке-stage-на-skoda-octavia">Пошаговая инструкция по установке Stage на Skoda Octavia</a></li><li><a href="#распространённые-ошибки-и-их-решения">Распространённые ошибки и их решения</a></li><li><a href="#дополнительные-настройки-и-скрытые-функции-stage">Дополнительные настройки и скрытые функции Stage</a></li><li><a href="#как-откатиться-на-заводскую-прошивку">Как откатиться на заводскую прошивку</a></li><li><a href="#faq-частые-вопросы-по-stage-на-skoda-octavia">FAQ: Частые вопросы по Stage на Skoda Octavia</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/m/ma/maslootdelitel-skoda-octavia-a7.html" class="related-card">Маслоотделитель Skoda Octavia A7: Признаки поломки и замена</a></li><li><a href="/articles/s/sh/shkoda-oktaviya-2011-otzyvy.html" class="related-card">Шкода Октавия 2011: честные отзывы владельцев и разбор проблем</a></li><li><a href="/articles/g/gd/gde-proizvoditsya-shkoda-oktaviya.html" class="related-card">Где производят Škoda Octavia: заводы, страны и особенности сборки</a></li><li><a href="/articles/p/pr/prokachka-stsepleniya-shkoda-oktaviya-tur.html" class="related-card">Прокачка сцепления Škoda Octavia Turbo: инструкция и советы</a></li><li><a href="/articles/s/sh/shildik-shkoda-oktaviya-a5.html" class="related-card">Шильдик Skoda Octavia A5: типы, установка и замена эмблемы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/m/ma/maslootdelitel-skoda-octavia-a7.html" class="related-bottom-card"><span class="related-bottom-title">Маслоотделитель Skoda Octavia A7: Признаки поломки и замена</span><span class="related-bottom-desc">Полный гайд по замене маслоотделителя на Skoda Octavia A7. Симптомы неисправности клапана, пошаговая</span></a><a href="/articles/s/sh/shkoda-oktaviya-2011-otzyvy.html" class="related-bottom-card"><span class="related-bottom-title">Шкода Октавия 2011: честные отзывы владельцев и разбор проблем</span><span class="related-bottom-desc">Подробный обзор Skoda Octavia 2011 года. Отзывы реальных владельцев, слабые места двигателей, пробле</span></a><a href="/articles/g/gd/gde-proizvoditsya-shkoda-oktaviya.html" class="related-bottom-card"><span class="related-bottom-title">Где производят Škoda Octavia: заводы, страны и особенности сборки</span><span class="related-bottom-desc">Узнайте, где выпускают Škoda Octavia для России и Европы: список заводов, страны-производители, отли</span></a><a href="/articles/p/pr/prokachka-stsepleniya-shkoda-oktaviya-tur.html" class="related-bottom-card"><span class="related-bottom-title">Прокачка сцепления Škoda Octavia Turbo: инструкция и советы</span><span class="related-bottom-desc">Пошаговое руководство по прокачке сцепления на Škoda Octavia Turbo: инструменты, ошибки, признаки не</span></a><a href="/articles/s/sh/shildik-shkoda-oktaviya-a5.html" class="related-bottom-card"><span class="related-bottom-title">Шильдик Skoda Octavia A5: типы, установка и замена эмблемы</span><span class="related-bottom-desc">Полный гайд по шильдикам Skoda Octavia A5. Виды, материалы, инструкция по замене заднего и переднего</span></a><a href="/articles/p/pr/prokladka-gbts-shkoda-oktaviya-tur.html" class="related-bottom-card"><span class="related-bottom-title">Прокладка ГБЦ Skoda Octavia Tour: замена, симптомы и нюансы</span><span class="related-bottom-desc">Полный гид по замене прокладки ГБЦ на Skoda Octavia Tour. Признаки пробоя, выбор запчасти, пошаговая</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

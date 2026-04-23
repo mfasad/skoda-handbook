@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>MyŠKODA App: как пользоваться, функции и настройка (2026) — Skoda-Handbook</title>
+    <meta name="description" content="Полное руководство по приложению MyŠKODA: регистрация, основные функции, удалённый доступ к авто, диагностика и решение проблем. Инструкции для владельцев Octavia, Kodiaq, Enyaq и других моделей.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/m/my/my-skoda-app.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="MyŠKODA App: как пользоваться, функции и настройка (2026)">
+    <meta property="og:description" content="Полное руководство по приложению MyŠKODA: регистрация, основные функции, удалённый доступ к авто, диагностика и решение проблем. Инструкции для владельцев Octavia, Kodiaq, Enyaq и других моделей.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/drugoe/">Другое</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">MyŠKODA App: как пользоваться, функции и настройка (2026)</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>MyŠKODA App: всё, что нужно знать владельцу автомобиля</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#как-установить-и-зарегистрироваться-в-myškoda-app">Как установить и зарегистрироваться в MyŠKODA App</a></li><li><a href="#основные-функции-myškoda-app-что-можно-делать-удалённо">Основные функции MyŠKODA App: что можно делать удалённо</a></li><li><a href="#как-подключить-автомобиль-к-myškoda-app-пошаговая-инструкция">Как подключить автомобиль к MyŠKODA App: пошаговая инструкция</a></li><li><a href="#скрытые-функции-myškoda-app-о-чем-молчат-в-инструкции">Скрытые функции MyŠKODA App: о чем молчат в инструкции</a></li><li><a href="#распространённые-проблемы-и-их-решения">Распространённые проблемы и их решения</a></li><li><a href="#myškoda-app-для-электромобилей-особенности-использования">MyŠKODA App для электромобилей: особенности использования</a></li><li><a href="#альтернативы-myškoda-app-когда-официальное-приложение-не-подходит">Альтернативы MyŠKODA App: когда официальное приложение не подходит</a></li><li><a href="#faq-частые-вопросы-о-myškoda-app">FAQ: Частые вопросы о MyŠKODA App</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Приложение <strong>MyŠKODA App</strong> — это цифровой помощник для владельцев автомобилей марки <em>ŠKODA</em>, который превращает смартфон в пульт управления машиной. С его помощью можно дистанционно проверять статус авто, запускать двигатель, настраивать климат-контроль или даже получать уведомления о техническом обслуживании. Но как правильно его настроить, какие функции доступны для вашей модели, и что делать, если приложение не работает? В этом руководстве мы разберём всё по шагам — от регистрации до скрытых возможностей, о которых многие не знают.</p>
+
+<p>Важно понимать, что функционал <strong>MyŠKODA App</strong> зависит от комплектации автомобиля и года выпуска. Например, владельцы <em>Enyaq iV</em> или <em>Superb IV</em> с системой <code>ŠKODA Connect</code> получат расширенные опции, тогда как для <em>Fabia</em> базовых версий доступны только базовые функции. Мы подробно остановимся на различиях и покажем, как максимально эффективно использовать приложение независимо от модели.</p>
+
+<h2 id="как-установить-и-зарегистрироваться-в-myškoda-app">Как установить и зарегистрироваться в MyŠKODA App</h2>
+
+<p>Первый шаг — установка приложения на смартфон. Оно доступно для <strong>Android</strong> (через <em>Google Play</em>) и <strong>iOS</strong> (через <em>App Store</em>). Поисковик легко находит его по запросу «<strong>MyŠKODA</strong>», но будьте внимательны: существуют подделки с похожими названиями. Официальное приложение разработано компанией <em>ŠKODA AUTO a.s.</em> и имеет логотип бренда.</p>
+
+<p>После установки потребуется регистрация. Здесь есть два варианта:</p>
+<ul>
+  <li>🔑 <strong>Создать новый аккаунт</strong> — если у вас ещё нет профиля в экосистеме <em>ŠKODA</em> или <em>Volkswagen Group</em>.</li>
+  <li>🔄 <strong>Войти через существующий аккаунт</strong> — если вы уже пользовались сервисами <em>We Connect</em>, <em>Volkswagen ID</em> или <em>ŠKODA Connect</em>.</li>
+</ul>
+
+<p>Для регистрации понадобится:</p>
+<ol>
+  <li>Адрес электронной почты (желательно тот, что привязан к дилерскому центру).</li>
+  <li>VIN-номер автомобиля (находится в техпаспорте или на лобовом стекле).</li>
+  <li>Данные о пробеге и дате последнего ТО (могут запросить для верификации).</li>
+</ol>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Если при регистрации возникает ошибка «Автомобиль не найден в базе», проверьте правильность ввода VIN-номера. Иногда проблема решается обращением к дилеру для активации услуги <code>ŠKODA Connect</code> в сервисном центре.</blockquote>
+
+<div class="attention-box attention-info"><div><strong>📊 Какую модель ŠKODA вы используете?</strong><ul><li>Octavia</li><li>Kodiaq</li><li>Enyaq</li><li>Superb</li><li>Fabia</li><li>Kamiq</li><li>Другая</li></ul></div></div>
+
+<h2 id="основные-функции-myškoda-app-что-можно-делать-удалённо">Основные функции MyŠKODA App: что можно делать удалённо</h2>
+
+<p>Приложение предлагает более 20 функций, но их набор варьируется в зависимости от модели и установленного оборудования. Рассмотрим ключевые возможности, доступные большинству пользователей:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Функция</th>
+      <th>Описание</th>
+      <th>Требуется ли ŠKODA Connect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Удалённый запуск двигателя</td>
+      <td>Позволяет прогреть или охладить салон перед поездкой (доступно для авто с <code>Keyless Access</code>).</td>
+      <td>Да</td>
+    </tr>
+    <tr>
+      <td>Контроль климат-контроля</td>
+      <td>Настройка температуры, включение обогрева сидений или руля (для моделей с <em>Climatronic</em>).</td>
+      <td>Да</td>
+    </tr>
+    <tr>
+      <td>Статус автомобиля</td>
+      <td>Показывает уровень топлива/заряд батареи, пробег, открытые двери или багажник.</td>
+      <td>Нет (базовая версия)</td>
+    </tr>
+    <tr>
+      <td>Поиск автомобиля на карте</td>
+      <td>Отображает последнее место парковки с привязкой к <em>Google Maps</em> или <em>Apple Maps</em>.</td>
+      <td>Да</td>
+    </tr>
+    <tr>
+      <td>Уведомления о ТО</td>
+      <td>Напоминания о предстоящем техническом обслуживании с учётом пробега.</td>
+      <td>Нет</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><mark>Важно: для моделей с гибридной или электрической силовой установкой (например, <em>Enyaq iV</em> или <em>Octavia iV</em>) в приложении доступен раздел «Электромобильность». Здесь можно отслеживать заряд батареи, планировать маршруты с учётом зарядных станций и даже управлять временем зарядки для экономии на тарифах.</mark></p>
+
+<p>Некоторые функции требуют дополнительной активации. Например, для удалённого доступа к автомобилю (<code>Remote Access</code>) необходимо:</p>
+
+<p>Обратиться к дилеру для проверки комплектации</p>
+<p>Убедиться, что автомобиль оснащён модулем <code>ŠKODA Connect</code></p>
+<p>Подключить услугу в личном кабинете (раздел «Мои услуги»)</p>
+<p>Оплатить подписку (если требуется для вашей модели)--></p>
+
+<h2 id="как-подключить-автомобиль-к-myškoda-app-пошаговая-инструкция">Как подключить автомобиль к MyŠKODA App: пошаговая инструкция</h2>
+
+<p>Если регистрация прошла успешно, но автомобиль не отображается в приложении, следуйте этой инструкции:</p>
+
+<ol>
+  <li>Откройте <strong>MyŠKODA App</strong> и перейдите в раздел «<code>Мои автомобили</code>».</li>
+  <li>Нажмите «<code>Добавить автомобиль</code>» и введите VIN-номер.</li>
+  <li>Подтвердите владение автомобилем через SMS или email (код придёт на номер, указанный при регистрации).</li>
+  <li>Дождитесь синхронизации данных (может занять до 24 часов).</li>
+</ol>
+
+<p>Если автомобиль не подключается:</p>
+<ul>
+  <li>🔌 Проверьте, активирована ли услуга <code>ŠKODA Connect</code> у дилера.</li>
+  <li>📶 Убедитесь, что в автомобиле включён мобильный интернет (для моделей с SIM-картой).</li>
+  <li>🔄 Перезапустите приложение и обновите данные вручную (кнопка «<code>Обновить статус</code>»).</li>
+</ul>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Для автомобилей <em>ŠKODA</em> 2018 года выпуска и старше может потребоваться установка аппаратного модуля <code>ŠKODA Connect Box</code>. Уточните это у официального дилера перед покупкой подписки.</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если вы арендуете автомобиль или купили его с рук, предыдущий владелец мог не отвязать машину от своего аккаунта. В этом случае обратитесь в сервисный центр с документами на авто для сброса привязки.</p></div>
+
+<h2 id="скрытые-функции-myškoda-app-о-чем-молчат-в-инструкции">Скрытые функции MyŠKODA App: о чем молчат в инструкции</h2>
+
+<p>Многие пользователи используют только базовые функции, не подозревая о скрытых возможностях. Вот несколько лайфхаков:</p>
+
+<ul>
+  <li>📊 <strong>Статистика поездок</strong>: В разделе «<code>Аналитика</code>» можно увидеть средний расход топлива, стиль вождения (эко-рейтинг) и даже советы по экономии. Эти данные синхронизируются с бортовым компьютером.</li>
+  <li>🔐 <strong>Цифровой ключ</strong>: Для моделей с <code>Keyless Access</code> (например, <em>Superb 2023</em>) можно сгенерировать временный цифровой ключ и отправить его друзьям или семье через приложение. Это позволяет им пользоваться автомобилем без физического ключа.</li>
+  <li>🚨 <strong>Экстренный вызов</strong>: В случае ДТП приложение автоматически отправляет координаты и данные об автомобиле в службу спасения (если активирована функция <code>Emergency Call</code>).</li>
+  <li>🔋 <strong>Управление зарядкой</strong>: Для электромобилей (<em>Enyaq</em>, <em>Citiaigo iV</em>) можно запланировать зарядку на время низких тарифов на электроэнергию.</li>
+</ul>
+
+<p>Ещё одна малоизвестная функция — <strong>геозоны</strong>. Вы можете настроить уведомления, если автомобиль покидает заданную территорию (полезно для родителей, которые дают машину подростку, или для контроля за корпоративным автопарком). Чтобы активировать:</p>
+<ol>
+  <li>Перейдите в «<code>Настройки → Геозоны</code>».</li>
+  <li>Укажите адрес или радиус на карте.</li>
+  <li>Выберите тип уведомления (SMS или push).</li>
+</ol>
+
+<details class="faq-item"><summary>Как сбросить настройки приложения, если оно зависает?</summary><div class="faq-answer"><p>
+<p>Если <strong>MyŠKODA App</strong> перестало отвечать или показывает некорректные данные, попробуйте:</p>
+<p>1. Удалите кэш приложения в настройках смартфона.</p>
+<p>2. Выйдите из аккаунта и войдите заново.</p>
+<p>3. Переустановите приложение.</p>
+<p>4. Если проблема остаётся, обратитесь в поддержку через раздел «<code>Помощь</code>» в самом приложении или по email <code>skoda.connect@skoda-auto.cz</code>.</p></div></details></p>
+
+<h2 id="распространённые-проблемы-и-их-решения">Распространённые проблемы и их решения</h2>
+
+<p>Даже у официальных приложений бывают сбои. Вот типичные ошибки и способы их устранения:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Проблема</th>
+      <th>Возможная причина</th>
+      <th>Решение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Приложение не видит автомобиль</td>
+      <td>Неактивная услуга <code>ŠKODA Connect</code> или ошибка VIN</td>
+      <td>Проверьте VIN, обратитесь к дилеру для активации</td>
+    </tr>
+    <tr>
+      <td>Не работает удалённый запуск</td>
+      <td>Автомобиль вне зоны покрытия сети или разряжена батарея</td>
+      <td>Проверьте уровень сигнала и заряд АКБ</td>
+    </tr>
+    <tr>
+      <td>Данные не обновляются</td>
+      <td>Проблемы с серверами <em>ŠKODA</em> или слабый интернет</td>
+      <td>Перезапустите приложение, проверьте подключение к сети</td>
+    </tr>
+    <tr>
+      <td>Ошибка аутентификации</td>
+      <td>Сбой серверов или неверный пароль</td>
+      <td>Сбросьте пароль через email или дождитесь восстановления сервиса</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Если ни один из способов не помог, проверьте статус серверов <em>ŠKODA Connect</em> на официальном сайте или в социальных сетях бренда. Иногда проблемы носят массовый характер (например, во время обновления ПО).</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед обращением в службу поддержки всегда проверяйте, обновлено ли приложение до последней версии. Часто баги исправляются в новых релизах.</p></div>
+
+<h2 id="myškoda-app-для-электромобилей-особенности-использования">MyŠKODA App для электромобилей: особенности использования</h2>
+
+<p>Владельцы электрокаров <em>ŠKODA</em> (<em>Enyaq iV</em>, <em>Citiaigo iV</em>, <em>Octavia iV</em>) получают в приложении расширенные опции для управления зарядкой и мониторинга батареи. Вот что доступно:</p>
+
+<ul>
+  <li>🔌 <strong>Удалённый запуск/остановка зарядки</strong>: Можно начать или прекратить зарядку прямо со смартфона.</li>
+  <li>⏰ <strong>Планировщик зарядки</strong>: Настройка графика зарядки на время низких тарифов (например, ночью).</li>
+  <li>📍 <strong>Поиск зарядных станций</strong>: Интеграция с картами <em>Google Maps</em> и <em>Chargemap</em> для поиска ближайших точек.</li>
+  <li>📊 <strong>Статистика потребления</strong>: Детальные отчёты о расходе энергии, регенеративном торможении и пробеге на одном заряде.</li>
+</ul>
+
+<p>Для максимальной эффективности рекомендуется:</p>
+<ol>
+  <li>Активировать функцию <code>Preconditioning</code> — это позволит прогревать или охлаждать салон, пока автомобиль ещё подключён к зарядке, экономя энергию батареи.</li>
+  <li>Настроить уведомления о завершении зарядки, чтобы не держать машину на станции дольше необходимого.</li>
+  <li>Использовать режим <code>Eco</code> для оптимизации расхода энергии во время поездок.</li>
+</ol>
+
+<p><strong>Важно для <em>Enyaq</strong>:</strong> В приложении доступна функция <code>Battery Care Mode</code>, которая ограничивает максимальный заряд батареи до 80% для продления её срока службы. Это особенно полезно, если автомобиль долго стоит без движения.</p>
+
+<h2 id="альтернативы-myškoda-app-когда-официальное-приложение-не-подходит">Альтернативы MyŠKODA App: когда официальное приложение не подходит</h2>
+
+<p>Хотя <strong>MyŠKODA App</strong> покрывает большинство нужд, некоторые пользователи ищут альтернативы из-за ограниченной функциональности на старых моделях или неудобного интерфейса. Рассмотрим варианты:</p>
+
+<ul>
+  <li>📱 <strong>ŠKODA Connect Portal</strong>: Веб-версия сервиса, доступная через браузер. Подходит, если нет возможности установить приложение.</li>
+  <li>🔧 <strong>Car-Net (Volkswagen)</em>: Для автомобилей на платформе <em>MQB</em> (например, <em>Octavia A8</em>) можно использовать приложение <em>Volkswagen We Connect</em> — оно имеет схожий функционал.</li>
+  <li>📊 <strong>Stoyanовые трекеры</strong>: Устройства вроде <em>StarLine</em> или <em>Pandora</em> предлагают расширенный мониторинг, но требуют отдельной установки.</li>
+  <li>🚗 <strong>Apple CarPlay/Android Auto</strong>: Некоторые функции (например, навигация или музыка) дублируются через штатную мультимедиа-систему.</li>
+</ul>
+
+<p>Однако стоит помнить, что сторонние решения могут не поддерживать уникальные функции <em>ŠKODA</em>, такие как:</p>
+<ul>
+  <li>Удалённое управление климат-контролем <code>Climatronic</code>.</li>
+  <li>Интеграция с сервисом <code>ŠKODA Emergency Call</code>.</li>
+  <li>Официальные уведомления о реколлах или ТО.</li>
+</ul>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Использование неофициальных приложений или взломанных версий <strong>MyŠKODA App</strong> может привести к блокировке аккаунта или потере гарантии. <em>ŠKODA</em> активно борется с пиратскими версиями, отслеживая подозрительную активность.</blockquote>
+
+<h2 id="faq-частые-вопросы-о-myškoda-app">FAQ: Частые вопросы о MyŠKODA App</h2>
+
+<details>
+  <summary>Можно ли пользоваться MyŠKODA App без интернета?</summary>
+  <p>Нет, для работы приложения требуется стабильное подключение к сети. Однако некоторые данные (например, история поездок) сохраняются в кэше и доступны offline. Для удалённого управления автомобилем (запуск двигателя, климат-контроль) обязателен мобильный интернет <strong>и</strong> активная связь с автомобилем через <code>ŠKODA Connect</code>.</p>
+</details>
+
+<details>
+  <summary>Сколько стоит подписка на MyŠKODA App?</summary>
+  <p>Базовые функции (просмотр статуса автомобиля, уведомления о ТО) бесплатны. Расширенные опции (удалённый запуск, геозоны, цифровой ключ) могут требовать оплаты. Стоимость зависит от региона и модели:</p>
+  <ul>
+    <li>🇷🇺 В России: от 990 ₽/месяц или 9 900 ₽/год.</li>
+    <li>🇪🇺 В Европе: от €4.99/месяц или €49/год.</li>
+  </ul>
+  <p>Уточните тарифы у своего дилера — иногда подписка включена в стоимость автомобиля на первый год.</p>
+</details>
+
+<details>
+  <summary>Почему приложение показывает неверный уровень топлива?</summary>
+  <p>Это одна из самых распространённых проблем. Причины могут быть следующими:</p>
+  <ol>
+    <li>Задержка синхронизации данных (до 30 минут).</li>
+    <li>Неисправность датчика уровня топлива в автомобиле.</li>
+    <li>Сбой в модуле <code>ŠKODA Connect</code>.</li>
+  </ol>
+  <p>Решение: обновите данные вручную (кнопка «<code>Обновить статус</code>») или перезапустите приложение. Если ошибка повторяется, обратитесь в сервис.</p>
+</details>
+
+<details>
+  <summary>Можно ли управлять MyŠKODA App с нескольких устройств?</summary>
+  <p>Да, один аккаунт можно использовать на нескольких смартфонах. Однако одновременно активным может быть только одно устройство для удалённого управления (например, запуск двигателя). Чтобы переключиться, достаточно выйти из аккаунта на одном телефоне и войти на другом.</p>
+</details>
+
+<details>
+  <summary>Поддерживает ли MyŠKODA App автомобили старше 2018 года?</summary>
+  <p>Частично. Автомобили 2015–2017 годов могут поддерживать базовые функции (просмотр статуса, история поездок), но для этого требуется установка модуля <code>ŠKODA Connect Box</code> (стоимость ~15 000 ₽). Машины старше 2015 года, скорее всего, несовместимы. Уточните возможность апгрейда у дилера.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#как-установить-и-зарегистрироваться-в-myškoda-app">Как установить и зарегистрироваться в MyŠKODA App</a></li><li><a href="#основные-функции-myškoda-app-что-можно-делать-удалённо">Основные функции MyŠKODA App: что можно делать удалённо</a></li><li><a href="#как-подключить-автомобиль-к-myškoda-app-пошаговая-инструкция">Как подключить автомобиль к MyŠKODA App: пошаговая инструкция</a></li><li><a href="#скрытые-функции-myškoda-app-о-чем-молчат-в-инструкции">Скрытые функции MyŠKODA App: о чем молчат в инструкции</a></li><li><a href="#распространённые-проблемы-и-их-решения">Распространённые проблемы и их решения</a></li><li><a href="#myškoda-app-для-электромобилей-особенности-использования">MyŠKODA App для электромобилей: особенности использования</a></li><li><a href="#альтернативы-myškoda-app-когда-официальное-приложение-не-подходит">Альтернативы MyŠKODA App: когда официальное приложение не подходит</a></li><li><a href="#faq-частые-вопросы-о-myškoda-app">FAQ: Частые вопросы о MyŠKODA App</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/e/em/emblema-shkoda-chto-oznachaet.html" class="related-card">Эмблема Škoda: значение, история и скрытые символы логотипа</a></li><li><a href="/articles/s/sh/shkoda-saratov-ofitsialnyj-diler-tseny.html" class="related-card">Škoda Саратов: официальные дилеры, цены 2026, акции и отзывы</a></li><li><a href="/articles/s/se/servis-shkoda-ekaterinburg.html" class="related-card">Сервис ŠKODA в Екатеринбурге: адреса, цены, отзывы 2026</a></li><li><a href="/articles/s/st/stupichnyj-podshipnik-shkoda.html" class="related-card">Ступичный подшипник ŠKODA: признаки неисправности и замена</a></li><li><a href="/articles/s/sh/shkoda-chej-proizvoditel.html" class="related-card">Škoda: кто производитель и где собирают автомобили марки</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/e/em/emblema-shkoda-chto-oznachaet.html" class="related-bottom-card"><span class="related-bottom-title">Эмблема Škoda: значение, история и скрытые символы логотипа</span><span class="related-bottom-desc">Расшифровка эмблемы Škoda: от индейского пера до крылатой стрелки. Как менялся логотип за 125 лет и </span></a><a href="/articles/s/sh/shkoda-saratov-ofitsialnyj-diler-tseny.html" class="related-bottom-card"><span class="related-bottom-title">Škoda Саратов: официальные дилеры, цены 2026, акции и отзывы</span><span class="related-bottom-desc">Актуальные цены на новые Škoda у официальных дилеров в Саратове. Сравнение моделей, кредитные програ</span></a><a href="/articles/s/se/servis-shkoda-ekaterinburg.html" class="related-bottom-card"><span class="related-bottom-title">Сервис ŠKODA в Екатеринбурге: адреса, цены, отзывы 2026</span><span class="related-bottom-desc">Официальные дилеры ŠKODA в Екатеринбурге: адреса, стоимость ТО, оригинальные запчасти, гарантийное о</span></a><a href="/articles/s/st/stupichnyj-podshipnik-shkoda.html" class="related-bottom-card"><span class="related-bottom-title">Ступичный подшипник ŠKODA: признаки неисправности и замена</span><span class="related-bottom-desc">Как определить износ ступичного подшипника на ŠKODA? Признаки поломки, выбор запчастей и пошаговая и</span></a><a href="/articles/s/sh/shkoda-chej-proizvoditel.html" class="related-bottom-card"><span class="related-bottom-title">Škoda: кто производитель и где собирают автомобили марки</span><span class="related-bottom-desc">Узнайте, кто производит Škoda, где расположены заводы и как это влияет на качество автомобилей. Исто</span></a><a href="/articles/s/sh/shkoda-vrs-chto-eto.html" class="related-bottom-card"><span class="related-bottom-title">Škoda VRS: что это за версия? Отличия, история и особенности</span><span class="related-bottom-desc">Разбираем, что значит аббревиатура VRS у Škoda: технические особенности, история создания, сравнение</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Как сбросить межсервисный интервал на ŠKODA Rapid: пошаговая инструкция — Skoda-Handbook</title>
+    <meta name="description" content="Подробное руководство по сбросу межсервисного интервала на ŠKODA Rapid (2012-2023). Способы через бортовой компьютер, VCDS и OBD-сканеры. FAQ и советы экспертов.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/k/ka/kak-sbrosit-mezhservisnyj-interval-na-shkoda-rapid.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как сбросить межсервисный интервал на ŠKODA Rapid: пошаговая инструкция">
+    <meta property="og:description" content="Подробное руководство по сбросу межсервисного интервала на ŠKODA Rapid (2012-2023). Способы через бортовой компьютер, VCDS и OBD-сканеры. FAQ и советы экспертов.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/rapid/">Rapid</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как сбросить межсервисный интервал на ŠKODA Rapid: пошаговая инструкция</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Сброс межсервисного интервала на ŠKODA Rapid: 3 проверенных способа</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#что-такое-межсервисный-интервал-и-зачем-его-сбрасывать">Что такое межсервисный интервал и зачем его сбрасывать</a></li><li><a href="#способ-1-сброс-через-бортовой-компьютер-для-моделей-до-2020-года">Способ 1: Сброс через бортовой компьютер (для моделей до 2020 года)</a></li><li><a href="#способ-2-сброс-с-помощью-диагностического-кабеля-vcds-vag-com">Способ 2: Сброс с помощью диагностического кабеля VCDS (VAG-COM)</a></li><li><a href="#способ-3-сброс-через-obd-сканер-для-новичков">Способ 3: Сброс через OBD-сканер (для новичков)</a></li><li><a href="#частые-ошибки-и-как-их-избежать">Частые ошибки и как их избежать</a></li><li><a href="#сброс-интервала-после-замены-масла-нюансы-для-разных-двигателей">Сброс интервала после замены масла: нюансы для разных двигателей</a></li><li><a href="#faq-ответы-на-частые-вопросы">FAQ: Ответы на частые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Межсервисный интервал на <em>ŠKODA Rapid</em> — это не просто напоминание о плановом ТО, а важный индикатор состояния автомобиля. После каждого технического обслуживания его необходимо сбрасывать, иначе бортовой компьютер будет выдавать ложные предупреждения о просроченном сервисе. Если вы пропустили эту процедуру у официального дилера или делаете ТО самостоятельно, сброс можно выполнить своими руками — без посещения сервисного центра.</p>
+
+<p>В этой статье мы разберём все актуальные способы сброса межсервисного интервала для <em>Rapid</em> (включая рестайлинговые модели 2017+ годов), объясним, почему нельзя игнорировать предупреждения системы, и дадим ответы на частые вопросы. Инструкции подойдут для бензиновых и дизельных версий с механической/автоматической КПП, а также для машин с разными типами панелей приборов (аналоговые и цифровые).</p>
+
+<h2 id="что-такое-межсервисный-интервал-и-зачем-его-сбрасывать">Что такое межсервисный интервал и зачем его сбрасывать</h2>
+
+<p>Межсервисный интервал (<strong>MSI</strong>) — это временной или километражный промежуток между плановыми техническими обслуживаниями, который устанавливает производитель. На <em>ŠKODA Rapid</em> он обычно составляет <strong>15 000 км или 1 год</strong> (в зависимости от того, что наступит раньше). Когда лимит приближается, на приборной панели появляется сообщение типа <code>"Service in XX days"</code> или <code>"OIL SERVICE"</code>.</p>
+
+<p>Если не сбросить интервал после ТО, бортовой компьютер продолжит отсчёт от старого значения. Это чревато:</p>
+<ul>
+  <li>🚨 <strong>Ложными предупреждениями</strong> о необходимости обслуживания, даже если масло и фильтры только что заменены.</li>
+  <li>🔧 <strong>Проблемами при диагностике</strong>: некоторые СТО отказываются принимать машину с несброшенным интервалом.</li>
+  <li>📉 <strong>Снижением стоимости при продаже</strong> — покупатели могут усомниться в честности пробега.</li>
+</ul>
+
+<p>Сброс интервала — это не "обман" системы, а корректная настройка после выполненного обслуживания. Производитель предусмотрел несколько способов сделать это, включая ручной метод через меню бортового компьютера.</p>
+
+<div class="attention-box attention-info"><div><strong>📊 Как часто вы обслуживаете свой ŠKODA Rapid?</strong><ul><li>Каждые 10 000 км</li><li>Каждые 15 000 км</li><li>Раз в год</li><li>Только при поломках</li><li>Другой вариант</li></ul></div></div>
+
+<h2 id="способ-1-сброс-через-бортовой-компьютер-для-моделей-до-2020-года">Способ 1: Сброс через бортовой компьютер (для моделей до 2020 года)</h2>
+
+<p>Это самый простой метод, который работает на большинстве <em>Rapid</em> первого поколения (2012–2020) с аналоговой приборной панелью. Для цифровых панелей (например, <em>Virtual Cockpit</em> в топовых комплектациях) этот способ <strong>не подходит</strong> — потребуется диагностическое оборудование.</p>
+
+<p>Инструкция:</p>
+<ol>
+  <li>Включите зажигание (поверните ключ в положение <code>ON</code>, но не запускайте двигатель).</li>
+  <li>Нажмите и удерживайте кнопку <code>SET/0.0</code> на подрулевом переключателе (справа от руля).</li>
+  <li>Поверните ключ в положение <code>OFF</code>, продолжая удерживать кнопку.</li>
+  <li>Удерживая <code>SET/0.0</code>, снова включите зажигание (<code>ON</code>). Через 5–10 секунд на дисплее появится сообщение <code>"Service reset?"</code>.</li>
+  <li>Кратко нажмите кнопку <code>SET/0.0</code> для подтверждения. Интервал сбросится, а на экране отобразится <code>"Service in 15 000 km"</code>.</li>
+</ol>
+
+<p>Если после этих действий ничего не происходит:</p>
+<ul>
+  <li>🔋 Проверьте заряд аккумулятора — при низком напряжении сброс может не сработать.</li>
+  <li>🔄 Попробуйте повторить процедуру, удерживая кнопку дольше (до 20 секунд).</li>
+  <li>🚗 Убедитесь, что ваша модель поддерживает этот метод (на рестайлинговых <em>Rapid</em> после 2020 года он часто отключён).</li>
+</ul>
+
+
+<p>Убедиться, что двигатель выключен|</p>
+<p>Заряд аккумулятора не ниже 12.3В|</p>
+<p>Нажать и удерживать кнопку SET/0.0 до появления меню|</p>
+<p>Не отпускать кнопку при переключении зажигания--></p>
+
+<h2 id="способ-2-сброс-с-помощью-диагностического-кабеля-vcds-vag-com">Способ 2: Сброс с помощью диагностического кабеля VCDS (VAG-COM)</h2>
+
+<p>Для <em>ŠKODA Rapid</em> после 2020 года или моделей с цифровой панелью приборов ручной сброс через кнопки часто недоступен. В этом случае потребуется диагностическое оборудование, такое как <strong>VCDS</strong> (он же <em>VAG-COM</em>) или его аналоги (<em>OBDeleven</em>, <em>Carista</em>). Этот метод универсален и работает на всех версиях <em>Rapid</em>, включая дизельные и бензиновые моторы.</p>
+
+<p>Пошаговая инструкция:</p>
+<ol>
+  <li>Подключите адаптер VCDS к диагностическому разъёму <code>OBD-II</code> (расположен под рулём, слева от педалей).</li>
+  <li>Запустите программу VCDS на компьютере или смартфоне (для мобильных версий).</li>
+  <li>Выберите модель <code>ŠKODA Rapid</code> и год выпуска.</li>
+  <li>Перейдите в раздел <code>17 – Instruments</code> (Приборная панель).</li>
+  <li>Нажмите <code>Adaptation – 10</code>, затем введите канал <code>02</code> (для сброса интервала масла) или <code>04</code> (для полного сброса сервисного интервала).</li>
+  <li>В поле <code>New value</code> введите <code>0</code> или <code>- - -</code> (в зависимости от версии ПО) и сохраните изменения.</li>
+  <li>Перезагрузите приборную панель, выключив и включив зажигание.</li>
+</ol>
+
+<p>Если у вас нет VCDS, можно использовать более бюджетные альтернативы:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Устройство</th>
+      <th>Стоимость (≈)</th>
+      <th>Поддержка ŠKODA Rapid</th>
+      <th>Особенности</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>OBDeleven Pro</em></td>
+      <td>12 000–15 000 ₽</td>
+      <td>Да (все модели)</td>
+      <td>Мобильное приложение, однократная активация</td>
+    </tr>
+    <tr>
+      <td><em>Carista</em></td>
+      <td>5 000–8 000 ₽</td>
+      <td>Да (ограниченный функционал)</td>
+      <td>Подписка на функции, простой интерфейс</td>
+    </tr>
+    <tr>
+      <td><em>Launch X431</em></td>
+      <td>30 000–50 000 ₽</td>
+      <td>Да (полный доступ)</td>
+      <td>Профессиональный сканер, много брендов</td>
+    </tr>
+    <tr>
+      <td><em>ELM327 (китайский клон)</em></td>
+      <td>500–1 500 ₽</td>
+      <td>Частично (риск ошибок)</td>
+      <td>Ненадёжен для сброса интервалов</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед покупкой диагностического адаптера проверьте его совместимость с вашей версией ПО <em>ŠKODA Rapid</em>. Например, для машин 2021+ годов может потребоваться обновлённая прошивка сканера.</p></div>
+
+<h2 id="способ-3-сброс-через-obd-сканер-для-новичков">Способ 3: Сброс через OBD-сканер (для новичков)</h2>
+
+<p>Если вы не хотите разбираться в VCDS или боитесь что-то сломать, можно воспользоваться специализированными OBD-сканерами с готовыми профилями для <em>ŠKODA</em>. Например, <em>OBDeleven</em> или <em>Delphi DS150E</em> предлагают полуавтоматический сброс интервала через мобильное приложение.</p>
+
+<p>Инструкция для <em>OBDeleven</em>:</p>
+<ol>
+  <li>Подключите адаптер к разъёму <code>OBD-II</code> и запустите приложение на смартфоне.</li>
+  <li>Выберите <code>ŠKODA → Rapid → [год выпуска]</code>.</li>
+  <li>Перейдите в раздел <code>Service</code> или <code>Adaptations</code>.</li>
+  <li>Найдите опцию <code>Reset Oil Service Interval</code> или <code>Reset Inspection Service</code>.</li>
+  <li>Подтвердите сброс и дождитесь завершения процедуры (обычно занимает 10–30 секунд).</li>
+</ol>
+
+<p>Преимущества этого метода:</p>
+<ul>
+  <li>✅ Не требует глубоких технических знаний.</li>
+  <li>✅ Подходит для большинства моделей <em>Rapid</em>, включая новые.</li>
+  <li>✅ Можно сбросить как масленый интервал (<code>OIL SERVICE</code>), так и полный сервис (<code>INSPECTION</code>).</li>
+</ul>
+
+<details class="faq-item"><summary>Что делать, если сканер не видит автомобиль?</summary><div class="faq-answer"><p>
+<p>Если адаптер не подключается, проверьте:</p>
+<p>1. **Качество соединения** — попробуйте другой USB-кабель или Bluetooth-подключение.</p>
+<p>2. **Совместимость протокола** — некоторые дешёвые ELM327 не поддерживают CAN-шину, используемую в <em>Rapid</em>.</p>
+<p>3. **Питание** — подключите зарядку к адаптеру, если он питается от OBD-разъёма.</p>
+<p>4. **Обновления ПО** — обновите прошивку сканера и приложение до последней версии.</p>
+<p>Если проблема остаётся, попробуйте другой адаптер или обратитесь в сервис.</p></div></details></p>
+
+<h2 id="частые-ошибки-и-как-их-избежать">Частые ошибки и как их избежать</h2>
+
+<p>Даже при следовании инструкциям пользователи часто допускают ошибки, которые ведут к некорректному сбросу или сбоям в работе бортового компьютера. Вот самые распространённые из них:</p>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Если после сброса на панели появилось сообщение <code>"Service now!"</code> вместо ожидаемого <code>"Service in 15 000 km"</code>, значит, процедура была прервана или выполнена неверно. В этом случае повторите сброс или используйте диагностический сканер для ручной корректировки значений.</blockquote>
+
+<p>Типичные ошибки:</p>
+<ul>
+  <li>🔌 <strong>Сброс при работающем двигателе</strong> — это может привести к ошибкам в ЭБУ. Всегда выполняйте процедуру при выключенном моторе, но включённом зажигании.</li>
+  <li>⏱️ <strong>Недостаточное время удержания кнопки</strong> — в ручном методе кнопку <code>SET/0.0</code> нужно удерживать не менее 10 секунд.</li>
+  <li>🔧 <strong>Использование несовместимого сканера</strong> — дешёвые ELM327 часто не могут сбросить интервал на новых моделях <em>Rapid</em>.</li>
+  <li>📱 <strong>Прерывание процедуры</strong> — если отключить сканер или выключить зажигание во время сброса, может потребоваться перепрошивка приборной панели.</li>
+</ul>
+
+<p>Если после сброса интервал всё равно не обнуляется:</p>
+<ol>
+  <li>Проверьте, не активен ли режим <code>"Transport Mode"</code> (может блокировать изменения).</li>
+  <li>Обновите прошивку приборной панели через официальный сервис.</li>
+  <li>Попробуйте сбросить интервал через другой канал в VCDS (например, <code>IDE03230</code> вместо <code>02</code>).</li>
+</ol>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если после нескольких попыток сброс не удаётся, не пытайтесь "экспериментировать" с настройками ЭБУ — обратитесь к специалистам. Неправильные действия могут привести к блокировке доступа к диагностике.</p></div>
+
+<h2 id="сброс-интервала-после-замены-масла-нюансы-для-разных-двигателей">Сброс интервала после замены масла: нюансы для разных двигателей</h2>
+
+<p>На <em>ŠKODA Rapid</em> устанавливались разные типы двигателей, и для некоторых из них сброс межсервисного интервала имеет особенности:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Двигатель</th>
+      <th>Тип масла</th>
+      <th>Стандартный интервал</th>
+      <th>Особенности сброса</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>1.2 TSI (CBZB, CJZB)</code></td>
+      <td>5W-30/5W-40</td>
+      <td>15 000 км / 1 год</td>
+      <td>Требует сброса через <code>Adaptation – Channel 02</code> в VCDS</td>
+    </tr>
+    <tr>
+      <td><code>1.4 TSI (CZDA, CZEA)</code></td>
+      <td>5W-30 (LongLife)</td>
+      <td>30 000 км / 2 года*</td>
+      <td>Сброс только через диагностику (ручной метод не работает)</td>
+    </tr>
+    <tr>
+      <td><code>1.6 MPI (CFNA, CWVA)</code></td>
+      <td>5W-40</td>
+      <td>15 000 км / 1 год</td>
+      <td>Поддерживает ручной сброс (кнопка <code>SET/0.0</code>)</td>
+    </tr>
+    <tr>
+      <td><code>1.6 TDI (CAYC, CLHA)</code></td>
+      <td>5W-30 (PD)</td>
+      <td>15 000 км / 1 год</td>
+      <td>Требует сброса и масляного, и топливного фильтров (каналы <code>02</code> и <code>04</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>*Для двигателей с <strong>LongLife-сервисом</strong> (увеличенный интервал) сброс должен выполняться только после полной замены масла и фильтров. Если вы используете обычное масло, интервал нужно сократить до 15 000 км вручную через VCDS.</p>
+
+<p>Для дизельных версий (<em>1.6 TDI</em>) важно сбрасывать не только масляный интервал, но и счётчик топливного фильтра. В противном случае через 30 000 км может загореться ошибка <code>"Particulate Filter"</code>, даже если фильтр чистый.</p>
+
+<h2 id="faq-ответы-на-частые-вопросы">FAQ: Ответы на частые вопросы</h2>
+
+<details>
+  <summary>Можно ли сбросить межсервисный интервал без диагностического оборудования?</summary>
+  <p>Да, но только на <em>ŠKODA Rapid</em> до 2020 года выпуска с аналоговой приборной панелью. Для этого используйте <strong>ручной метод</strong> через кнопку <code>SET/0.0</code> (описан в первом способе). На новых моделях или машинах с цифровой панелью (<em>Virtual Cockpit</em>) без сканера не обойтись.</p>
+</details>
+
+<details>
+  <summary>Что будет, если не сбрасывать межсервисный интервал?</summary>
+  <p>Ничего критичного для автомобиля не произойдёт, но вы будете постоянно видеть ложные предупреждения о необходимости ТО. Кроме того, при продаже машины новый владелец может усомниться в честности пробега или истории обслуживания. В редких случаях несброшенный интервал может блокировать доступ к некоторым функциям бортового компьютера.</p>
+</details>
+
+<details>
+  <summary>Как проверить, сбросился ли интервал?</summary>
+  <p>После выполнения процедуры:</p>
+  <ol>
+    <li>Выключите и снова включите зажигание.</li>
+    <li>Проверьте дисплей бортового компьютера — должно появиться сообщение <code>"Service in 15 000 km"</code> или аналогичное.</li>
+    <li>Если используется VCDS, зайдите в <code>17 – Instruments → Measuring Values</code> и найдите параметр <code>Service Interval Display</code>.</li>
+  </ol>
+</details>
+
+<details>
+  <summary>Можно ли сбросить интервал на ŠKODA Rapid с помощью ELM327?</summary>
+  <p>Теоретически да, но на практике большинству пользователей это не удаётся. Дешёвые ELM327-адаптеры не поддерживают все протоколы, необходимые для работы с <em>Rapid</em>. Если вы всё же хотите попробовать, используйте программу <em>VCDS-Lite</em> или <em>OBDFacile</em>, но будьте готовы к ошибкам связи.</p>
+  <p><mark>Важно: Некачественные адаптеры могут повредить ЭБУ приборной панели. Для надёжного сброса рекомендуем использовать оригинальный VCDS или OBDeleven.</mark></p>
+</details>
+
+<details>
+  <summary>Нужно ли сбрасывать интервал после замены только масляного фильтра?</summary>
+  <p>Нет. Сброс межсервисного интервала следует выполнять <strong>только после полной замены масла и фильтра</strong>. Если вы поменяли только фильтр (например, при доливе масла), сбрасывать счётчик не нужно — это приведёт к некорректному отсчёту до следующего ТО.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#что-такое-межсервисный-интервал-и-зачем-его-сбрасывать">Что такое межсервисный интервал и зачем его сбрасывать</a></li><li><a href="#способ-1-сброс-через-бортовой-компьютер-для-моделей-до-2020-года">Способ 1: Сброс через бортовой компьютер (для моделей до 2020 года)</a></li><li><a href="#способ-2-сброс-с-помощью-диагностического-кабеля-vcds-vag-com">Способ 2: Сброс с помощью диагностического кабеля VCDS (VAG-COM)</a></li><li><a href="#способ-3-сброс-через-obd-сканер-для-новичков">Способ 3: Сброс через OBD-сканер (для новичков)</a></li><li><a href="#частые-ошибки-и-как-их-избежать">Частые ошибки и как их избежать</a></li><li><a href="#сброс-интервала-после-замены-масла-нюансы-для-разных-двигателей">Сброс интервала после замены масла: нюансы для разных двигателей</a></li><li><a href="#faq-ответы-на-частые-вопросы">FAQ: Ответы на частые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/s/sh/shkoda-rapid-16-zamena-remnya-grm.html" class="related-card">Замена ремня ГРМ на Škoda Rapid 1.6: сроки, цена, инструкция</a></li><li><a href="/articles/s/sh/shkoda-rapid-razmer-shin.html" class="related-card">Шкода Рапид: размеры шин, рекомендации и подбор по году выпуска</a></li><li><a href="/articles/s/sh/shkoda-rapid-19-god.html" class="related-card">Škoda Rapid 2019: характеристики, плюсы и минусы, отзывы владельцев</a></li><li><a href="/articles/r/re/remkomplekt-zadnego-supporta-shkoda-rapid.html" class="related-card">Ремкомплект заднего суппорта Skoda Rapid: выбор, замена и нюансы</a></li><li><a href="/articles/z/za/zamena-remnya-grm-shkoda-rapid-16-110.html" class="related-card">Замена ремня ГРМ Škoda Rapid 1.6 MPI 110 л.с. — сроки, цена, инструкция</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/s/sh/shkoda-rapid-16-zamena-remnya-grm.html" class="related-bottom-card"><span class="related-bottom-title">Замена ремня ГРМ на Škoda Rapid 1.6: сроки, цена, инструкция</span><span class="related-bottom-desc">Когда менять ремень ГРМ на Škoda Rapid 1.6 MPI? Пошаговая инструкция, стоимость работ, признаки изно</span></a><a href="/articles/s/sh/shkoda-rapid-razmer-shin.html" class="related-bottom-card"><span class="related-bottom-title">Шкода Рапид: размеры шин, рекомендации и подбор по году выпуска</span><span class="related-bottom-desc">Официальные размеры шин для Skoda Rapid всех поколений. Таблица заводских параметров, допустимые аль</span></a><a href="/articles/s/sh/shkoda-rapid-19-god.html" class="related-bottom-card"><span class="related-bottom-title">Škoda Rapid 2019: характеристики, плюсы и минусы, отзывы владельцев</span><span class="related-bottom-desc">Подробный обзор Škoda Rapid 2019 года: технические характеристики, комплектации, расход топлива, тип</span></a><a href="/articles/r/re/remkomplekt-zadnego-supporta-shkoda-rapid.html" class="related-bottom-card"><span class="related-bottom-title">Ремкомплект заднего суппорта Skoda Rapid: выбор, замена и нюансы</span><span class="related-bottom-desc">Полный гид по выбору и замене ремкомплекта заднего суппорта на Skoda Rapid. Инструкция, ошибки, чек-</span></a><a href="/articles/z/za/zamena-remnya-grm-shkoda-rapid-16-110.html" class="related-bottom-card"><span class="related-bottom-title">Замена ремня ГРМ Škoda Rapid 1.6 MPI 110 л.с. — сроки, цена, инструкция</span><span class="related-bottom-desc">Когда менять ремень ГРМ на ŠKODA Rapid 1.6 110 л.с.? Пошаговая инструкция, стоимость работ, признаки</span></a><a href="/articles/e/ep/epc-skoda-rapid.html" class="related-bottom-card"><span class="related-bottom-title">EPC на Skoda Rapid: причины, сброс ошибки и диагностика</span><span class="related-bottom-desc">Разбираем ошибку EPC на Škoda Rapid: что означает, как сбросить и устранить неисправность. Пошаговые</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

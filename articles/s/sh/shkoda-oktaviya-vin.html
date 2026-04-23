@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Шкода Октавия: как обновить прошивку VIN-номером и избежать ошибок — Skoda-Handbook</title>
+    <meta name="description" content="Пошаговая инструкция по обновлению ПО Skoda Octavia через VIN-код: где скачать прошивку, как проверить версию и не допустить сбоев. Актуально для всех поколений (A5/A7/A8).">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/s/sh/shkoda-oktaviya-vin.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Шкода Октавия: как обновить прошивку VIN-номером и избежать ошибок">
+    <meta property="og:description" content="Пошаговая инструкция по обновлению ПО Skoda Octavia через VIN-код: где скачать прошивку, как проверить версию и не допустить сбоев. Актуально для всех поколений (A5/A7/A8).">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/octavia/">Octavia</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Шкода Октавия: как обновить прошивку VIN-номером и избежать ошибок</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Обновление прошивки Škoda Octavia по VIN-номеру: официальный гайд 2026</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#почему-нужно-обновлять-прошивку-octavia">Почему нужно обновлять прошивку Octavia?</a></li><li><a href="#как-узнать-текущую-версию-прошивки">Как узнать текущую версию прошивки?</a></li><li><a href="#где-скачать-официальную-прошивку-по-vin-номеру">Где скачать официальную прошивку по VIN-номеру?</a></li><li><a href="#пошаговая-инструкция-по-обновлению-прошивки">Пошаговая инструкция по обновлению прошивки</a></li><li><a href="#распространённые-ошибки-и-их-решения">Распространённые ошибки и их решения</a></li><li><a href="#чип-тюнинг-vs-официальное-обновление-что-выбрать">Чип-тюнинг vs. официальное обновление: что выбрать?</a></li><li><a href="#faq-частые-вопросы-по-обновлению-octavia">FAQ: Частые вопросы по обновлению Octavia</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Обновление программного обеспечения <em>Škoda Octavia</em> через <strong>VIN-номер</strong> — процедура, которая может решить проблемы с электроникой, улучшить работу мультимедийной системы или даже повысить мощность двигателя (в случае чип-тюнинга). Однако неправильные действия приводят к <mark>блокировке бортового компьютера или потере гарантии</mark>, если использовать неофициальные прошивки. В этой статье разберём, как безопасно обновить ПО, где найти актуальные файлы для вашего <code>VIN</code>, и что делать, если после апдейта появились ошибки.</p>
+
+<p>Владельцы <em>Octavia</em> часто сталкиваются с необходимостью обновления из-за багов в системе <code>MIB</code> (Modular Infotainment Baukasten), особенно на моделях 2013–2020 годов. Например, после замены аккумулятора может сброситься калибровка датчиков, а старые версии прошивки не поддерживают новые смартфоны через <code>Apple CarPlay</code> или <code>Android Auto</code>. Мы собрали проверенные способы обновления — от официального сервиса <em>Skoda</em> до альтернативных методов с использованием <code>ODIS</code> или <code>VCDS</code>.</p>
+
+<h2 id="почему-нужно-обновлять-прошивку-octavia">Почему нужно обновлять прошивку <em>Octavia</em>?</h2>
+
+<p>Производитель регулярно выпускает апдейты для исправления критичных ошибок и добавления новых функций. Например, в 2023 году для <em>Octavia A8</em> (2020+) вышло обновление, которое:</p>
+<ul>
+  <li>🔧 Исправило баг с самопроизвольным включением фар дневного света.</li>
+  <li>📱 Добавило поддержку беспроводного <code>CarPlay</code> для iPhone 14/15.</li>
+  <li>🚗 Оптимизировало работу адаптивного круиз-контроля <code>ACC</code> на трассах.</li>
+  <li>🔋 Улучшило алгоритмы зарядки аккумулятора в режиме <code>Start-Stop</code>.</li>
+</ul>
+
+<p>На моделях <em>Octavia A5</em> (2004–2013) и <em>A7</em> (2013–2020) актуальные прошивки решают проблемы с:</p>
+<ul>
+  <li>🎵 Зависанием магнитолы <code>Bolero</code> или <code>Amundsen</code>.</li>
+  <li>📡 Потерей сигнала GPS в навигационной системе.</li>
+  <li>🔌 Ошибками подключения через <code>Bluetooth</code> или USB.</li>
+</ul>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Обновление прошивки через неофициальные источники (например, торрент-трекеры) может привести к <strong>потере гарантии</strong> и <strong>некорректной работе ESP</strong> или системы курсовой устойчивости. Всегда проверяйте совместимость файла с вашим <code>VIN</code>!</blockquote>
+
+<h2 id="как-узнать-текущую-версию-прошивки">Как узнать текущую версию прошивки?</h2>
+
+<p>Перед обновлением необходимо проверить актуальную версию ПО. Для этого:</p>
+<ol>
+  <li>Включите зажигание (двигатель заводить не нужно).</li>
+  <li>Нажмите и удерживайте кнопку <code>SETUP</code> (или <code>MENU</code>) на рулевом колесе или панели магнитолы.</li>
+  <li>Выберите пункт <code>Version</code> или <code>System Info</code>.</li>
+</ol>
+
+<p>На экране отобразится информация в формате:</p>
+<pre><code>SW: 0569 (MIB2)
+<p>HW: H52</p>
+<p>MAP: EU_2022</code></pre></p>
+
+<p>Где:</p>
+<ul>
+  <li><code>SW</code> — версия программного обеспечения (например, <code>0569</code> для <em>MIB2</em>).</li>
+  <li><code>HW</code> — аппаратная ревизия (важно для совместимости прошивки).</li>
+  <li><code>MAP</code> — региональные настройки (например, <code>EU</code> для Европы).</li>
+</ul>
+
+<div class="attention-box attention-info"><div><strong>📊 Какая у вас версия мультимедийной системы в Octavia?</strong><ul><li>MIB1 (до 2016)</li><li>MIB2 (2016–2020)</li><li>MIB3 (2020+)</li><li>Не знаю</li></ul></div></div>
+
+<h2 id="где-скачать-официальную-прошивку-по-vin-номеру">Где скачать официальную прошивку по VIN-номеру?</h2>
+
+<p>Единственный легальный способ получить прошивку — через <strong>официальный портал <em>Skoda</strong></strong> или дилерский центр. Однако есть и альтернативные источники, которые используют сертифицированные файлы:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Источник</th>
+      <th>Ссылка</th>
+      <th>Плюсы</th>
+      <th>Минусы</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Официальный сайт Skoda</em></td>
+      <td><a href="https://www.skoda-auto.com">skoda-auto.com</a></td>
+      <td>100% совместимость, гарантия сохраняется</td>
+      <td>Требует авторизации у дилера, платный доступ</td>
+    </tr>
+    <tr>
+      <td><em>ODIS Service</em></td>
+      <td><a href="https://eris.skoda-auto.cz">eris.skoda-auto.cz</a></td>
+      <td>Доступ по VIN, актуальные версии</td>
+      <td>Сложный интерфейс, нужна регистрация</td>
+    </tr>
+    <tr>
+      <td>Форумы <em>Octavia Club</em></td>
+      <td><a href="https://www.octavia-club.ru">octavia-club.ru</a></td>
+      <td>Бесплатные прошивки, отзывы пользователей</td>
+      <td>Риск неофициальных модификаций</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Для скачивания через <em>ODIS</em>:</p>
+<ol>
+  <li>Перейдите на <a href="https://eris.skoda-auto.cz">eris.skoda-auto.cz</a>.</li>
+  <li>Введите <code>VIN</code> вашего автомобиля (находится на лобовом стекле или в ПТС).</li>
+  <li>Выберите раздел <code>Software → Infotainment</code>.</li>
+  <li>Скачайте файл с расширением <code>.swp</code> или <code>.zip</code>.</li>
+</ol>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если на сайте <em>ODIS</em> требует логин, попробуйте использовать данные дилера: часто они публикуются на тематических форумах (например, <a href="https://www.drive2.ru">Drive2</a>).</p></div>
+
+<h2 id="пошаговая-инструкция-по-обновлению-прошивки">Пошаговая инструкция по обновлению прошивки</h2>
+
+<p>Для обновления понадобится:</p>
+<ul>
+  <li>💻 Ноутбук с Windows 10/11 (Mac не поддерживается).</li>
+  <li>🔌 Кабель <code>USB-A → USB-C</code> (для <em>MIB3</em>) или <code>USB-A → Micro-USB</code> (для <em>MIB2</em>).</li>
+  <li>🔋 Зарядное устройство для аккумулятора (напряжение не ниже <code>12.5 В</code>).</li>
+  <li>📁 Прошивка, скачанная по <code>VIN</code>.</li>
+</ul>
+
+<p><strong>Порядок действий:</strong></p>
+
+<p>Подключите ноутбук к зарядке</p>
+<p>Отключите все USB-устройства от магнитолы</p>
+<p>Проверьте напряжение аккумулятора (минимум 12.5 В)</p>
+<p>Скачайте программу <code>VW Updater</code> или <code>ODIS Engineering></code></p>
+<p>--></p>
+
+<ol>
+  <li><strong>Отключите зажигание</strong>, но оставьте ключ в положении <code>ACC</code> (питание на приборной панели).</li>
+  <li>Подключите ноутбук к разъёму <code>USB</code> в бардачке или под ручником (в зависимости от поколения <em>Octavia</em>).</li>
+  <li>Запустите программу <code>ODIS Engineering</code> или <code>VW Updater</code>.</li>
+  <li>Выберите скачанный файл прошивки и следуйте инструкциям мастера.</li>
+  <li>Дождитесь завершения процесса (обычно занимает <code>20–40 минут</code>). <strong>Не выключайте питание!</strong></li>
+</ol>
+
+<details class="faq-item"><summary>Что будет, если прервать обновление?</summary><div class="faq-answer"><p>
+<p>Если отключить питание во время прошивки, мультимедийная система <em>Octavia</em> может перейти в режим <code>Bootloop</code> (бесконечная загрузка). В этом случае потребуется перепрошивка через диагностический разъём <code>OBD-II</code> с использованием <code>VCDS</code> или обращение в сервис.</p></div></details></p>
+
+<h2 id="распространённые-ошибки-и-их-решения">Распространённые ошибки и их решения</h2>
+
+<p>Even после успешного обновления могут возникнуть проблемы. Вот самые частые из них и способы их устранения:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ошибка</th>
+      <th>Причина</th>
+      <th>Решение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>No Signal</code> на экране</td>
+      <td>Несовместимая версия прошивки</td>
+      <td>Откатитесь на предыдущую версию через <code>ODIS</code></td>
+    </tr>
+    <tr>
+      <td>Не работает <code>CarPlay</code></td>
+      <td>Сбросились настройки <code>Bluetooth</code></td>
+      <td>Переподключите телефон в меню <code>Settings → Phone</code></td>
+    </tr>
+    <tr>
+      <td>Ошибка <code>ESP Fault</code></td>
+      <td>Сбой калибровки датчиков</td>
+      <td>Выполните сброс через <code>VCDS</code> (код <code>03 → ABS</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Если после обновления на приборной панели загорелся значок <code>Check Engine</code>, немедленно проверьте ошибки через сканер <code>OBD-II</code>. Часто это связано с неверной калибровкой дроссельной заслонки (требуется адаптация через <code>VCDS</code>).</blockquote>
+
+<h2 id="чип-тюнинг-vs-официальное-обновление-что-выбрать">Чип-тюнинг vs. официальное обновление: что выбрать?</h2>
+
+<p>Многие владельцы <em>Octavia</em> рассматривают <strong>чип-тюнинг</strong> как альтернативу стандартному апдейту. Однако эти процедуры принципиально разные:</p>
+
+<ul>
+  <li>🔧 <strong>Официальное обновление</strong>:
+    <ul>
+      <li>Исправляет баги, добавляет новые функции.</li>
+      <li>Не влияет на мощность двигателя.</li>
+      <li>Сохраняет гарантию.</li>
+    </ul>
+  </li>
+  <li>🚀 <strong>Чип-тюнинг</strong>:
+    <ul>
+      <li>Модифицирует прошивку ЭБУ для увеличения мощности (до <code>+30 л.с.</code>).</li>
+      <li>Может привести к повышенному износу двигателя.</li>
+      <li>Снимает гарантию на силовой агрегат.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Если ваша цель — улучшить динамику <em>Octavia 1.8 TSI</em> или <em>2.0 TDI</em>, чип-тюнинг даст заметный прирост. Но для решения проблем с электроникой или мультимедией достаточно официального апдейта. Перед чип-тюнингом обязательно:</p>
+<ul>
+  <li>📊 Проверьте состояние двигателя (компрессия, расход масла).</li>
+  <li>🔧 Установите усиленный интеркулер (для турбированных моторов).</li>
+  <li>📑 Сохраните стоковую прошивку для отката.</li>
+</ul>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Чип-тюнинг на <em>Octavia</em> с пробегом более 100 000 км может сократить ресурс турбины и поршневой группы. Рекомендуется только для новых или капитально отремонтированных двигателей.</p></div>
+
+<h2 id="faq-частые-вопросы-по-обновлению-octavia">FAQ: Частые вопросы по обновлению <em>Octavia</em></h2>
+
+<details>
+  <summary>Можно ли обновить прошивку без дилера?</summary>
+  <p>Да, если у вас есть доступ к <em>ODIS</em> или файлам прошивки с проверенных форумов. Однако для моделей <em>Octavia A8</em> (2020+) может потребоваться авторизация через официальный сервис.</p>
+</details>
+
+<details>
+  <summary>Сколько стоит обновление у дилера?</summary>
+  <p>Стоимость варьируется от <code>3 000 до 8 000 рублей</code> в зависимости от региона и версии ПО. Например, обновление навигационных карт обходится дешевле, чем прошивка всего <code>MIB3</code>.</p>
+</details>
+
+<details>
+  <summary>Можно ли откатить прошивку назад?</summary>
+  <p>Технически да, но для этого нужен бэкап старой версии. В сервисе <em>Skoda</em> откат возможен только в течение <code>30 дней</code> после обновления.</p>
+</details>
+
+<details>
+  <summary>Почему после обновления пропал звук?</summary>
+  <p>Частая проблема при переходе с <code>MIB2</code> на <code>MIB3</code>. Проверьте настройки звука в меню <code>Audio → Equalizer</code> и сбросьте их до заводских (<code>Reset</code>).</p>
+</details>
+
+<details>
+  <summary>Как обновить прошивку на <em>Octavia A5</em> (2004–2013)?</summary>
+  <p>Для старых моделей используйте программу <code>VAG-COM</code> (VCDS) и прошивки с форумов. Важно: файлы для <em>A5</em> не совместимы с <em>A7/A8</em>!</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#почему-нужно-обновлять-прошивку-octavia">Почему нужно обновлять прошивку Octavia?</a></li><li><a href="#как-узнать-текущую-версию-прошивки">Как узнать текущую версию прошивки?</a></li><li><a href="#где-скачать-официальную-прошивку-по-vin-номеру">Где скачать официальную прошивку по VIN-номеру?</a></li><li><a href="#пошаговая-инструкция-по-обновлению-прошивки">Пошаговая инструкция по обновлению прошивки</a></li><li><a href="#распространённые-ошибки-и-их-решения">Распространённые ошибки и их решения</a></li><li><a href="#чип-тюнинг-vs-официальное-обновление-что-выбрать">Чип-тюнинг vs. официальное обновление: что выбрать?</a></li><li><a href="#faq-частые-вопросы-по-обновлению-octavia">FAQ: Частые вопросы по обновлению Octavia</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/r/ra/razmer-dvornikov-skoda-octavia-a7.html" class="related-card">Размеры дворников ŠKODA Octavia A7: таблица по годам и кузовам</a></li><li><a href="/articles/s/sh/shkoda-oktaviya-zamena-radiatora.html" class="related-card">Замена радиатора ŠKODA Octavia: цена, инструкция, выбор запчастей</a></li><li><a href="/articles/z/za/zamena-tormoznoj-zhidkosti-shkoda-oktaviya-a5-16-mpi.html" class="related-card">Замена тормозной жидкости ŠKODA Octavia A5 1.6 MPI: пошаговая инструкция</a></li><li><a href="/articles/s/sk/skoda-octavia-a5-16-bse.html" class="related-card">Skoda Octavia A5 1.6 BSE: характеристики, проблемы и отзывы владельцев</a></li><li><a href="/articles/k/ka/kak-vklyuchit-obogrev-zerkal-na-shkoda-oktaviya-a5.html" class="related-card">Как включить обогрев зеркал Skoda Octavia A5: полное руководство</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/r/ra/razmer-dvornikov-skoda-octavia-a7.html" class="related-bottom-card"><span class="related-bottom-title">Размеры дворников ŠKODA Octavia A7: таблица по годам и кузовам</span><span class="related-bottom-desc">Официальные размеры щёток стеклоочистителя для ŠKODA Octavia A7 (2013-2020): седан, лифтбек, RS. Как</span></a><a href="/articles/s/sh/shkoda-oktaviya-zamena-radiatora.html" class="related-bottom-card"><span class="related-bottom-title">Замена радиатора ŠKODA Octavia: цена, инструкция, выбор запчастей</span><span class="related-bottom-desc">Как самостоятельно заменить радиатор на Шкода Октавия? Пошаговая инструкция, цены на запчасти, типич</span></a><a href="/articles/z/za/zamena-tormoznoj-zhidkosti-shkoda-oktaviya-a5-16-mpi.html" class="related-bottom-card"><span class="related-bottom-title">Замена тормозной жидкости ŠKODA Octavia A5 1.6 MPI: пошаговая инструкция</span><span class="related-bottom-desc">Как самостоятельно заменить тормозную жидкость на ŠKODA Octavia A5 1.6 MPI: выбор жидкости, инструме</span></a><a href="/articles/s/sk/skoda-octavia-a5-16-bse.html" class="related-bottom-card"><span class="related-bottom-title">Skoda Octavia A5 1.6 BSE: характеристики, проблемы и отзывы владельцев</span><span class="related-bottom-desc">Подробный обзор двигателя 1.6 BSE на Skoda Octavia A5: технические данные, слабые места, ремонт и со</span></a><a href="/articles/k/ka/kak-vklyuchit-obogrev-zerkal-na-shkoda-oktaviya-a5.html" class="related-bottom-card"><span class="related-bottom-title">Как включить обогрев зеркал Skoda Octavia A5: полное руководство</span><span class="related-bottom-desc">Подробная инструкция по активации подогрева боковых зеркал на Škoda Octavia A5. Диагностика, проверк</span></a><a href="/articles/s/sv/svetodiodnye-lampy-h15-shkoda-oktaviya-a7.html" class="related-bottom-card"><span class="related-bottom-title">LED лампы H15 на Шкода Октавия А7: выбор, установка, ошибки</span><span class="related-bottom-desc">Полный гайд по выбору и установке светодиодных ламп H15 для Škoda Octavia A7. Разбор ошибок CAN-bus,</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

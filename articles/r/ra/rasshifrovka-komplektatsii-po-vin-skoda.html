@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Расшифровка VIN Skoda: как узнать комплектацию по коду — Skoda-Handbook</title>
+    <meta name="description" content="Подробный гайд по расшифровке VIN-кода Skoda: где найти, как проверить комплектацию, избежать ошибок и получить полные данные об автомобиле.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/r/ra/rasshifrovka-komplektatsii-po-vin-skoda.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Расшифровка VIN Skoda: как узнать комплектацию по коду">
+    <meta property="og:description" content="Подробный гайд по расшифровке VIN-кода Skoda: где найти, как проверить комплектацию, избежать ошибок и получить полные данные об автомобиле.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/drugoe/">Другое</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Расшифровка VIN Skoda: как узнать комплектацию по коду</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Расшифровка комплектации ŠKODA по VIN: полный разбор от А до Я</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#что-такое-vin-код-и-где-его-найти-на-škoda">Что такое VIN-код и где его найти на ŠKODA</a></li><li><a href="#структура-vin-кода-škoda-что-означает-каждый-символ">Структура VIN-кода ŠKODA: что означает каждый символ</a></li><li><a href="#как-расшифровать-комплектацию-škoda-по-vin-пошаговая-инструкция">Как расшифровать комплектацию ŠKODA по VIN: пошаговая инструкция</a></li><li><a href="#распространённые-ошибки-при-расшифровке-vin-škoda">Распространённые ошибки при расшифровке VIN ŠKODA</a></li><li><a href="#как-узнать-скрытые-опции-škoda-которых-нет-в-vin">Как узнать скрытые опции ŠKODA, которых нет в VIN</a></li><li><a href="#проверка-истории-автомобиля-по-vin-что-можно-узнать">Проверка истории автомобиля по VIN: что можно узнать</a></li><li><a href="#примеры-расшифровки-vin-для-популярных-моделей-škoda">Примеры расшифровки VIN для популярных моделей ŠKODA</a></li><li><a href="#faq-частые-вопросы-о-расшифровке-vin-škoda">FAQ: Частые вопросы о расшифровке VIN ŠKODA</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Каждый автомобиль <em>ŠKODA</em> — от компактной <em>Fabia</em> до просторного <em>Kodiaq</em> — скрывает под капотом и в салоне десятки технических нюансов, которые не всегда очевидны при внешнем осмотре. Единственный универсальный ключ к этой информации — <strong>VIN-код</strong> (Vehicle Identification Number). Этот 17-значный идентификатор не просто уникален для каждого авто, но и содержит зашифрованные данные о модели, двигателе, трансмиссии, цвете кузова и даже опциях салона.</p>
+
+<p>Однако расшифровать VIN <em>ŠKODA</em> не так просто, как кажется. Производитель использует собственную систему кодировки, которая отличается от стандартов других брендов группы <em>Volkswagen</em>. Более того, некоторые параметры (например, комплектация <code>Ambition</code> или <code>Style</code>) могут варьироваться в зависимости от рынка сбыта — европейские, российские и азиатские версии одного и того же автомобиля часто имеют разные наборы опций при одинаковом VIN. В этом руководстве мы разберём, как <strong>точно определить комплектацию</strong> вашего <em>ŠKODA</em>, избежать подводных камней и где получить официальные данные.</p>
+
+<h2 id="что-такое-vin-код-и-где-его-найти-на-škoda">Что такое VIN-код и где его найти на ŠKODA</h2>
+
+<p>VIN (Vehicle Identification Number) — это уникальный "паспорт" автомобиля, который присваивается на заводе и остаётся неизменным на протяжении всего жизненного цикла машины. Для <em>ŠKODA</em> (как и для всех автомобилей группы <em>VW</em>) структура кода стандартизирована, но имеет свои особенности. Код состоит из <strong>17 символов</strong> (цифр и латинских букв, кроме <code>I</code>, <code>O</code> и <code>Q</code>), разделённых на три части:</p>
+
+<ul>
+  <li>🔹 <strong>WMI (World Manufacturer Identifier)</strong> — первые 3 символа, указывающие на производителя (например, <code>TMB</code> для <em>ŠKODA</em>, произведённой в Чехии).</li>
+  <li>🔹 <strong>VDS (Vehicle Descriptor Section)</strong> — символы с 4 по 9, описывающие модель, тип кузова, двигатель и трансмиссию.</li>
+  <li>🔹 <strong>VIS (Vehicle Identifier Section)</strong> — символы с 10 по 17, содержащие информацию о годе выпуска, заводе и серийном номере.</li>
+</ul>
+
+<p>На автомобилях <em>ŠKODA</em> VIN-код дублируется в нескольких местах:</p>
+<ul>
+  <li>📄 На табличке под лобовым стеклом (видна снаружи через стекло).</li>
+  <li>🚗 На шильдике в проёме водительской двери.</li>
+  <li>🔧 В сервисной книжке или документах на автомобиль (ПТС, СТС).</li>
+  <li>💻 В электронном виде — в блоке управления <code>ECU</code> (можно считать диагностическим сканером).</li>
+</ul>
+
+<blockquote>⚠️ <strong>Внимание:</strong> На подержанных автомобилях VIN-код может быть подделан (например, перебиты цифры на табличке). Всегда сверяйте код в нескольких источниках. Если символы на табличке и в документах не совпадают — это повод для глубокой проверки истории авто.</blockquote>
+
+<h2 id="структура-vin-кода-škoda-что-означает-каждый-символ">Структура VIN-кода ŠKODA: что означает каждый символ</h2>
+
+<p>Расшифровка VIN для <em>ŠKODA</em> требует понимания, какие именно параметры зашифрованы в каждом разделе. Ниже — детализированный разбор на примере кода <code>TMBJN7NE8J3012345</code> (гипотетический <em>Octavia</em> 2018 года):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Позиция</th>
+      <th>Значение</th>
+      <th>Пример</th>
+      <th>Пояснение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1–3</td>
+      <td>WMI (производитель)</td>
+      <td><code>TMB</code></td>
+      <td>ŠKODA AUTO (Чехия). Другие варианты: <code>TMB</code> — Чехия, <code>WVW</code> — Германия (если собран на заводе VW).</td>
+    </tr>
+    <tr>
+      <td>4–6</td>
+      <td>Модель и тип кузова</td>
+      <td><code>JN7</code></td>
+      <td><code>JN</code> — <em>Octavia</em> (кузов <em>liftback</em>), <code>5N</code> — <em>Superb</em>, <code>NS</code> — <em>Kodiaq</em>.</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Тип двигателя</td>
+      <td><code>N</code></td>
+      <td>Бензиновый <code>1.4 TSI</code> (150 л.с.). Другие варианты: <code>C</code> — <code>1.6 MPI</code>, <code>D</code> — дизель <code>2.0 TDI</code>.</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Трансмиссия</td>
+      <td><code>E</code></td>
+      <td><code>E</code> — <code>DSG-7</code>, <code>M</code> — механика, <code>G</code> — <code>DSG-6</code>.</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Год выпуска</td>
+      <td><code>J</code></td>
+      <td><code>J</code> — 2018 год. Кодировка с 1980 по 2023: <code>A=1980</code>, <code>B=1981</code>, ..., <code>Y=2000</code>, <code>1=2001</code>, ..., <code>9=2009</code>, <code>A=2010</code> и т.д.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Особое внимание стоит уделить <strong>7-му и 8-му символам</strong> — они определяют силовой агрегат и коробку передач. Например, комбинация <code>NE</code> в нашем примере означает <code>1.4 TSI 150 л.с. + DSG-7</code>, что соответствует топовым комплектациям <em>Octavia RS</em>. Однако <mark>одни и те же символы могут означать разные двигатели в зависимости от рынка</mark> — например, <code>C</code> в Европе это <code>1.6 MPI 110 л.с.</code>, а в Индии — <code>1.5 TSI 150 л.с.</code>.</p>
+
+<div class="attention-box attention-info"><div><strong>📊 Какой двигатель у вашего ŠKODA?</strong><ul><li>Бензиновый (TSI/MPI)</li><li>Дизель (TDI)</li><li>Гибрид (iV/PHEV)</li><li>Электро (Enyaq)</li><li>Не знаю</li></ul></div></div>
+
+<h2 id="как-расшифровать-комплектацию-škoda-по-vin-пошаговая-инструкция">Как расшифровать комплектацию ŠKODA по VIN: пошаговая инструкция</h2>
+
+<p>Чтобы узнать точную комплектацию <em>ŠKODA</em> по VIN, недостаточно просто расшифровать код вручную — часть данных (например, опции салона) не отображается в стандартной структуре. Вам потребуется комбинация из нескольких методов:</p>
+
+<ol>
+  <li><strong>Официальный сервис ŠKODA.</strong> На сайте <a href="https://www.skoda-auto.com" target="_blank"><em>ŠKODA</em></a> есть инструмент проверки по VIN (доступен для европейских рынков). Для России и СНГ аналогичный сервис предоставляет <a href="https://www.skoda.ru" target="_blank">ŠKODA Россия</a>.</li>
+  <li><strong>Базы данных VIN-декодеров.</strong> Сервисы вроде <a href="https://www.vindecoderz.com" target="_blank">VinDecoderz</a> или <a href="https://www.vin-info.com" target="_blank">VIN-Info</a> дают базовую информацию, но могут ошибаться с опциями.</li>
+  <li><strong>Дилерские центры.</strong> Официальные дилеры имеют доступ к внутренней базе <em>ŠKODA</em>, где хранится полная история комплектации (включая цвет салона и дополнительные пакеты).</li>
+  <li><strong>Диагностическое оборудование.</strong> Сканеры типа <em>VCDS (VAG-COM)</em> или <em>ODIS</em> считывают данные из блоков управления, включая скрытые опции.</li>
+</ol>
+
+<p>Пример запроса через официальный сервис:</p>
+<ol>
+  <li>Перейдите на <a href="https://www.skoda-auto.com/world/owners/vin-decoder" target="_blank">страницу декодера VIN</a>.</li>
+  <li>Введите 17-значный код в поле ввода.</li>
+  <li>Подтвердите, что вы не робот, и нажмите <code>Decode</code>.</li>
+  <li>Получите отчёт с данными о модели, двигателе, трансмиссии и базовых опциях.</li>
+</ol>
+
+
+<p>Сверить VIN в документах и на кузове|Пробить историю по базе ГИБДД/Carfax|Уточнить комплектацию у дилера|Проверить наличие скрытых опций сканером|Оценить состояние по фотографиям кузова и салона--></p>
+
+<p>Важно понимать, что <strong>бесплатные онлайн-декодеры</strong> часто выдают неполные данные. Например, они могут показать, что у автомобиля есть <code>Parktronic</code>, но не укажут, установлен ли <code>Rear View Camera</code> или <code>Blind Spot Detect</code>. Для точности лучше комбинировать несколько источников.</p>
+
+<h2 id="распространённые-ошибки-при-расшифровке-vin-škoda">Распространённые ошибки при расшифровке VIN ŠKODA</h2>
+
+<p>Даже опытные автовладельцы иногда сталкиваются с неточностями при работе с VIN-кодами. Вот самые частые ловушки:</p>
+
+<ul>
+  <li>🔍 <strong>Игнорирование региональных особенностей.</strong> Одна и та же модель <em>ŠKODA</em> может иметь разные двигатели и опции в зависимости от рынка. Например, <em>Octavia</em> для Китая оснащается другим <code>TSI</code>-мотором, чем европейская версия.</li>
+  <li>📱 <strong>Доверие мобильным приложениям.</strong> Многие приложения для смартфонов (например, <em>VIN Scanner</em>) используют устаревшие базы данных и могут показывать неверную информацию о комплектации.</li>
+  <li>🔧 <strong>Путаница с годами выпуска.</strong> Символ года в VIN (10-я позиция) обновляется раз в 30 лет. Например, <code>A</code> может означать и 1980, и 2010 год. Всегда сверяйте с датой в ПТС.</li>
+  <li>🎨 <strong>Неучтённые опции салона.</strong> Цвет кожи сидений, тип мультимедийной системы (<code>Bolero</code>, <code>Amundsen</code>, <code>Columbus</code>) и даже наличие подогрева руля часто не отображаются в стандартной расшифровке.</li>
+</ul>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Если при проверке VIN сервис выдаёт сообщение <code>"Vehicle not found"</code> или данные сильно расходятся с документами, это может означать, что автомобиль:</blockquote>
+<ul>
+  <li>🚘 Собран на неофициальном заводе (например, для локальных рынков типа Индии).</li>
+  <li>🔄 Прошёл рестайлинг или модификацию после выпуска.</li>
+  <li>🚨 Имеет поддельный VIN (проверьте историю через <em>CarVertical</em> или <em>AutoCheck</em>).</li>
+</ul>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если вы покупаете подержанный <em>ŠKODA</em> с пробегом, запросите у продавца фотографию VIN-таблички и сверьте её с данными в ПТС. Даже незначительные расхождения (например, одна цифра) могут указывать на перебитый номер.</p></div>
+
+<h2 id="как-узнать-скрытые-опции-škoda-которых-нет-в-vin">Как узнать скрытые опции ŠKODA, которых нет в VIN</h2>
+
+<p>VIN-код содержит базовую информацию о автомобиле, но многие опции (особенно премиальные) в нём не отображаются. Например, такие функции как:</p>
+<ul>
+  <li>🎵 <code>Canton Sound System</code> (аудиосистема премиум-класса).</li>
+  <li>🚗 <code>Virtual Cockpit</code> (цифровая приборная панель).</li>
+  <li>🔥 <code>Heated Windshield</code> (обогрев лобового стекла).</li>
+  <li>🅿️ <code>Park Assist</code> (автоматическая парковка).</li>
+</ul>
+<p>не всегда фиксируются в стандартной расшифровке. Чтобы их выявить, используйте:</p>
+
+<h3>1. Диагностический сканер (VCDS/ODIS)</h3>
+<p>Подключите устройство к разъёму <code>OBD-II</code> (обычно расположен под рулём) и выполните сканирование блоков управления. В меню <code>Adaptation</code> или <code>Coding</code> ищите записи типа:</p>
+<pre><code>
+<p>Address 09: Cent. Elect. (J519)</p>
+<p>Subsystem 1 - Part No SW: 5Q0 955 547   HW: 5Q0 955 547</p>
+<p>Component: RLS  H04 0003</p>
+<p>Serial number: 22091746130910162758</p>
+<p>Coding: 0638DD</p>
+</code></pre>
+<p>Здесь <code>RLS</code> указывает на наличие <code>Rain Light Sensor</code> (датчик дождя и света), а <code>Coding: 0638DD</code> может содержать информацию о включённых опциях.</p>
+
+<h3>2. Этикетки на кузове и салоне</h3>
+<p>Производитель часто наклеивает стикеры с кодами опций в следующих местах:</p>
+<ul>
+  <li>🚪 В проёме водительской двери (рядом с VIN).</li>
+  <li>🪑 Под передним пассажирским сиденьем (код обшивки).</li>
+  <li>📦 В багажнике (на крышке аккумулятора или запасного колеса).</li>
+</ul>
+
+<details class="faq-item"><summary>Пример расшифровки кода опции</summary><div class="faq-answer"><p>
+<p>Код <code>PA8</code> на стикере в двери означает <code>Parktronic (Park Assist)</code> с камерой заднего вида. Полный список кодов опций для <em>ŠKODA</em> можно найти в мануалах для дилеров (например, <em>ETKA</em> или <em>ElsaWin</em>).</p></div></details></p>
+
+<h2 id="проверка-истории-автомобиля-по-vin-что-можно-узнать">Проверка истории автомобиля по VIN: что можно узнать</h2>
+
+<p>VIN-код — это не только технические данные, но и ключ к истории автомобиля. С его помощью можно выяснить:</p>
+
+<ul>
+  <li>📅 <strong>Дата производства и первая регистрация.</strong> Например, автомобиль мог быть выпущен в декабре 2022, но зарегистрирован только в марте 2023 (что указывает на долгий простой на складе).</li>
+  <li>🌍 <strong>Рынок первоначальной продажи.</strong> Если машина была пригнана из Европы, в VIN это может отразиться в WMI (например, <code>TMB</code> для Чехии) или в опциях (например, отсутствие <code>Евро-5</code> для рынков с мягкими эко-нормами).</li>
+  <li>🔧 <strong>Сервисная история.</strong> Официальные дилеры <em>ŠKODA</em> фиксируют все визиты по гарантии, включая замену масла, ремонт подвески или обновление ПО.</li>
+  <li>🚨 <strong>ДТП и страховые случаи.</strong> Базы данных типа <em>Carfax</em> или <em>Автокод</em> показывают, был ли автомобиль в аварии, затоплен или числится в угоне.</li>
+</ul>
+
+<p>Для проверки истории рекомендуем следующие сервисы:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Сервис</th>
+      <th>Что проверяет</th>
+      <th>Стоимость</th>
+      <th>Особенности</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://www.carvertical.com" target="_blank">CarVertical</a></td>
+      <td>ДТП, пробег, угон, сервис</td>
+      <td>~500 ₽</td>
+      <td>Агрегирует данные из 20+ стран, включая Россию и Европу.</td>
+    </tr>
+    <tr>
+      <td><a href="https://avtocod.ru" target="_blank">Автокод</a></td>
+      <td>Ограничения ГИБДД, штрафы, залог</td>
+      <td>350 ₽</td>
+      <td>Актуально только для РФ, Беларуси и Казахстана.</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.vinfreecheck.com" target="_blank">VinFreeCheck</a></td>
+      <td>Базовая информация по VIN</td>
+      <td>Бесплатно</td>
+      <td>Не показывает историю ДТП, только технические данные.</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Если в отчёте по VIN указан пробег <code>0 км</code>, но автомобилю больше 3 лет, это может означать:</blockquote>
+<ul>
+  <li>📊 Сброс одометра (скрутка пробега).</li>
+  <li>🚗 Машина стояла на консервации (например, у дилера).</li>
+  <li>🔧 Ошибка в базе данных (редко, но бывает).</li>
+</ul>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед покупкой подержанного <em>ŠKODA</em> всегда проверяйте VIN через 2–3 независимых сервиса. Один отчёт может не показать ДТП в другой стране или скрытый залог.</p></div>
+
+<h2 id="примеры-расшифровки-vin-для-популярных-моделей-škoda">Примеры расшифровки VIN для популярных моделей ŠKODA</h2>
+
+<p>Чтобы лучше понять, как работает система кодировки, разберём реальные примеры VIN для разных моделей <em>ŠKODA</em>:</p>
+
+<h3>1. ŠKODA Octavia 2020 (европейская версия)</h3>
+<p><strong>VIN:</strong> <code>TMBJM7NE4B3012345</code></p>
+<ul>
+  <li><code>TMB</code> — производитель (<em>ŠKODA</em>, Чехия).</li>
+  <li><code>JM7</code> — модель (<em>Octavia</em>, кузов <em>liftback</em>).</li>
+  <li><code>N</code> — двигатель <code>1.5 TSI 150 л.с.</code>.</li>
+  <li><code>E</code> — коробка <code>DSG-7</code>.</li>
+  <li><code>B</code> — 2021 модельный год (произведён во второй половине 2020).</li>
+</ul>
+<p><strong>Комплектация:</strong> Скорее всего, <code>Style</code> или <code>RS</code> (из-за мощного мотора и <code>DSG</code>). Точную версию уточняют по опциям.</p>
+
+<h3>2. ŠKODA Kodiaq 2019 (российская сборка)</h3>
+<p><strong>VIN:</strong> <code>TMBPE7NP2J3054321</code></p>
+<ul>
+  <li><code>PE7</code> — модель (<em>Kodiaq</em>, 7-местный).</li>
+  <li><code>N</code> — двигатель <code>2.0 TSI 180 л.с.</code> (для РФ).</li>
+  <li><code>P</code> — коробка <code>DSG-6</code>.</li>
+  <li><code>J</code> — 2018 год (но модельный год 2019).</li>
+</ul>
+<p><strong>Особенности:</strong> Российские <em>Kodiaq</em> часто оснащались <code>4x4</code> и пакетом <code>Winter</code> (подогрев всех сидений, руля).</p>
+
+<h3>3. ŠKODA Superb 2017 (рестайлинг)</h3>
+<p><strong>VIN:</strong> <code>TMBJY73T4H2098765</code></p>
+<ul>
+  <li><code>JY7</code> — модель (<em>Superb</em>, кузов <em>combi</em>).</li>
+  <li><code>3</code> — двигатель <code>1.8 TSI 180 л.с.</code>.</li>
+  <li><code>T</code> — коробка <code>DSG-6</code> (для моторов с высоким крутящим моментом).</li>
+  <li><code>H</code> — 2017 год.</li>
+</ul>
+<p><strong>Комплектация:</strong> Вероятно, <code>L&K</code> (топовая версия с кожаным салоном и <code>Virtual Cockpit</code>).</p>
+
+<p>Для уточнения комплектации в этих случаях используйте <strong>дилерскую базу</strong> или <strong>сканер</strong>, так как VIN не показывает опции типа <code>Matrix LED</code> или <code>DCC</code> (адаптивная подвеска).</p>
+
+<h2 id="faq-частые-вопросы-о-расшифровке-vin-škoda">FAQ: Частые вопросы о расшифровке VIN ŠKODA</h2>
+
+<details>
+  <summary>🔍 Можно ли по VIN узнать цвет автомобиля?</summary>
+  <p>Да, но не во всех декодерах. Цвет кузова (<code>Paint Code</code>) обычно указан в 7-й позиции VIN (например, <code>B6B6</code> — <em>Race Blue</em>, <code>U2U2</code> — <em>Quartz Grey</em>). Однако точный оттенок лучше уточнять по табличке на двери или в дилерском центре.</p>
+</details>
+
+<details>
+  <summary>🚗 Почему расшифровка VIN на разных сайтах отличается?</summary>
+  <p>Это связано с тем, что бесплатные сервисы используют устаревшие базы данных или не учитывают региональные особенности. Например, <em>Octavia</em> для Китая может иметь другой двигатель при том же VIN, что и европейская версия. Для точности обращайтесь к официальному декодеру <em>ŠKODA</em>.</p>
+</details>
+
+<details>
+  <summary>🔧 Как проверить, не скручен ли пробег по VIN?</summary>
+  <p>VIN сам по себе не показывает пробег, но сервисы вроде <em>CarVertical</em> или <em>Автокод</em> агрегируют данные с одометров из истории ТО, страховых случаев и таможенных деклараций. Если в отчёте есть записи о пробеге <code>150 000 км</code> в 2020 году и <code>50 000 км</code> в 2023 — это явный признак скрутки.</p>
+</details>
+
+<details>
+  <summary>📄 Можно ли по VIN узнать, был ли автомобиль в лизинге?</summary>
+  <p>Прямо по VIN — нет, но некоторые сервисы (например, <em>Автокод</em>) показывают историю собственников. Если в списке есть юридические лица (банки, лизинговые компании), велика вероятность, что машина была в лизинге. Также обратите внимание на пробег — лизинговые авто часто имеют <code>100 000+ км</code> за 3 года.</p>
+</details>
+
+<details>
+  <summary>🔑 Что делать, если VIN не распознаётся?</summary>
+  <p>Возможные причины:</p>
+  <ol>
+    <li>Опечатка в коде (проверьте символы <code>0</code> и <code>O</code>, <code>1</code> и <code>I</code>).</li>
+    <li>Автомобиль собран на неофициальном заводе (например, в Индии или Китае для локального рынка).</li>
+    <li>VIN подделан (сверьте с документами и табличкой на кузове).</li>
+  </ol>
+  <p>Если проблема не решается, обратитесь в дилерский центр <em>ŠKODA</em> с фотографией VIN-таблички.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#что-такое-vin-код-и-где-его-найти-на-škoda">Что такое VIN-код и где его найти на ŠKODA</a></li><li><a href="#структура-vin-кода-škoda-что-означает-каждый-символ">Структура VIN-кода ŠKODA: что означает каждый символ</a></li><li><a href="#как-расшифровать-комплектацию-škoda-по-vin-пошаговая-инструкция">Как расшифровать комплектацию ŠKODA по VIN: пошаговая инструкция</a></li><li><a href="#распространённые-ошибки-при-расшифровке-vin-škoda">Распространённые ошибки при расшифровке VIN ŠKODA</a></li><li><a href="#как-узнать-скрытые-опции-škoda-которых-нет-в-vin">Как узнать скрытые опции ŠKODA, которых нет в VIN</a></li><li><a href="#проверка-истории-автомобиля-по-vin-что-можно-узнать">Проверка истории автомобиля по VIN: что можно узнать</a></li><li><a href="#примеры-расшифровки-vin-для-популярных-моделей-škoda">Примеры расшифровки VIN для популярных моделей ŠKODA</a></li><li><a href="#faq-частые-вопросы-о-расшифровке-vin-škoda">FAQ: Частые вопросы о расшифровке VIN ŠKODA</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ko/kod-kraski-po-vin-shkoda.html" class="related-card">Код краски по VIN ŠKODA: как узнать и где найти оригинальный цвет</a></li><li><a href="/articles/s/sh/shkoda-ofitsialnyj-diler-v-chelyabinske.html" class="related-card">ŠKODA официальный дилер в Челябинске: адреса, цены, отзывы 2026</a></li><li><a href="/articles/s/sh/shkoda-chto-takoe.html" class="related-card">Škoda: что это за марка, история, модели и особенности бренда</a></li><li><a href="/articles/1/16/16384-oshibka-shkoda.html" class="related-card">Ошибка 16384 на ŠKODA: причины и решения (2026)</a></li><li><a href="/articles/m/mu/muzyka-iz-reklamy-shkoda.html" class="related-card">Музыка из рекламы Škoda: как найти и скачать треки</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ko/kod-kraski-po-vin-shkoda.html" class="related-bottom-card"><span class="related-bottom-title">Код краски по VIN ŠKODA: как узнать и где найти оригинальный цвет</span><span class="related-bottom-desc">Пошаговая инструкция по определению кода краски ŠKODA по VIN-коду: где искать, как расшифровать, таб</span></a><a href="/articles/s/sh/shkoda-ofitsialnyj-diler-v-chelyabinske.html" class="related-bottom-card"><span class="related-bottom-title">ŠKODA официальный дилер в Челябинске: адреса, цены, отзывы 2026</span><span class="related-bottom-desc">Где купить ŠKODA в Челябинске с гарантией? Полный список официальных дилеров, акции, сервисные центр</span></a><a href="/articles/s/sh/shkoda-chto-takoe.html" class="related-bottom-card"><span class="related-bottom-title">Škoda: что это за марка, история, модели и особенности бренда</span><span class="related-bottom-desc">Разбираем, что такое Škoda: история чешского автопроизводителя, популярные модели (Octavia, Kodiaq, </span></a><a href="/articles/1/16/16384-oshibka-shkoda.html" class="related-bottom-card"><span class="related-bottom-title">Ошибка 16384 на ŠKODA: причины и решения (2026)</span><span class="related-bottom-desc">Разбираем код ошибки 16384 на автомобилях ŠKODA: что означает, как диагностировать и устранить. Поша</span></a><a href="/articles/m/mu/muzyka-iz-reklamy-shkoda.html" class="related-bottom-card"><span class="related-bottom-title">Музыка из рекламы Škoda: как найти и скачать треки</span><span class="related-bottom-desc">Узнайте, где скачать музыку из рекламы Škoda, как определить название трека и какие композиции испол</span></a><a href="/articles/k/ka/kak-pomenyat-batarejku-v-klyuche-shkoda.html" class="related-bottom-card"><span class="related-bottom-title">Как заменить батарейку в ключе Škoda: пошаговая инструкция</span><span class="related-bottom-desc">Подробное руководство по замене батарейки в брелке Škoda: модели ключей, типы батареек, инструменты </span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

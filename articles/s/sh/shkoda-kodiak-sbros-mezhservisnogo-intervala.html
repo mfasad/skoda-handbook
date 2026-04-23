@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Сброс межсервисного интервала на Škoda Kodiaq: пошаговая инструкция — Skoda-Handbook</title>
+    <meta name="description" content="Как сбросить сервисный интервал на ŠKODA Kodiaq самостоятельно? Способы через меню, VCDS и сканеры ELM327. Пошаговые инструкции и частые ошибки.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/s/sh/shkoda-kodiak-sbros-mezhservisnogo-intervala.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Сброс межсервисного интервала на Škoda Kodiaq: пошаговая инструкция">
+    <meta property="og:description" content="Как сбросить сервисный интервал на ŠKODA Kodiaq самостоятельно? Способы через меню, VCDS и сканеры ELM327. Пошаговые инструкции и частые ошибки.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/kodiaq/">Kodiaq</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Сброс межсервисного интервала на Škoda Kodiaq: пошаговая инструкция</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Сброс межсервисного интервала на Škoda Kodiaq: 3 проверенных способа</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#зачем-нужен-сброс-межсервисного-интервала">Зачем нужен сброс межсервисного интервала?</a></li><li><a href="#способ-1-сброс-через-меню-бортового-компьютера-для-моделей-20172023">Способ 1: Сброс через меню бортового компьютера (для моделей 2017–2023)</a></li><li><a href="#способ-2-сброс-через-диагностический-адаптер-vcds-obdeleven-carista">Способ 2: Сброс через диагностический адаптер (VCDS, OBDeleven, Carista)</a></li><li><a href="#способ-3-сброс-через-скрытое-меню-для-продвинутых-пользователей">Способ 3: Сброс через скрытое меню (для продвинутых пользователей)</a></li><li><a href="#частые-ошибки-и-как-их-избежать">Частые ошибки и как их избежать</a></li><li><a href="#сброс-интервала-после-замены-масла-своими-руками">Сброс интервала после замены масла своими руками</a></li><li><a href="#отличия-сброса-на-kodiaq-с-разными-двигателями">Отличия сброса на Kodiaq с разными двигателями</a></li><li><a href="#faq-частые-вопросы-по-сбросу-межсервисного-интервала">FAQ: Частые вопросы по сбросу межсервисного интервала</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Межсервисный интервал на <em>Škoda Kodiaq</em> — это не просто напоминание о плановом ТО, а важный элемент системы диагностики автомобиля. После каждого технического обслуживания счетчик пробега или дней до следующего визита в сервис требует обязательного сброса. Если этого не сделать, бортовой компьютер будет упорно сигнализировать о "просроченном" обслуживании, даже если вы только что выехали из автосервиса с свежими маслами и фильтрами.</p>
+
+<p>Владельцы <em>Kodiaq</em> (особенно модели <strong>2017–2026 годов</strong>) часто сталкиваются с проблемой: официальные дилеры берут деньги за сброс интервала, хотя процедуру можно выполнить самостоятельно за 5 минут. В этой статье разберём <strong>все актуальные способы сброса</strong> — от стандартного меню до диагностических адаптеров, а также расскажем, почему иногда интервал "не сбрасывается" и как это исправить.</p>
+
+<h2 id="зачем-нужен-сброс-межсервисного-интервала">Зачем нужен сброс межсервисного интервала?</h2>
+
+<p>Бортовой компьютер <em>Škoda Kodiaq</em> отслеживает два типа интервалов:</p>
+<ul>
+  <li>📏 <strong>Гибкий интервал</strong> — рассчитывается на основе стиля вождения, качества топлива и условий эксплуатации (от 15 000 до 30 000 км).</li>
+  <li>⏳ <strong>Фиксированный интервал</strong> — стандартные 15 000 км или 1 год (что наступит раньше).</li>
+</ul>
+
+<p>Если не сбросить счетчик после ТО, последствия будут следующими:</p>
+<ul>
+  <li>⚠️ На приборной панели загорится предупреждение <code>"Сервис через 0 км"</code> или <code>"Service due"</code>.</li>
+  <li>🔧 В меню <code>CAR → Service</code> отобразится просроченный статус, даже если масло и фильтры новые.</li>
+  <li>📵 Некоторые функции (например, <strong>дистанционная диагностика через Škoda Connect</strong>) могут работать некорректно.</li>
+</ul>
+
+<blockquote>⚠️ <strong>Внимание:</strong> На <em>Kodiaq</em> с двигателями <code>2.0 TSI (EA888)</code> и <code>2.0 TDI (CRTD)</code> игнорирование сброса может привести к ложным ошибкам в системе впрыска. Это связано с тем, что ЭБУ учитывает "просроченное" масло при корректировке топливной смеси.</blockquote>
+
+<h2 id="способ-1-сброс-через-меню-бортового-компьютера-для-моделей-20172023">Способ 1: Сброс через меню бортового компьютера (для моделей 2017–2023)</h2>
+
+<p>Это самый простой метод, который работает на большинстве <em>Kodiaq</em> без дополнительного оборудования. Подходит для сброса как гибкого, так и фиксированного интервала.</p>
+
+<p>Инструкция:</p>
+<ol>
+  <li>Включите зажигание (двигатель заводить не нужно).</li>
+  <li>Нажмите кнопку <code>MENU</code> на рулевом переключателе (или сенсорную кнопку <code>CAR</code> на дисплее).</li>
+  <li>Перейдите в раздел: <code>Service → Reset service interval</code>.</li>
+  <li>Подтвердите сброс, удерживая кнопку <code>OK</code> (или <code>RES</code>) в течение 3–5 секунд.</li>
+</ol>
+
+<p>На экране появится сообщение <code>"Service reset successful"</code>. Если вместо этого вы видите <code>"Reset not possible"</code>, значит:</p>
+<ul>
+  <li>🔧 Вы пытаетесь сбросить интервал до планового ТО (например, при пробеге 10 000 км из 15 000).</li>
+  <li>🔌 Необходимо использовать диагностический адаптер (см. <strong>Способ 2</strong>).</li>
+</ul>
+
+
+<p>Заглушить двигатель и вынуть ключ из замка зажигания|</p>
+<p>Вставить ключ обратно и повернуть в положение "ON" (не заводить)|</p>
+<p>Убедиться, что на приборной панели горит индикация "Service due"|</p>
+<p>Иметь под рукой инструкцию к автомобилю (для уточнения пути меню)--></p>
+
+<h2 id="способ-2-сброс-через-диагностический-адаптер-vcds-obdeleven-carista">Способ 2: Сброс через диагностический адаптер (VCDS, OBDeleven, Carista)</h2>
+
+<p>Если сброс через меню не работает (например, на <em>Kodiaq RS</em> или машинах с прошивкой <strong>MIB3</strong>), потребуется диагностический адаптер. Рассмотрим три популярных варианта:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Адаптер</th>
+      <th>Стоимость</th>
+      <th>Поддержка Kodiaq</th>
+      <th>Сложность использования</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>VCDS (VAG-COM)</em></td>
+      <td>от 20 000 ₽</td>
+      <td>Полная (все блоки)</td>
+      <td>Средняя (нужны знания)</td>
+    </tr>
+    <tr>
+      <td><em>OBDeleven</em></td>
+      <td>от 8 000 ₽</td>
+      <td>Частичная (требует прошивку)</td>
+      <td>Лёгкая (есть готовые скрипты)</td>
+    </tr>
+    <tr>
+      <td><em>Carista</em></td>
+      <td>от 5 000 ₽</td>
+      <td>Базовая (только сброс сервиса)</td>
+      <td>Простая (мобильное приложение)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Пошаговая инструкция для <em>OBDeleven</em> (самый доступный вариант):</p>
+<ol>
+  <li>Подключите адаптер к порту <code>OBD-II</code> (расположен под рулём).</li>
+  <li>Запустите приложение на смартфоне и подключитесь к адаптеру.</li>
+  <li>Выберите модель <code>Škoda Kodiaq</code> и год выпуска.</li>
+  <li>Перейдите в раздел <code>Control Units → 17 Instruments</code>.</li>
+  <li>Выполните скрипт <code>"Service Reset"</code> (для двигателей <code>TSI</code> и <code>TDI</code> скрипты разные!).</li>
+  <li>Подтвердите операцию и дождитесь сообщения <code>"Done"</code>.</li>
+</ol>
+
+<blockquote>⚠️ <strong>Внимание:</strong> На <em>Kodiaq</em> с гибридной силовой установкой (<code>1.4 TSI e-TEC</code>) сброс через <em>OBDeleven</em> может не сработать. В этом случае используйте <em>VCDS</em> с ручным вводом команд в блок <code>01-Engine</code>.</blockquote>
+
+
+<p>VCDS (оригинальный кабель)|OBDeleven|Carista|ELM327 (дешёвый китайский)|Не пользуюсь--></p>
+
+<h2 id="способ-3-сброс-через-скрытое-меню-для-продвинутых-пользователей">Способ 3: Сброс через скрытое меню (для продвинутых пользователей)</h2>
+
+<p>На некоторых <em>Kodiaq</em> (особенно с мультимедийной системой <strong>Amundsen</strong> или <strong>Columbus</strong>) есть скрытое инженерное меню, через которое можно сбросить сервисный интервал без адаптеров. Этот метод требует аккуратности, так как неправильные действия могут привести к сбою настроек.</p>
+
+<p>Инструкция:</p>
+<ol>
+  <li>Выключите зажигание и зажмите кнопку <code>MENU</code> на руле.</li>
+  <li>Удерживая кнопку, включите зажигание (не заводите двигатель!).</li>
+  <li>Через 10 секунд отпустите кнопку — вы попадете в <strong>сервисное меню</strong>.</li>
+  <li>Перейдите в раздел <code>Service → Reset</code> (навигация осуществляется кнопками <code>+</code>/<code>–</code> на руле).</li>
+  <li>Выберите тип интервала (<code>Flexible</code> или <code>Fixed</code>) и подтвердите сброс.</li>
+</ol>
+
+<p><mark>На <em>Kodiaq</em> 2020+ года с системой <strong>MIB3</strong> этот метод может не работать из-за блокировки доступа к инженерному меню через обновления ПО.</mark> В таком случае остаётся только диагностический адаптер.</p>
+
+<details class="faq-item"><summary>Что делать, если после сброса интервал не обнулился?</summary><div class="faq-answer"><p>
+<p>Если после выполнения всех шагов на приборной панели по-прежнему горит "Service due", проверьте:</p>
+<p>1. **Правильность выбора типа интервала** (гибкий/фиксированный).</p>
+<p>2. **Состояние аккумулятора** — при низком напряжении (менее 12.3В) ЭБУ может не сохранять изменения.</p>
+<p>3. **Версию прошивки** — на некоторых <em>Kodiaq</em> 2023 года требуется предварительно обновить ПО через Škoda Connect.</p>
+<p>4. **Наличие ошибок в блоке 17 (Приборная панель)** — их нужно удалить через диагностический адаптер.</p>
+<p></p></div></details></p>
+
+<h2 id="частые-ошибки-и-как-их-избежать">Частые ошибки и как их избежать</h2>
+
+<p>Даже опытные владельцы <em>Škoda Kodiaq</em> иногда сталкиваются с проблемами при сбросе интервала. Вот самые распространённые ошибки:</p>
+
+<ul>
+  <li>🔋 <strong>Сброс при разряженном аккумуляторе</strong> — если напряжение ниже 12В, ЭБУ не сохранит изменения. Перед процедурой зарядите АКБ или подключите пуско-зарядное устройство.</li>
+  <li>🔧 <strong>Неправильный выбор типа интервала</strong> — на <em>Kodiaq</em> с двигателями <code>2.0 TDI (200 л.с.)</code> часто устанавливается гибкий интервал, но владельцы пытаются сбросить фиксированный.</li>
+  <li>📱 <strong>Использование нелицензионных адаптеров</strong> — дешёвые <em>ELM327</em> с AliExpress могут не корректно работать с блоками <code>17-Instruments</code> и <code>01-Engine</code>.</li>
+  <li>🔄 <strong>Попытка сброса до наступления интервала</strong> — система заблокирует операцию, если пробег до ТО больше 1 000 км.</li>
+</ul>
+
+<p>Если после сброса на приборной панели появилась ошибка <code>"Workshop!"</code>, это означает, что:</p>
+<ul>
+  <li>В блоке <code>17</code> сохранены критические ошибки (например, по CAN-шине).</li>
+  <li>Необходимо подключить диагностический адаптер и удалить ошибки вручную.</li>
+</ul>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед сбросом интервала проверьте актуальную версию ПО вашего <em>Kodiaq</em> через меню <code>Settings → System → Software version</code>. Если версия старше 2022 года, рекомендуется обновить её через официальный портал Škoda, чтобы избежать багов с сервисными напоминаниями.</p></div>
+
+<h2 id="сброс-интервала-после-замены-масла-своими-руками">Сброс интервала после замены масла своими руками</h2>
+
+<p>Многие владельцы <em>Škoda Kodiaq</em> предпочитают менять масло самостоятельно, но забывают сбросить межсервисный интервал. Это приводит к тому, что бортовой компьютер продолжает отсчёт от старого пробега, и через 5 000 км после замены масла вы увидите предупреждение <code>"Service due"</code>.</p>
+
+<p>Чтобы избежать этого, следуйте алгоритму:</p>
+<ol>
+  <li>Замените масло и масляный фильтр (для <code>2.0 TSI</code> рекомендуется масло <strong>5W-30 VW 504 00</strong>).</li>
+  <li>Сбросьте интервал одним из описанных выше способов.</li>
+  <li>Проверьте уровень масла через 100 км пробега (на <em>Kodiaq</em> с двигателями <code>EA888</code> возможен "угар" масла в первые сотни километров).</li>
+</ol>
+
+<p>Если вы используете масло с увеличенным интервалом замены (например, <strong>LongLife III</strong>), убедитесь, что в настройках бортового компьютера выбран соответствующий режим. Для этого:</p>
+<ol>
+  <li>Перейдите в <code>CAR → Service → Service interval</code>.</li>
+  <li>Выберите <code>"LongLife"</code> вместо <code>"Fixed"</code>.</li>
+  <li>Подтвердите изменение и выполните сброс.</li>
+</ol>
+
+<h2 id="отличия-сброса-на-kodiaq-с-разными-двигателями">Отличия сброса на Kodiaq с разными двигателями</h2>
+
+<p>Процедура сброса межсервисного интервала может отличаться в зависимости от типа силовой установки. Ниже — ключевые особенности для популярных двигателей <em>Škoda Kodiaq</em>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Двигатель</th>
+      <th>Тип интервала</th>
+      <th>Особенности сброса</th>
+      <th>Рекомендуемый адаптер</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>1.5 TSI (ACT)</code></td>
+      <td>Гибкий (15 000–30 000 км)</td>
+      <td>Сбрасывается через меню или OBDeleven. При использовании VCDS требуется дополнительная адаптация в блоке <code>01-Engine</code>.</td>
+      <td>OBDeleven / VCDS</td>
+    </tr>
+    <tr>
+      <td><code>2.0 TSI (EA888)</code></td>
+      <td>Фиксированный (15 000 км)</td>
+      <td>Часто требует ручного ввода команд в блоке <code>17</code>. После сброса нужно удалить ошибки по топливной системе.</td>
+      <td>VCDS</td>
+    </tr>
+    <tr>
+      <td><code>2.0 TDI (CRTD)</code></td>
+      <td>Гибкий (до 20 000 км)</td>
+      <td>Может потребоваться сброс в двух блоках: <code>17</code> и <code>01</code>. На моделях с <strong>AdBlue</strong> дополнительно сбрасывается счётчик мочевины.</td>
+      <td>VCDS / OBDeleven Pro</td>
+    </tr>
+    <tr>
+      <td><code>1.4 TSI e-TEC (гибрид)</code></td>
+      <td>Гибкий (специальный алгоритм)</td>
+      <td>Сброс возможен только через VCDS с активацией режима <code>"Hybrid Service Reset"</code>.</td>
+      <td>VCDS (обязательно)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>На <em>Kodiaq RS</em> с двигателем <code>2.0 TSI (245 л.с.)</code> после сброса интервала рекомендуется дополнительно проверить адаптации дроссельной заслонки, так как ЭБУ может сбросить их к заводским значениям.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>На дизельных <em>Kodiaq</em> (2.0 TDI) после сброса сервисного интервала обязательно обнулите счётчик сажевого фильтра (DPF) и системы AdBlue, если они были заменены или очищены.</p></div>
+
+<h2 id="faq-частые-вопросы-по-сбросу-межсервисного-интервала">FAQ: Частые вопросы по сбросу межсервисного интервала</h2>
+
+<details>
+  <summary>Можно ли сбросить интервал на Kodiaq без адаптера, если не работает меню?</summary>
+  <p>На большинстве моделей до 2020 года — да, через <strong>скрытое инженерное меню</strong> (см. <strong>Способ 3</strong>). На новых <em>Kodiaq</em> с <strong>MIB3</strong> этот метод заблокирован, и без адаптера не обойтись. Альтернатива — обратиться в сервис, где есть <em>VCDS</em>.</p>
+</details>
+
+<details>
+  <summary>После сброса через OBDeleven интервал сбросился, но через день снова появилось предупреждение. В чём дело?</summary>
+  <p>Это типичная проблема при использовании нелицензионных адаптеров или старых версий ПО. Причины:</p>
+  <ul>
+    <li>Адаптер не корректно записал данные в блок <code>17-Instruments</code>.</li>
+    <li>В ЭБУ сохранены ошибки по CAN-шине (нужно удалить через VCDS).</li>
+    <li>На автомобиле установлена бета-версия прошивки (решается обновлением через Škoda Connect).</li>
+  </ul>
+  <p>Решение: повторите сброс через <em>VCDS</em> или обратитесь в официальный сервис.</p>
+</details>
+
+<details>
+  <summary>Нужно ли сбрасывать интервал, если я езжу на LongLife-масле и меняю его каждые 20 000 км?</summary>
+  <p>Да, обязательно! Даже если вы используете масло с увеличенным интервалом замены, бортовой компьютер <em>Kodiaq</em> по умолчанию настроен на <strong>фиксированный интервал 15 000 км</strong>. Если не сбросить счётчик, через 15 000 км вы увидите предупреждение, несмотря на то, что масло ещё пригодно.</p>
+  <p>Чтобы избежать этого, перед сбросом переключите режим в меню <code>CAR → Service → Service interval → LongLife</code>.</p>
+</details>
+
+<details>
+  <summary>Можно ли сбросить интервал на Kodiaq 2023 года через меню, как на старых моделях?</summary>
+  <p>На большинстве <em>Kodiaq</em> 2023 года с системой <strong>MIB3</strong> сброс через стандартное меню <strong>заблокирован</strong>. Это сделано для того, чтобы владельцы обращались в официальные сервисы. Альтернативные способы:</p>
+  <ul>
+    <li>Использовать <em>VCDS</em> или <em>OBDeleven Pro</em>.</li>
+    <li>Обратиться к дилеру (средняя стоимость сброса — 500–1 000 ₽).</li>
+    <li>Обновить ПО через Škoda Connect (иногда разблокирует скрытые функции).</li>
+  </ul>
+</details>
+
+<details>
+  <summary>Что будет, если не сбрасывать межсервисный интервал?</summary>
+  <p>Краткосрочные последствия:</p>
+  <ul>
+    <li>Постоянное предупреждение <code>"Service due"</code> на приборной панели.</li>
+    <li>Невозможность пройти диагностику через Škoda Connect.</li>
+  </ul>
+  <p>Долгосрочные риски:</p>
+  <ul>
+    <li>На <em>Kodiaq</em> с двигателями <code>2.0 TSI</code> ЭБУ может начать корректировать топливную смесь, исходя из "просроченного" масла, что приведёт к повышенному расходу топлива.</li>
+    <li>При продаже автомобиля отсутствие истории сбросов может вызвать подозрения у покупателя.</li>
+  </ul>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#зачем-нужен-сброс-межсервисного-интервала">Зачем нужен сброс межсервисного интервала?</a></li><li><a href="#способ-1-сброс-через-меню-бортового-компьютера-для-моделей-20172023">Способ 1: Сброс через меню бортового компьютера (для моделей 2017–2023)</a></li><li><a href="#способ-2-сброс-через-диагностический-адаптер-vcds-obdeleven-carista">Способ 2: Сброс через диагностический адаптер (VCDS, OBDeleven, Carista)</a></li><li><a href="#способ-3-сброс-через-скрытое-меню-для-продвинутых-пользователей">Способ 3: Сброс через скрытое меню (для продвинутых пользователей)</a></li><li><a href="#частые-ошибки-и-как-их-избежать">Частые ошибки и как их избежать</a></li><li><a href="#сброс-интервала-после-замены-масла-своими-руками">Сброс интервала после замены масла своими руками</a></li><li><a href="#отличия-сброса-на-kodiaq-с-разными-двигателями">Отличия сброса на Kodiaq с разными двигателями</a></li><li><a href="#faq-частые-вопросы-по-сбросу-межсервисного-интервала">FAQ: Частые вопросы по сбросу межсервисного интервала</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-sbrosit-mezhservisnyj-interval-na-shkoda-kodiak-2018.html" class="related-card">Сброс межсервисного интервала на ŠKODA Kodiaq 2018: пошаговая инструкция</a></li><li><a href="/articles/s/sh/shkoda-na-khasanskoj-ofitsialnyj-diler-v-spb-telefon.html" class="related-card">Шкода на Хасанской в СПб: официальный дилер, телефон и услуги</a></li><li><a href="/articles/z/za/zamena-masla-v-khaldekse-shkoda-kodiak.html" class="related-card">Замена масла в муфте Haldex Skoda Kodiaq: инструкция и нормы</a></li><li><a href="/articles/s/sk/skaner-dlya-shkoda-kodiak.html" class="related-card">Лучший сканер для Škoda Kodiaq: выбор, диагностика и ошибки</a></li><li><a href="/articles/o/ok/okhlazhdayushchaya-zhidkost-shkoda-kodiak.html" class="related-card">Охлаждающая жидкость для ŠKODA Kodiaq: выбор, замена, советы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-sbrosit-mezhservisnyj-interval-na-shkoda-kodiak-2018.html" class="related-bottom-card"><span class="related-bottom-title">Сброс межсервисного интервала на ŠKODA Kodiaq 2018: пошаговая инструкция</span><span class="related-bottom-desc">Как самостоятельно обнулить сервисный интервал на Skoda Kodiaq 2018 года? Подробное руководство с фо</span></a><a href="/articles/s/sh/shkoda-na-khasanskoj-ofitsialnyj-diler-v-spb-telefon.html" class="related-bottom-card"><span class="related-bottom-title">Шкода на Хасанской в СПб: официальный дилер, телефон и услуги</span><span class="related-bottom-desc">Контакты официального дилера Skoda в Санкт-Петербурге по адресу Хасанская 23. Телефон, адрес, услуги</span></a><a href="/articles/z/za/zamena-masla-v-khaldekse-shkoda-kodiak.html" class="related-bottom-card"><span class="related-bottom-title">Замена масла в муфте Haldex Skoda Kodiaq: инструкция и нормы</span><span class="related-bottom-desc">Полное руководство по замене масла в муфте Haldex на Skoda Kodiaq. Интервалы, выбор масла, пошаговая</span></a><a href="/articles/s/sk/skaner-dlya-shkoda-kodiak.html" class="related-bottom-card"><span class="related-bottom-title">Лучший сканер для Škoda Kodiaq: выбор, диагностика и ошибки</span><span class="related-bottom-desc">Полный гид по выбору сканера для Škoda Kodiaq. Обзор OBD2, VCDS, Carista. Как читать ошибки двигател</span></a><a href="/articles/o/ok/okhlazhdayushchaya-zhidkost-shkoda-kodiak.html" class="related-bottom-card"><span class="related-bottom-title">Охлаждающая жидкость для ŠKODA Kodiaq: выбор, замена, советы</span><span class="related-bottom-desc">Какую охлаждающую жидкость заливать в ŠKODA Kodiaq? Периодичность замены, оригинальные и аналогичные</span></a><a href="/articles/y/yu/yubka-zadnego-bampera-shkoda-kodiak.html" class="related-bottom-card"><span class="related-bottom-title">Юбка заднего бампера Skoda Kodiaq: выбор, установка и защита</span><span class="related-bottom-desc">Полный гайд по юбке заднего бампера для Skoda Kodiaq. Обзор материалов, нюансы установки спойлера, з</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

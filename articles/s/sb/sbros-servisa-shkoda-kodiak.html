@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Сброс сервиса Škoda Kodiaq: инструкция, кодирование и обнуление — Skoda-Handbook</title>
+    <meta name="description" content="Пошаговая инструкция по сбросу сервисных интервалов и обнулению ошибок в Škoda Kodiaq. Методы через меню, OBDII и диагностическое ПО.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/s/sb/sbros-servisa-shkoda-kodiak.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Сброс сервиса Škoda Kodiaq: инструкция, кодирование и обнуление">
+    <meta property="og:description" content="Пошаговая инструкция по сбросу сервисных интервалов и обнулению ошибок в Škoda Kodiaq. Методы через меню, OBDII и диагностическое ПО.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/kodiaq/">Kodiaq</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Сброс сервиса Škoda Kodiaq: инструкция, кодирование и обнуление</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Полный гид по сбросу сервисного интервала и диагностических ошибок на Škoda Kodiaq</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#подготовка-автомобиля-и-проверка-условий">Подготовка автомобиля и проверка условий</a></li><li><a href="#сброс-через-штатное-меню-infotainment">Сброс через штатное меню Infotainment</a></li><li><a href="#обнуление-интервалов-кнопками-на-приборной-панели">Обнуление интервалов кнопками на приборной панели</a></li><li><a href="#сброс-ошибок-и-адаптаций-через-obdii">Сброс ошибок и адаптаций через OBDII</a></li><li><a href="#профессиональный-сброс-через-vag-com-и-odis">Профессиональный сброс через VAG-COM и ODIS</a></li><li><a href="#особенности-сброса-для-дизельных-двигателей-и-dsg">Особенности сброса для дизельных двигателей и DSG</a></li><li><a href="#частые-проблемы-и-способы-их-решения">Частые проблемы и способы их решения</a></li><li><a href="#итоги-и-рекомендации-по-техническому-обслуживанию">Итоги и рекомендации по техническому обслуживанию</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Многие владельцы кроссовера <em>Škoda Kodiaq</em> сталкиваются с необходимостью сброса сервисного интервала после самостоятельной замены масла или прохождения техобслуживания в стороннем сервисе. Индикатор на приборной панели не исчезает автоматически, требуя ручной активации процедуры обнуления счетчиков пробега и времени.</p>
+
+<p>Процедура может варьироваться в зависимости от года выпуска автомобиля, версии программного обеспечения мультимедийной системы и типа приборной панели (аналоговая или виртуальная). Неправильные действия могут привести к сбоям в работе бортового компьютера, поэтому важно соблюдать последовательность действий, описанную ниже.</p>
+
+<p>В данном материале мы разберем все доступные способы: от стандартного меню мультимедиа до использования профессионального диагностического оборудования. Вы узнаете, как корректно выполнить сброс, не повредив программную часть <em>Kodiaq</em>.</p>
+
+<h2 id="подготовка-автомобиля-и-проверка-условий">Подготовка автомобиля и проверка условий</h2>
+
+<p>Перед началом любых манипуляций с электроникой необходимо убедиться, что автомобиль находится в безопасном состоянии. Двигатель должен быть заглушен, но зажигание включено в положение <code>ON</code> (загорелись все контрольные лампы на панели, но стартер не крутит). Это критически важно для доступа к настройкам без запуска двигателя.</p>
+
+<p>Проверьте уровень масла и состояние фильтров. Если вы только что выполнили замену, убедитесь, что все заглушки и пробки надежно закручены. Сброс интервала обслуживания — это не магическая процедура, а лишь подтверждение того, что техническое обслуживание выполнено. Игнорирование реального состояния узлов после сброса может привести к серьезным поломкам.</p>
+
+<ul>
+<li>🔋 Убедитесь, что напряжение аккумулятора не ниже <code>12.5 В</code>, чтобы избежать сбоя настроек.</li>
+<li>🚗 Поставьте автомобиль на ровную поверхность и затяните ручной тормоз.</li>
+<li>📱 Отключите внешние устройства, такие как навигаторы или зарядные устройства, от USB-портов.</li>
+</ul>
+
+<blockquote>⚠️ Внимание: Если на приборной панели горит красная лампа неисправности двигателя или тормозной системы, сброс сервисного интервала может скрыть реальную проблему. Сначала устраните неисправность.</blockquote>
+
+<h2 id="сброс-через-штатное-меню-infotainment">Сброс через штатное меню Infotainment</h2>
+
+<p>Современные версии <em>Škoda Kodiaq</em>, оснащенные мультимедийной системой с большим сенсорным экраном, позволяют выполнять сброс без дополнительных инструментов. Этот метод наиболее безопасен и рекомендован заводом-изготовителем для моделей после 2019 года выпуска.</p>
+
+<p>Вам нужно войти в главное меню и выбрать раздел <code>Управление автомобилем</code> или <code>Vehicle</code>. Далее перейдите в подменю <code>Обслуживание</code> (<code>Maintenance</code>). Здесь вы увидите текущие значения пробега и времени до следующего ТО. Нажав на кнопку <code>Сброс</code> (<code>Reset</code>), система запросит подтверждение действия.</p>
+
+<p>После подтверждения на экране появится сообщение об успешном выполнении. Однако стоит учитывать, что на некоторых версиях прошивки этот пункт может быть скрыт или доступен только при подключенном диагностическом оборудовании в дилерском центре.</p>
+
+<ul>
+<li>📱 Зайдите в <code>Настройки</code> через иконку шестеренки на главном экране.</li>
+<li>🔧 Выберите пункт <code>Автомобиль</code> и пролистайте до раздела <code>Сервис</code>.</li>
+<li>✅ Нажмите <code>Сбросить интервалы</code> и удерживайте палец 3 секунды для подтверждения.</li>
+</ul>
+
+<div class="attention-box attention-info"><div><strong>📊 Какой способ сброса вы использовали ранее?</strong><ul><li>Через меню мультимедиа</li><li>Через кнопки на руле</li><li>С помощью сканера</li><li>Не делал сброс</li></ul></div></div>
+
+<h2 id="обнуление-интервалов-кнопками-на-приборной-панели">Обнуление интервалов кнопками на приборной панели</h2>
+
+<p>Для владельцев <em>Škoda Kodiaq</em> с аналоговыми приборными панелями или ранними версиями мультимедиа существует классический метод сброса через кнопки на руле или комбинации клавиш на панели приборов. Этот способ требует точной синхронизации времени нажатия.</p>
+
+<p>Включите зажигание, не запуская двигатель. На приборной панели найдите кнопку <code>0.0</code> (сброс суточного пробега) или кнопку <code>Menu</code> на руле. Нажмите и удерживайте её, пока на дисплее не появится сообщение о сервисном обслуживании или значок ключа.</p>
+
+<p>Отпустите кнопку, затем снова нажмите её коротко, чтобы войти в режим настройки. Используйте кнопки управления на руле (стрелки вверх/вниз) для выбора опции сброса. Подтвердите действие кнопкой <code>OK</code> или <code>Set</code>. Если процедура выполнена верно, индикатор ключа исчезнет, а счетчики обнулятся.</p>
+
+<ul>
+<li>⏱️ Следите за временем: удерживание кнопки должно длиться ровно <code>5-10 секунд</code>.</li>
+<li>🔘 Используйте кнопки на руле: <code>OK</code>, <code>Up</code>, <code>Down</code> для навигации.</li>
+<li>🚦 Убедитесь, что на дисплее горит значок <code>Service</code> перед началом манипуляций.</li>
+</ul>
+
+<div class="checklist-block"><h4>☑️ Подготовка к сбросу кнопками</h4><label class="check-item"><input type="checkbox"><span>Зажигание включено (ON)</span></label><label class="check-item"><input type="checkbox"><span>Двигатель заглушен</span></label><label class="check-item"><input type="checkbox"><span>Кнопка 0.0 на панели</span></label><label class="check-item"><input type="checkbox"><span>Кнопки на руле доступны</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<p>Если стандартные комбинации не работают, возможно, ваш автомобиль требует специфической последовательности действий, зависящей от региона поставки и версии ПО.</p>
+
+<details class="faq-item"><summary>Что делать, если кнопки не реагируют?</summary><div class="faq-answer"><p>Попробуйте отключить аккумулятор на 15 минут, затем подключите снова и повторите процедуру. Иногда это сбрасывает блоки управления и возвращает функциональность кнопок.</p></div></details>
+
+<h2 id="сброс-ошибок-и-адаптаций-через-obdii">Сброс ошибок и адаптаций через OBDII</h2>
+
+<p>Помимо сервисных интервалов, владельцам часто необходимо сбросить накопленные ошибки двигателя, трансмиссии или системы ABS. Для этого потребуется диагностический сканер, подключаемый к разъему <code>OBDII</code>, расположенному под панелью приборов со стороны водителя.</p>
+
+<p>Используйте специализированное ПО, такое как <code>VCDS (VAG-COM)</code>, <code>OBD JScanner</code> или <code>Carista</code>. Подключите адаптер, включите зажигание и дождитесь инициализации связи с блоками управления. В меню выберите опцию <code>Сброс ошибок</code> или <code>Clear Codes</code> для каждого модуля.</p>
+
+<p>После удаления ошибок необходимо выполнить процедуру адаптации. Например, для двигателей <em>2.0 TSI</em> или <em>2.0 TDI</em> может потребоваться базовая настройка дроссельной заслонки или адаптация педали газа. Без этого двигатель может работать нестабильно.</p>
+
+<ul>
+<li>🔌 Подключите адаптер к разъему <code>OBDII</code> (обычно находится под рулем).</li>
+<li>💻 Запустите диагностическое приложение на смартфоне или ноутбуке.</li>
+<li>🔄 Выполните полный сканирование всех блоков перед сбросом.</li>
+</ul>
+
+<blockquote>⚠️ Внимание: Не пытайтесь сбрасывать ошибки, если вы не знаете их природу. Удаление кодов неисправности без устранения причины может привести к повторному загоранию лампы Check Engine в пути.</blockquote>
+
+<h2 id="профессиональный-сброс-через-vag-com-и-odis">Профессиональный сброс через VAG-COM и ODIS</h2>
+
+<p>Для глубокой диагностики и сброса сложных параметров, таких как адаптация коробки передач <em>DSG</em> или калибровка системы <em>ESP</em>, необходимо использовать профессиональные комплексы <code>ODIS</code> или <code>VCDS</code>. Эти инструменты доступны в дилерских центрах и у квалифицированных специалистов.</p>
+
+<p>Процедура включает в себя не только удаление ошибок, но и запись новых данных о замене масла, фильтров и тормозных колодок в память контроллера. Это обеспечивает точный расчет следующего интервала обслуживания с учетом реальных условий эксплуатации.</p>
+
+<p>В некоторых случаях требуется кодирование блоков управления после замены деталей. Например, при установке нового датчика давления масла или модуля ABS необходимо ввести новые параметры в систему. Без этого автомобиль может работать в аварийном режиме.</p>
+
+<table>
+<thead>
+<tr>
+<th>Тип сброса</th>
+<th>Необходимое оборудование</th>
+<th>Сложность</th>
+<th>Риск ошибки</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Сервисный интервал</td>
+<td>Меню мультимедиа / Кнопки</td>
+<td>Низкая</td>
+<td>Минимальный</td>
+</tr>
+<tr>
+<td>Ошибки двигателя</td>
+<td>Сканер OBDII</td>
+<td>Средняя</td>
+<td>Средний</td>
+</tr>
+<tr>
+<td>Адаптация DSG</td>
+<td>VCDS / ODIS</td>
+<td>Высокая</td>
+<td>Высокий</td>
+</tr>
+<tr>
+<td>Калибровка ESP</td>
+<td>Профессиональный стенд</td>
+<td>Критическая</td>
+<td>Критический</td>
+</tr>
+</tbody>
+</table>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед подключением диагностического сканера обновите его прошивку до последней версии, чтобы избежать ошибок связи с блоками управления нового поколения.</p></div>
+
+<h2 id="особенности-сброса-для-дизельных-двигателей-и-dsg">Особенности сброса для дизельных двигателей и DSG</h2>
+
+<p>Дизельные версии <em>Škoda Kodiaq</em> с системой <em>AdBlue</em> и сажевыми фильтрами <em>DPF</em> требуют особого подхода. Сброс счетчика регенерации фильтра или уровня мочевинного раствора должен производиться только после фактической замены расходных материалов.</p>
+
+<p>Для коробок передач <em>DSG</em> (DQ200, DQ381) существуют специальные процедуры сброса адаптаций сцепления и мехатроника. Неправильный сброс может привести к рывкам при переключении передач или невозможности трогаться с места. Всегда используйте актуальную версию прошивки для вашего VIN-кода.</p>
+
+<p> Если индикатор уровня мочевинного раствора не сбрасывается после заправки, возможно, потребуется диагностика датчика уровня или программный сброс через дилерский сканер.</p>
+
+<ul>
+<li>🛢️ Проверьте уровень AdBlue перед сбросом счетчика (минимум <code>50%</code>).</li>
+<li>🔧 Для DSG используйте функцию <code>Basic Settings</code> в диагностическом ПО.</li>
+<li>⚙️ Сброс адаптаций DSG занимает до <code>10 минут</code>, не выключайте зажигание.</li>
+</ul>
+
+<blockquote>⚠️ Внимание: <mark>Никогда не сбрасывайте адаптацию DSG на ходу или при непрогретой трансмиссии, это может привести к выходу из строя мехатроника.</mark></blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Сброс адаптаций коробки передач DSG требует строгого соблюдения температурного режима и стабильного напряжения бортовой сети.</p></div>
+
+<h2 id="частые-проблемы-и-способы-их-решения">Частые проблемы и способы их решения</h2>
+
+<p>Иногда пользователи сталкиваются с ситуацией, когда после сброса сервисного интервала индикатор возвращается через несколько километров пробега. Это может указывать на неисправность датчика уровня масла, ошибки в датчике пробега или программный сбой.</p>
+
+<p>Другая распространенная проблема — невозможность войти в меню обслуживания. Это часто связано с устаревшей прошивкой мультимедийной системы. Обновление ПО через официальный портал <em>Skoda Connect</em> или у дилера может решить проблему.</p>
+
+<p>Если сброс ошибок не помогает и лампа Check Engine загорается снова, необходимо провести углубленную диагностику. Возможно, проблема кроется в физическом повреждении проводки, неисправности катушек зажигания или проблемах с топливной системой.</p>
+
+<ul>
+<li>🔍 Проверьте датчик уровня масла: он может быть загрязнен или неисправен.</li>
+<li>🔄 Обновите ПО мультимедиа до последней версии через USB.</li>
+<li>🛠️ Проведите полную диагностику всех систем, а не только сброс ошибок.</li>
+</ul>
+
+<details class="faq-item"><summary>Что делать, если индикатор не гаснет?</summary><div class="faq-answer"><p>Попробуйте отключить минусовую клемму аккумулятора на 20 минут. Это выполнит полный сброс памяти всех блоков управления.</p></div></details>
+
+<h2 id="итоги-и-рекомендации-по-техническому-обслуживанию">Итоги и рекомендации по техническому обслуживанию</h2>
+
+<p>Сброс сервисного интервала на <em>Škoda Kodiaq</em> — это важная процедура, подтверждающая выполнение работ по обслуживанию. Однако она не заменяет реальную диагностику и замену расходных материалов. Регулярное обслуживание — залог долгой службы двигателя и трансмиссии.</p>
+
+<p>Выбирайте метод сброса, соответствующий вашей модели и уровню подготовки. Если вы не уверены в своих силах, лучше доверить эту работу профессионалам. Ошибки при сбросе могут привести к сложным и дорогостоящим ремонтам.</p>
+
+<p>Помните, что правильная эксплуатация и своевременное обслуживание значительно снижают риск поломок. Следите за показаниями приборов, используйте качественные расходные материалы и не игнорируйте предупреждения системы.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Регулярное техническое обслуживание и правильный сброс интервалов продлевают жизнь вашему автомобилю и сохраняют его стоимость при перепродаже.</p></div>
+
+<details>
+<summary>Как сбросить сервисный интервал на Škoda Kodiaq без сканера?</summary>
+<p>Для большинства моделей достаточно зайти в меню мультимедиа <code>Vehicle → Service → Reset</code>. Если такой опции нет, используйте комбинацию кнопок на панели приборов: включите зажигание, зажмите кнопку <code>0.0</code>, подождите появления сообщения, затем подтвердите сброс.</p>
+</details>
+
+<details>
+<summary>Можно ли сбросить ошибки двигателя самостоятельно?</summary>
+<p>Да, это можно сделать с помощью недорогого адаптера OBDII и приложения на смартфоне. Однако, если ошибка возвращается, это значит, что неисправность не устранена, и простой сброс не поможет.</p>
+</details>
+
+<details>
+<summary>Что будет, если не сбросить сервисный интервал?</summary>
+<p>Ничего критичного не произойдет, но на панели приборов будет постоянно гореть индикатор обслуживания, отвлекая водителя. Также это может снизить стоимость автомобиля при перепродаже, так как покупатель увидит просроченное ТО.</p>
+</details>
+
+<details>
+<summary>Нужно ли сбрасывать адаптацию DSG после замены масла?</summary>
+<p>Обычно нет, но если после замены масла коробка начала работать с рывками, рекомендуется провести процедуру базовых настроек (адаптации) сцепления через диагностическое оборудование.</p>
+</details>
+
+<details>
+<summary>Как часто нужно проводить сброс сервисного интервала?</summary>
+<p>Сброс выполняется только после каждого планового технического обслуживания. Обычно это раз в 15 000 км или раз в год, в зависимости от условий эксплуатации и рекомендаций производителя.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#подготовка-автомобиля-и-проверка-условий">Подготовка автомобиля и проверка условий</a></li><li><a href="#сброс-через-штатное-меню-infotainment">Сброс через штатное меню Infotainment</a></li><li><a href="#обнуление-интервалов-кнопками-на-приборной-панели">Обнуление интервалов кнопками на приборной панели</a></li><li><a href="#сброс-ошибок-и-адаптаций-через-obdii">Сброс ошибок и адаптаций через OBDII</a></li><li><a href="#профессиональный-сброс-через-vag-com-и-odis">Профессиональный сброс через VAG-COM и ODIS</a></li><li><a href="#особенности-сброса-для-дизельных-двигателей-и-dsg">Особенности сброса для дизельных двигателей и DSG</a></li><li><a href="#частые-проблемы-и-способы-их-решения">Частые проблемы и способы их решения</a></li><li><a href="#итоги-и-рекомендации-по-техническому-обслуживанию">Итоги и рекомендации по техническому обслуживанию</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/b/ba/bamper-perednij-shkoda-kodiak.html" class="related-card">Бампер передний Škoda Kodiaq: выбор, замена и нюансы ремонта</a></li><li><a href="/articles/s/se/setki-v-bagazhnik-shkoda-kodiak.html" class="related-card">Сетки в багажник Skoda Kodiaq: выбор, установка и виды</a></li><li><a href="/articles/s/sh/shkoda-kodiak-kto-proizvoditel-strana.html" class="related-card">Шкода Кодиак: кто производитель и в какой стране собирают (2026)</a></li><li><a href="/articles/z/za/zamena-masla-v-khaldeks-5-shkoda-kodiak.html" class="related-card">Замена масла в муфте Haldex 5: Шкода Кодиак пошагово</a></li><li><a href="/articles/s/sk/skolko-vesit-kodiak-shkoda.html" class="related-card">Вес Škoda Kodiaq: полная масса, снаряженная и грузоподъёмность</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/b/ba/bamper-perednij-shkoda-kodiak.html" class="related-bottom-card"><span class="related-bottom-title">Бампер передний Škoda Kodiaq: выбор, замена и нюансы ремонта</span><span class="related-bottom-desc">Полный гид по переднему бамперу Škoda Kodiaq. Как выбрать оригинал или аналог, этапы замены, диагнос</span></a><a href="/articles/s/se/setki-v-bagazhnik-shkoda-kodiak.html" class="related-bottom-card"><span class="related-bottom-title">Сетки в багажник Skoda Kodiaq: выбор, установка и виды</span><span class="related-bottom-desc">Обзор защитных сеток для багажника Skoda Kodiaq. Как выбрать, установить и закрепить сетку. Сравнени</span></a><a href="/articles/s/sh/shkoda-kodiak-kto-proizvoditel-strana.html" class="related-bottom-card"><span class="related-bottom-title">Шкода Кодиак: кто производитель и в какой стране собирают (2026)</span><span class="related-bottom-desc">Узнайте, где и кем производится Škoda Kodiaq: страна сборки, заводы, история бренда и как отличить ч</span></a><a href="/articles/z/za/zamena-masla-v-khaldeks-5-shkoda-kodiak.html" class="related-bottom-card"><span class="related-bottom-title">Замена масла в муфте Haldex 5: Шкода Кодиак пошагово</span><span class="related-bottom-desc">Инструкция по замене масла в муфте Haldex 5 на Skoda Kodiaq. Выбор смазки, промывка фильтра, диагнос</span></a><a href="/articles/s/sk/skolko-vesit-kodiak-shkoda.html" class="related-bottom-card"><span class="related-bottom-title">Вес Škoda Kodiaq: полная масса, снаряженная и грузоподъёмность</span><span class="related-bottom-desc">Сколько весит Škoda Kodiaq в разных комплектациях? Сравнение массы 5- и 7-местных версий, допустимая</span></a><a href="/articles/m/ma/maslyanyj-filtr-shkoda-kodiak-20-dizel.html" class="related-bottom-card"><span class="related-bottom-title">Замена масляного фильтра Skoda Kodiaq 2.0 TDI: артикулы, интервалы и нюансы</span><span class="related-bottom-desc">Полный гайд по выбору и замене масляного фильтра на дизельном Skoda Kodiaq 2.0 TDI. Артикулы, сроки </span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

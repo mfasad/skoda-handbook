@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Сброс межсервисного интервала на ŠKODA Yeti: пошаговая инструкция — Skoda-Handbook</title>
+    <meta name="description" content="Как самостоятельно обнулить сервисный интервал на Шкода Йети 1.2/1.4/1.8 TSI, дизель 1.6/2.0 TDI. Способы через меню, VCDS и сканер ELM327. Ошибки и нюансы.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/k/ka/kak-sbrosit-na-shkoda-jeti-mezhservisnyj-interval.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Сброс межсервисного интервала на ŠKODA Yeti: пошаговая инструкция">
+    <meta property="og:description" content="Как самостоятельно обнулить сервисный интервал на Шкода Йети 1.2/1.4/1.8 TSI, дизель 1.6/2.0 TDI. Способы через меню, VCDS и сканер ELM327. Ошибки и нюансы.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/yeti/">Yeti</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Сброс межсервисного интервала на ŠKODA Yeti: пошаговая инструкция</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Как сбросить межсервисный интервал на ŠKODA Yeti: все способы и лайфхаки</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#1-что-такое-межсервисный-интервал-и-почему-его-нужно-сбрасывать">1. Что такое межсервисный интервал и почему его нужно сбрасывать</a></li><li><a href="#2-способ-1-сброс-через-меню-maxidot-без-инструментов">2. Способ 1: Сброс через меню MAXIDOT (без инструментов)</a></li><li><a href="#3-способ-2-сброс-через-диагностический-сканер-vcds-obdeleven-carista">3. Способ 2: Сброс через диагностический сканер (VCDS, OBDeleven, Carista)</a></li><li><a href="#4-способ-3-сброс-через-скрытое-меню-только-для-mib1mib2">4. Способ 3: Сброс через скрытое меню (только для MIB1/MIB2)</a></li><li><a href="#5-особенности-сброса-для-разных-двигателей">5. Особенности сброса для разных двигателей</a></li><li><a href="#6-частые-ошибки-и-как-их-избежать">6. Частые ошибки и как их избежать</a></li><li><a href="#7-альтернативные-методы-для-опытных-пользователей">7. Альтернативные методы (для опытных пользователей)</a></li><li><a href="#8-faq-ответы-на-частые-вопросы">8. FAQ: Ответы на частые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Межсервисный интервал на <em>ŠKODA Yeti</em> — это не просто напоминание о плановом ТО, а критически важный параметр, влияющий на корректную работу бортового компьютера и систем автомобиля. Если вы пропустили обслуживание или сделали его самостоятельно, счетчик продолжит отсчет, что может привести к ложным ошибкам на приборной панели, например, к постоянному горению значка <strong>сервисного облуживания</strong> или даже блокировке некоторых функций (на моделях с <code>MIB2</code>).</p>
+
+<p>В этой статье мы разберем <strong>все актуальные способы сброса</strong> — от стандартного метода через меню <em>MAXIDOT</em> до профессиональных инструментов вроде <em>VCDS (VAG-COM)</em> и <em>OBDeleven</em>. Особое внимание уделим нюансам для разных двигателей (<code>1.2 TSI</code>, <code>1.8 TSI</code>, <code>1.6/2.0 TDI</code>) и поколений <em>Йети</em> (дорестайл 2009–2013 и рестайл 2014–2017). Также вы узнаете, <mark>почему сброс через сканер ELM327 может не сработать на машинах с прошивкой после 2016 года</mark> и как это обойти.</p>
+
+<h2 id="1-что-такое-межсервисный-интервал-и-почему-его-нужно-сбрасывать">1. Что такое межсервисный интервал и почему его нужно сбрасывать</h2>
+
+<p>Межсервисный интервал (или <strong>сервисный счетчик</strong>) — это программный таймер, который отсчитывает километраж или дни до следующего планового ТО. На <em>ŠKODA Yeti</em> он активируется после каждого обслуживания и может быть двух типов:</p>
+
+<ul>
+  <li>📏 <strong>Гибкий интервал</strong> (Flexible Service) — рассчитывается динамически на основе стиля езды, качества топлива и условий эксплуатации. Типичен для моделей с двигателями <code>1.4 TSI</code> и <code>2.0 TDI</code> после 2012 года.</li>
+  <li>⏱️ <strong>Фиксированный интервал</strong> — стандартные 15 000 км или 1 год (что наступит раньше). Устанавливался на ранние версии <em>Йети</em> с моторами <code>1.2 TSI</code> и <code>1.6 TDI</code>.</li>
+</ul>
+
+<p>Если не сбросить счетчик после ТО, последствия могут быть серьезнее, чем просто раздражающий значок на панели. Например:</p>
+
+<ul>
+  <li>⚠️ На <em>Йети</em> с системой <code>MIB1/MIB2</code> может заблокироваться доступ к настройкам мультимедиа до прохождения сервиса.</li>
+  <li>🔧 На дизельных версиях (<code>1.6/2.0 TDI</code>) несброшенный интервал иногда приводит к активации <strong>аварийного режима</strong> двигателя после 20 000 км пробега.</li>
+  <li>📵 В редких случаях бортовой компьютер начинает игнорировать команды с кнопок на руле (например, управление телефоном или круиз-контролем).</li>
+</ul>
+
+<blockquote>⚠️ <strong>Внимание:</strong> На <em>ŠKODA Yeti</em> 2015–2017 годов с прошивкой <code>SW 0567</code> и выше сброс через стандартное меню может не сработать из-за защиты от "самопальных" обнулений. В этом случае потребуется диагностический сканер.</blockquote>
+
+<h2 id="2-способ-1-сброс-через-меню-maxidot-без-инструментов">2. Способ 1: Сброс через меню MAXIDOT (без инструментов)</h2>
+
+<p>Это самый простой метод, который работает на <strong>90% версий</strong> <em>Йети</em> (кроме некоторых рестайлинговых моделей 2016–2017 гг.). Подходит для сброса как фиксированного, так и гибкого интервала. Вам не понадобится ничего, кроме кнопок на приборной панели.</p>
+
+<p>Инструкция:</p>
+
+<ol>
+  <li>Включите зажигание (двигатель заводить не нужно). На приборной панели должен гореть значок <strong>сервисного обслуживания</strong> (гаечный ключ или надпись <code>SERVICE</code>).</li>
+  <li>Нажмите и удерживайте кнопку <code>0.0/SET</code> (находится на подрулевом переключателе или под спидометром) в течение <strong>10–15 секунд</strong>, пока на дисплее не появится надпись <code>SERVICE RESET</code> или аналогичная.</li>
+  <li>Кратко нажмите ту же кнопку <code>0.0/SET</code>, чтобы подтвердить сброс. На экране должно высветиться <code>SERVICE INSP.</code> или <code>---</code> (в зависимости от версии ПО).</li>
+  <li>Выключите зажигание и подождите 30 секунд. При следующем запуске значок сервиса исчезнет.</li>
+</ol>
+
+<p>Если после этих действий интервал не сбросился, проверьте:</p>
+
+<ul>
+  <li>🔋 Уровень заряда аккумулятора (при напряжении ниже <code>12.2V</code> система может игнорировать команды).</li>
+  <li>🔄 Версию прошивки бортового компьютера (на рестайлинговых <em>Йети</em> с <code>MIB2</code> может потребоваться альтернативный метод).</li>
+  <li>🚗 Тип интервала: для гибкого сервиса (<code>Flexible</code>) иногда требуется дополнительное подтверждение через меню <code>CAR → Service</code>.</li>
+</ul>
+
+
+<p>Убедиться, что зажигание включено (двигатель выключен)</p>
+<p>Проверить, горит ли значок сервиса на панели</p>
+<p>Найти кнопку 0.0/SET (обычно справа под спидометром)</p>
+<p>Подождать 10 секунд после удержания кнопки--></p>
+
+<p>На некоторых <em>Йети</em> с мультифункциональным рулем кнопка <code>0.0/SET</code> может быть заменена на сенсорную панель. В этом случае:</p>
+
+<ol>
+  <li>Коснитесь и удерживайте область <code>TRIP</code> (суточный пробег) на дисплее между спидометром и тахометром.</li>
+  <li>В появившемся меню выберите <code>Service</code> → <code>Reset</code>.</li>
+  <li>Подтвердите сброс нажатием на <code>OK</code> (или удержанием той же области).</li>
+</ol>
+
+<h2 id="3-способ-2-сброс-через-диагностический-сканер-vcds-obdeleven-carista">3. Способ 2: Сброс через диагностический сканер (VCDS, OBDeleven, Carista)</h2>
+
+<p>Если стандартный метод не сработал, потребуется диагностический инструмент. Наиболее надежные варианты:</p>
+
+<ul>
+  <li>🔧 <em>VCDS (VAG-COM)</em> — профессиональный сканер для всех автомобилей группы <em>VAG</em>. Подходит для сложных случаев, например, когда нужно сбросить интервал на <em>Йети</em> с <code>DSG-7</code> или <code>4Motion</code>.</li>
+  <li>📱 <em>OBDeleven</em> — мобильное решение (работает через Bluetooth с приложением на смартфоне). Хорошо справляется с <em>Йети</em> 2014–2017 гг.</li>
+  <li>💻 <em>Carista</em> — бюджетная альтернатива, но может не поддерживать некоторые прошивки <code>MIB2.5</code>.</li>
+</ul>
+
+<p>Рассмотрим процесс на примере <em>VCDS</em> (аналогично для других сканеров с поддержкой <code>Long Coding</code>):</p>
+
+<ol>
+  <li>Подключите сканер к разъему <code>OBD-II</code> (расположен под рулем, слева от педалей).</li>
+  <li>Запустите программу <em>VCDS</em> и выберите модель <code>Skoda Yeti</code> (указывайте точный год и тип двигателя!).</li>
+  <li>Перейдите в блок <code>17 – Instruments</code> (приборная панель).</li>
+  <li>Выберите <code>Adaptation – 10</code> → канал <code>02</code> (или <code>IDE00820</code> для новых версий).</li>
+  <li>В поле <code>New value</code> введите <code>0</code> (для полного сброса) или укажите новый пробег до следующего ТО (например, <code>15000</code>).</li>
+  <li>Нажмите <code>Save</code> и дождитесь подтверждения. Перезагрузите приборную панель (выключите/включите зажигание).</li>
+</ol>
+
+<p>Для <em>OBDeleven</em> путь будет таким:</p>
+<pre><code>Apps → Service Reset → Oil Service/Inspection → Reset</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сканер</th>
+      <th>Поддерживаемые версии Yeti</th>
+      <th>Стоимость (примерно)</th>
+      <th>Нюансы</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>VCDS</em> (полная версия)</td>
+      <td>2009–2017 (все двигатели)</td>
+      <td>25 000–30 000 ₽</td>
+      <td>Требует ноутбук. Поддерживает <code>Long Coding</code> для сложных сбросов.</td>
+    </tr>
+    <tr>
+      <td><em>OBDeleven Pro</em></td>
+      <td>2012–2017 (кроме <code>MIB1</code> до 2011 г.)</td>
+      <td>12 000–15 000 ₽</td>
+      <td>Работает через смартфон. Нужна подписка на <code>One-Click Apps</code>.</td>
+    </tr>
+    <tr>
+      <td><em>Carista</em></td>
+      <td>2009–2015 (ограниченно)</td>
+      <td>5 000–8 000 ₽</td>
+      <td>Не сбрасывает гибкий интервал (<code>Flexible Service</code>) на дизелях.</td>
+    </tr>
+    <tr>
+      <td><em>ELM327</em> (с Torque Pro)</td>
+      <td>2009–2013 (только базовые модели)</td>
+      <td>1 500–3 000 ₽</td>
+      <td>Часто не работает на <em>Йети</em> с <code>CAN-Gateway</code> после 2014 г.</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>⚠️ <strong>Внимание:</strong> На <em>ŠKODA Yeti</em> с двигателем <code>1.8 TSI (CZPA)</code> и коробкой <code>DSG-7</code> сброс только масляного сервиса (без инспекции) может привести к ошибке <code>P1626</code> в блоке управления. В этом случае нужно сбрасывать оба интервала одновременно!</blockquote>
+
+
+<p>VCDS (VAG-COM)</p>
+<p>OBDeleven</p>
+<p>Carista</p>
+<p>ELM327 + Torque Pro</p>
+<p>Другой (напишите в комментариях)--></p>
+
+<h2 id="4-способ-3-сброс-через-скрытое-меню-только-для-mib1mib2">4. Способ 3: Сброс через скрытое меню (только для MIB1/MIB2)</h2>
+
+<p>На <em>Йети</em> с мультимедийными системами <code>MIB1</code> (до 2015 г.) и <code>MIB2</code> (2015–2017 гг.) есть скрытое сервисное меню, через которое можно обнулить интервал без сканера. Этот метод работает не на всех прошивках, но стоит попробовать, если стандартный сброс не помог.</p>
+
+<p>Инструкция для <code>MIB1</code>:</p>
+
+<ol>
+  <li>Включите зажигание, но не запускайте двигатель.</li>
+  <li>Нажмите и удерживайте кнопки <code>Menu</code> + <code>Car</code> (или <code>Setup</code>, в зависимости от версии) одновременно в течение <strong>10 секунд</strong>.</li>
+  <li>В появившемся меню выберите <code>Diagnosis</code> → <code>Service</code> → <code>Reset Oil Service</code>.</li>
+  <li>Подтвердите сброс (может потребоваться ввод PIN-кода — по умолчанию <code>1234</code> или <code>0000</code>).</li>
+</ol>
+
+<p>Для <code>MIB2</code> (рестайл 2015–2017):</p>
+
+<ol>
+  <li>Перейдите в <code>Настройки → Система → Сервисное меню</code>.</li>
+  <li>Введите комбинацию <code>2011</code> (для некоторых прошивок — <code>2014</code> или <code>2017</code>).</li>
+  <li>Выберите <code>Service Interval Reset</code> и подтвердите.</li>
+</ol>
+
+<p>Если меню не открывается, возможные причины:</p>
+
+<ul>
+  <li>🔐 Неправильный PIN-код (на некоторых <em>Йети</em> для дилерских версий используется уникальный код, который можно узнать только через <em>VCDS</em>).</li>
+  <li>📱 Прошивка мультимедиа новее <code>SW 0350</code> (в этом случае скрытое меню заблокировано).</li>
+  <li>🚫 Нарушена последовательность нажатия кнопок (повторите попытку, удерживая кнопки ровно 10 секунд).</li>
+</ul>
+
+<details class="faq-item"><summary>Как узнать версию прошивки MIB?
+<p>Перейдите в <code>Настройки → О программе</code> (или <code>Settings → Version</code>).</p>
+<p>Ищите строки вроде <code>SW</summary><div class="faq-answer"><p> 0567</code> или <code>HW: H43</code>.</p>
+<p>Если меню отсутствует, используйте сканер <em>VCDS</em> (блок <code>5F – Information Electr.</code>).</p></div></details></p>
+
+<h2 id="5-особенности-сброса-для-разных-двигателей">5. Особенности сброса для разных двигателей</h2>
+
+<p>Процедура обнуления межсервисного интервала может отличаться в зависимости от типа двигателя и года выпуска <em>ŠKODA Yeti</em>. Ниже — ключевые нюансы для самых распространенных моторов.</p>
+
+<h3>5.1. Бензиновые двигатели (1.2 TSI, 1.4 TSI, 1.8 TSI)</h3>
+
+<p>На турбированных бензиновых двигателях (<code>CBZB</code>, <code>CZDA</code>, <code>CZPA</code>) сброс обычно проходит без проблем через стандартное меню или <em>VCDS</em>. Однако есть исключения:</p>
+
+<ul>
+  <li>🔧 <code>1.2 TSI (CBZB)</code>: После сброса может потребоваться <strong>адаптация дроссельной заслонки</strong> (делается через тот же <em>VCDS</em> в блоке <code>01 – Engine</code>).</li>
+  <li>⚡ <code>1.8 TSI (CZPA)</code>: На машинах с <code>DSG-7</code> нужно сбрасывать <strong>два интервала</strong> — масляный (<code>Oil Service</code>) и инспекционный (<code>Inspection</code>).</li>
+  <li>📉 <code>1.4 TSI (CZDA)</code>: На рестайлинговых версиях (2015+) может потребоваться <strong>обновление прошивки</strong> приборной панели перед сбросом.</li>
+</ul>
+
+<h3>5.2. Дизельные двигатели (1.6 TDI, 2.0 TDI)</h3>
+
+<p>Дизельные <em>Йети</em> более капризны в плане сервисных интервалов. Основные сложности:</p>
+
+<ul>
+  <li>🛢️ На <code>1.6 TDI (CRTD)</code> сброс через меню часто не работает из-за особенностей блока управления <code>EDC17</code>. Требуется <em>VCDS</em>.</li>
+  <li>🔄 <code>2.0 TDI (CFFB, CJXB)</code>: После сброса нужно <strong>обнулить счетчик сажевого фильтра (DPF)</strong>, иначе через 500–1000 км загорится ошибка <code>P2463</code>.</li>
+  <li>❄️ На машинах с <code>4Motion</code> (полный привод) сброс интервала может сбросить и настройки <strong>Haldex</strong>, что приведет к дерганию при старте.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Двигатель</th>
+      <th>Тип интервала</th>
+      <th>Рекомендуемый метод сброса</th>
+      <th>Дополнительные действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>1.2 TSI (CBZB)</code></td>
+      <td>Фиксированный (15 000 км)</td>
+      <td>Меню MAXIDOT или <em>VCDS</em></td>
+      <td>Адаптация дроссельной заслонки</td>
+    </tr>
+    <tr>
+      <td><code>1.4 TSI (CZDA)</code></td>
+      <td>Гибкий (<code>Flexible</code>)</td>
+      <td><em>OBDeleven</em> или <em>VCDS</em></td>
+      <td>Проверка версии прошивки MIB</td>
+    </tr>
+    <tr>
+      <td><code>1.6 TDI (CRTD)</code></td>
+      <td>Фиксированный (15 000 км)</td>
+      <td>Только <em>VCDS</em></td>
+      <td>Сброс ошибок по топливной системе</td>
+    </tr>
+    <tr>
+      <td><code>2.0 TDI (CFFB)</code></td>
+      <td>Гибкий (<code>Flexible</code>)</td>
+      <td><em>VCDS</em> + <em>OBDeleven</em></td>
+      <td>Обнуление DPF и адаптация турбины</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>На дизельных <em>Йети</em> после сброса интервала проверьте уровень <strong>AdBlue</strong> (если система установлена). Низкий уровень может заблокировать сброс или вызвать ошибку <code>P20EE</code>.</p></div>
+
+<h2 id="6-частые-ошибки-и-как-их-избежать">6. Частые ошибки и как их избежать</h2>
+
+<p>Даже опытные владельцы <em>ŠKODA Yeti</em> иногда сталкиваются с проблемами при сбросе межсервисного интервала. Вот самые распространенные ошибки и способы их решения:</p>
+
+<ul>
+  <li>🔄 <strong>Сброс не сохраняется</strong>:
+    <p>Причина: низкое напряжение аккумулятора или прерванная процедура. Решение: подключите зарядное устройство или повторите сброс на заведенном двигателе (но не на холостых оборотах!).</p>
+  </li>
+  <li>🔧 <strong>После сброса загорелся Check Engine</strong>:
+    <p>Причина: на дизелях не обнулен счетчик сажевого фильтра (<code>DPF</code>). Решение: используйте <em>VCDS</em> для сброса в блоке <code>01 – Engine → Adaptation → Channel 04</code>.</p>
+  </li>
+  <li>📱 <strong>Сканер не видит блок приборной панели</strong>:
+    <p>Причина: несовместимая версия ПО сканера или поврежденный <code>CAN-Gateway</code>. Решение: обновите прошивку сканера или проверьте предохранитель <code>F37</code> (10A).</p>
+  </li>
+  <li>⚠️ <strong>Интервал сбросился, но значок остался</strong>:
+    <p>Причина: на <em>Йети</em> с <code>MIB2</code> иногда требуется перезагрузка мультимедиа. Решение: отключите аккумулятор на 5 минут или сбросьте настройки радио.</p>
+  </li>
+</ul>
+
+<p>Еще одна типичная проблема — <strong>неправильный выбор типа сервиса</strong>. На некоторых <em>Йети</em> есть отдельные счетчики для:</p>
+
+<ul>
+  <li>🛢️ <strong>Масляного сервиса</strong> (<code>Oil Service</code>) — сброс каждые 15 000 км.</li>
+  <li>🔍 <strong>Инспекционного сервиса</strong> (<code>Inspection</code>) — сброс каждые 30 000 км или 2 года.</li>
+  <li>🔥 <strong>Сервиса свечей зажигания</strong> (<code>Spark Plug Service</code>) — сброс каждые 60 000 км (только для бензиновых версий).</li>
+</ul>
+
+<blockquote>⚠️ <strong>Внимание:</strong> На <em>ŠKODA Yeti</em> с двигателем <code>2.0 TDI (CFFB)</code> и системой <code>AdBlue</code> сброс масляного сервиса без обнуления счетчика мочевины приведет к ошибке <code>P20EE</code> через 1000–1500 км. Всегда сбрасывайте оба параметра!</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если после сброса интервал снова появляется через 100–200 км, проблема в прошивке приборной панели. Требуется перепрошивка через <em>ODIS</em> или официального дилера.</p></div>
+
+<h2 id="7-альтернативные-методы-для-опытных-пользователей">7. Альтернативные методы (для опытных пользователей)</h2>
+
+<p>Если ни один из вышеописанных способов не сработал, можно попробовать более сложные методы. Они требуют технических навыков и не рекомендуются новичкам.</p>
+
+<h3>7.1. Сброс через Kodierung (Long Coding)</h3>
+
+<p>Этот метод подходит для <em>Йети</em> с блоками управления <code>17 – Instruments</code> версии <code>H20</code> или новее. Потребуется <em>VCDS</em> и знание hex-кодировки.</p>
+
+<p>Инструкция:</p>
+
+<ol>
+  <li>Подключите <em>VCDS</em> и перейдите в блок <code>17 – Instruments</code>.</li>
+  <li>Выберите <code>Coding – 07</code> → <code>Long Coding Helper</code>.</li>
+  <li>Найдите байт <code>02</code> (или <code>IDE00820</code> для новых версий).</li>
+  <li>Измените значение с <code>XX XX 01</code> на <code>XX XX 00</code> (где <code>XX</code> — текущие значения других битов).</li>
+  <li>Сохраните изменения и перезагрузите приборную панель.</li>
+</ol>
+
+<p>Пример кодировки для <em>Йети</em> 2016 года с <code>MIB2</code>:</p>
+<pre><code>Byte 2:
+<p>Bit 0: Service Reminder Active (1) → Change to 0</p>
+<p>Bit 1: Oil Service Active (1) → Change to 0</p>
+<p>Bit 2: Inspection Service Active (1) → Change to 0</code></pre></p>
+
+<h3>7.2. Сброс через OBD-команды (ELM327 + Terminal)</h3>
+
+<p>Для продвинутых пользователей, знакомых с <code>AT-командами</code>, есть способ сброса через <em>ELM327</em> и терминал (например, <em>Termux</em> на Android).</p>
+
+<p>Последовательность команд:</p>
+<pre><code>AT Z
+<p>AT I</p>
+<p>AT DP</p>
+<p>AT SH 7E0</p>
+<p>21 02 FF FF FF</p>
+<p>21 04</p>
+<p>28 04 00</p>
+<p>7A 04</p>
+<p>AT MA</p>
+<p>3E 00</p>
+<p>AT FC SH 7E0</p>
+<p>AT FC SM 1</p>
+<p>AT FC SD 30000</p>
+<p>AT FC SP 00</code></pre></p>
+
+<p>Этот метод работает только на <em>Йети</em> до 2014 года с прошивками <code>MIB1</code> и требует точного соблюдения тайминга между командами.</p>
+
+<details class="faq-item"><summary>Что делать, если после сброса появилась ошибка P1626?
+<p>Ошибка <code>P1626</code> ("Immutable Data Set Not Programmed") возникает, если сбросить только масляный сервис на <em>Йети</em> с <code>DSG-7</code>.</p>
+<p>Решение</summary><div class="faq-answer"><p></p>
+<p>1. Подключите <em>VCDS</em>.</p>
+<p>2. Перейдите в блок <code>01 – Engine</code> → <code>Adaptation</code>.</p>
+<p>3. Найдите канал <code>IDE04122</code> и установите значение <code>1</code>.</p>
+<p>4. Сбросьте оба интервала (<code>Oil Service</code> и <code>Inspection</code>).</p>
+<p>5. Перезагрузите блок управления (отключите аккумулятор на 1 минуту).</p></div></details></p>
+
+<h2 id="8-faq-ответы-на-частые-вопросы">8. FAQ: Ответы на частые вопросы</h2>
+
+<details>
+  <summary>❓ Можно ли сбросить межсервисный интервал без сканера на Yeti 2017 года?</summary>
+  <p>На рестайлинговых <em>ŠKODA Yeti</em> 2016–2017 годов с прошивкой <code>MIB2.5</code> стандартный сброс через меню <code>MAXIDOT</code> работает только в 30% случаев. Если не получилось — потребуется <em>VCDS</em> или <em>OBDeleven Pro</em>. Альтернатива — обратиться к официальному дилеру (стоимость сброса ~500–1000 ₽).</p>
+</details>
+
+<details>
+  <summary>❓ После сброса интервала загорелся Check Engine. Что делать?</summary>
+  <p>На дизельных <em>Йети</em> (<code>1.6/2.0 TDI</code>) это обычно связано с несброшенным счетчиком сажевого фильтра (<code>DPF</code>). Используйте <em>VCDS</em> для обнуления в блоке <code>01 – Engine → Adaptation → Channel 04</code>. Если ошибка осталась, проверьте уровень <code>AdBlue</code> и датчик давления топлива.</p>
+</details>
+
+<details>
+  <summary>❓ Как узнать, какой интервал установлен на моем Yeti — фиксированный или гибкий?</summary>
+  <p>Есть два способа:</p>
+  <ol>
+    <li>Через меню бортового компьютера: <code>CAR → Service → Display</code>. Если указан пробег (например, <code>15 000 km</code>) — фиксированный. Если есть надпись <code>Flexible</code> — гибкий.</li>
+    <li>Через <em>VCDS</em>: в блоке <code>17 – Instruments → Adaptation → Channel 02</code> значение <code>0</code> — фиксированный, <code>1</code> — гибкий.</li>
+  </ol>
+</details>
+
+<details>
+  <summary>❓ Можно ли сбросить интервал на Yeti с помощью приложения Torque Pro?</summary>
+  <p>Теоретически да, но только на моделях до 2014 года с прошивкой <code>MIB1</code>. Для этого:</p>
+  <ol>
+    <li>Подключите <em>ELM327</em> (версия 1.5 или выше).</li>
+    <li>В <em>Torque Pro</em> перейдите в <code>Adapter Settings → Extra Settings/PIDs</code>.</li>
+    <li>Добавьте пользовательский PID: <code>2102</code> (для сброса масляного сервиса).</li>
+    <li>Отправьте команду <code>210200000000</code>.</li>
+  </ol>
+  <p>Успешность метода — около 50%. На <em>Йети</em> с <code>MIB2</code> не работает.</p>
+</details>
+
+<details>
+  <summary>❓ Что будет, если не сбрасывать межсервисный интервал?</summary>
+  <p>Последствия зависят от модели:</p>
+  <ul>
+    <li>На бензиновых <em>Йети</em> (<code>1.2/1.4/1.8 TSI</code>) — только раздражающий значок на панели и возможные проблемы с мультимедией.</li>
+    <li>На дизельных (<code>1.6/2.0 TDI</code>) — риск перехода в аварийный режим после 20 000 км, ошибки по <code>DPF</code> и <code>EGR</code>.</li>
+    <li>На версиях с <code>4Motion</code> — возможны сбои в работе полного привода (ошибка <code>Haldex</code>).</li>
+  </ul>
+  <p>Критичных поломок не будет, но игнорировать сброс не рекомендуется.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#1-что-такое-межсервисный-интервал-и-почему-его-нужно-сбрасывать">1. Что такое межсервисный интервал и почему его нужно сбрасывать</a></li><li><a href="#2-способ-1-сброс-через-меню-maxidot-без-инструментов">2. Способ 1: Сброс через меню MAXIDOT (без инструментов)</a></li><li><a href="#3-способ-2-сброс-через-диагностический-сканер-vcds-obdeleven-carista">3. Способ 2: Сброс через диагностический сканер (VCDS, OBDeleven, Carista)</a></li><li><a href="#4-способ-3-сброс-через-скрытое-меню-только-для-mib1mib2">4. Способ 3: Сброс через скрытое меню (только для MIB1/MIB2)</a></li><li><a href="#5-особенности-сброса-для-разных-двигателей">5. Особенности сброса для разных двигателей</a></li><li><a href="#6-частые-ошибки-и-как-их-избежать">6. Частые ошибки и как их избежать</a></li><li><a href="#7-альтернативные-методы-для-опытных-пользователей">7. Альтернативные методы (для опытных пользователей)</a></li><li><a href="#8-faq-ответы-на-частые-вопросы">8. FAQ: Ответы на частые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/s/sk/skoda-yeti-razgon-do-100.html" class="related-card">Skoda Yeti разгон до 100 км/ч: тесты двигателей и динамика</a></li><li><a href="/articles/r/ru/rulevye-nakonechniki-shkoda-jeti.html" class="related-card">Рулевые наконечники Škoda Yeti: признаки неисправности и замена</a></li><li><a href="/articles/s/sh/shkoda-jeti-vid-szadi.html" class="related-card">Škoda Yeti сзади: дизайн, особенности и скрытые детали (2026)</a></li><li><a href="/articles/m/ma/massa-shkoda-jeti.html" class="related-card">Масса Skoda Yeti: полная и снаряженная весы, характеристики</a></li><li><a href="/articles/s/sk/skoda-yeti-obzor.html" class="related-card">Skoda Yeti: честный обзор плюсов и минусов кроссовера (2026)</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/s/sk/skoda-yeti-razgon-do-100.html" class="related-bottom-card"><span class="related-bottom-title">Skoda Yeti разгон до 100 км/ч: тесты двигателей и динамика</span><span class="related-bottom-desc">Полный обзор разгона Skoda Yeti от 0 до 100 км/ч для всех модификаций. Сравнение бензиновых и дизель</span></a><a href="/articles/r/ru/rulevye-nakonechniki-shkoda-jeti.html" class="related-bottom-card"><span class="related-bottom-title">Рулевые наконечники Škoda Yeti: признаки неисправности и замена</span><span class="related-bottom-desc">Как определить износ рулевых наконечников на ŠKODA Yeti? Признаки поломки, выбор запчастей, пошагова</span></a><a href="/articles/s/sh/shkoda-jeti-vid-szadi.html" class="related-bottom-card"><span class="related-bottom-title">Škoda Yeti сзади: дизайн, особенности и скрытые детали (2026)</span><span class="related-bottom-desc">Подробный разбор задней части Škoda Yeti: дизайн, фары, багажник, скрытые функции и типичные проблем</span></a><a href="/articles/m/ma/massa-shkoda-jeti.html" class="related-bottom-card"><span class="related-bottom-title">Масса Skoda Yeti: полная и снаряженная весы, характеристики</span><span class="related-bottom-desc">Полный обзор массы Škoda Yeti: снаряженная и полная масса, влияние комплектации на вес, данные для п</span></a><a href="/articles/s/sk/skoda-yeti-obzor.html" class="related-bottom-card"><span class="related-bottom-title">Skoda Yeti: честный обзор плюсов и минусов кроссовера (2026)</span><span class="related-bottom-desc">Подробный обзор Skoda Yeti: технические характеристики, реальные отзывы владельцев, слабые места и с</span></a><a href="/articles/k/ka/kak-snyat-obshivku-zadnej-dveri-shkoda-jeti.html" class="related-bottom-card"><span class="related-bottom-title">Как снять обшивку задней двери Шкода Йети: Пошаговая инструкция</span><span class="related-bottom-desc">Подробный гайд по демонтажу карты задней двери Skoda Yeti. Узнайте, где искать скрытые фиксаторы и к</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

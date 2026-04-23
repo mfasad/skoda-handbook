@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Swing 2 для Skoda Rapid: установка, прошивка и настройки аудио — Skoda-Handbook</title>
+    <meta name="description" content="Все о мультимедиа Swing 2 для Skoda Rapid. Инструкция по установке, настройке, прошивке и устранению неполадок штатной магнитолы.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/s/sw/swing-2-skoda-rapid.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Swing 2 для Skoda Rapid: установка, прошивка и настройки аудио">
+    <meta property="og:description" content="Все о мультимедиа Swing 2 для Skoda Rapid. Инструкция по установке, настройке, прошивке и устранению неполадок штатной магнитолы.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/rapid/">Rapid</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Swing 2 для Skoda Rapid: установка, прошивка и настройки аудио</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Полный гид по мультимедиа Swing 2 для Skoda Rapid</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#особенности-штатной-системы-в-skoda-rapid">Особенности штатной системы в Skoda Rapid</a></li><li><a href="#процесс-установки-и-подключения">Процесс установки и подключения</a></li><li><a href="#актуализация-программного-обеспечения">Актуализация программного обеспечения</a></li><li><a href="#настройка-мультимедиа-и-звука">Настройка мультимедиа и звука</a></li><li><a href="#интеграция-с-внешними-устройствами">Интеграция с внешними устройствами</a></li><li><a href="#устранение-распространенных-неисправностей">Устранение распространенных неисправностей</a></li><li><a href="#дополнительные-функции-и-настройки">Дополнительные функции и настройки</a></li><li><a href="#вопросы-и-ответы">Вопросы и ответы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Мультимедийная система <em>Swing 2</em> стала стандартом для многих комплектаций <em>Skoda Rapid</em>, предлагая баланс между функциональностью и стоимостью. Владельцы часто задаются вопросом о возможностях расширения её базового функционала. Эта статья раскроет все тонкости работы с устройством, от первоначальной настройки до сложной прошивки.</p>
+
+<p>Штатная магнитола оснащена сенсорным экраном и поддерживает основные форматы медиафайлов. Однако, чтобы раскрыть весь потенциал <em>Skoda Rapid</em>, необходимо грамотно настроить интерфейс и подключить внешние источники данных. Многие функции скрыты в глубине меню и требуют точных действий.</p>
+
+<h2 id="особенности-штатной-системы-в-skoda-rapid">Особенности штатной системы в Skoda Rapid</h2>
+
+<p>Система <em>Swing 2</em> отличается компактностью и надежностью, что делает её отличным выбором для городского автомобиля. Она интегрирована в торпедо и управляет климат-контролем через <code>Настройки → Система</code>. Качество дисплея достаточно высокое для просмотра навигационных карт и видео.</p>
+
+<p>Ключевым преимуществом является поддержка протоколов <strong>Bluetooth</strong> и <strong>USB</strong>. Это позволяет бесшовно передавать музыку со смартфона или флеш-накопителя. Важно отметить, что система автоматически переключается на громкую связь при входящем вызове, обеспечивая безопасность вождения.</p>
+
+<p>Владельцы часто замечают, что базовая прошивка имеет ограниченный набор языков. Для русскоязычного рынка важно проверить наличие локализации в настройках. Если язык отсутствует, может потребоваться обновление программного обеспечения.</p>
+
+<h2 id="процесс-установки-и-подключения">Процесс установки и подключения</h2>
+
+<p>Установка устройства обычно производится в заводских условиях, но при замене или ремонте важно соблюдать полярность проводов. Подключение к CAN-шине автомобиля осуществляется через специальный разъем <strong>ISO</strong>. Ошибки на этом этапе могут привести к некорректной работе кнопки <em>Emergency</em> или подсветки.</p>
+
+<p>При монтаже необходимо убедиться в надежности крепления корпуса. Вибрации на плохой дороге могут расшатать контакты, вызывая периодические пропадания звука. Рекомендуется использовать дополнительные изоляционные прокладки.</p>
+
+<p>Для проверки правильности подключения включите зажигание и проверьте реакцию системы на поворот руля. Если экран показывает скорость или обороты, значит, <strong>CAN-интерфейс</strong> подключен верно. Отсутствие этих данных сигнализирует о проблеме с шиной данных.</p>
+
+<p>Не забудьте проверить работу подсветки кнопок при включении габаритных огней. Это критически важный момент для комфортного управления в ночное время.</p>
+
+<div class="attention-box attention-info"><div><strong>📊 Какая версия ПО установлена на вашей магнитоле?</strong><ul><li>Версия 1.x</li><li>Версия 2.x</li><li>Версия 3.x</li><li>Не знаю</li></ul></div></div>
+
+<h2 id="актуализация-программного-обеспечения">Актуализация программного обеспечения</h2>
+
+<p>Обновление прошивки — это процесс, который может кардинально изменить работу <em>Swing 2</em>. Новая версия часто исправляет ошибки в работе навигации и улучшает стабильность Bluetooth-соединения. Перед началом процедуры необходимо скачать официальный файл с сайта производителя.</p>
+
+<p>Процесс обновления требует наличия флеш-накопителя формата <strong>FAT32</strong>. Скопируйте файл прошивки в корень диска, избегая вложенных папок. Вставьте носитель в USB-порт и перейдите в меню <code>Настройки → Система → Обновление</code>.</p>
+
+<p>Во время обновления экран может погаснуть или показывать прогресс-бар. Это нормальное явление. Главное правило — не вынимать флешку и не выключать зажигание до полного завершения процесса.</p>
+
+<blockquote>⚠️ Внимание: Если прервать процесс прошивки на 50%, система может превратиться в "кирпич". Восстановление в таком случае возможно только через сервисный центр с использованием специального оборудования.</blockquote>
+
+<div class="checklist-block"><h4>☑️ Подготовка к прошивке</h4><label class="check-item"><input type="checkbox"><span>Флешка отформатирована в FAT32</span></label><label class="check-item"><input type="checkbox"><span>Батарея автомобиля заряжена</span></label><label class="check-item"><input type="checkbox"><span>Файл прошивки скачан</span></label><label class="check-item"><input type="checkbox"><span>Зажигание включено</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<p>После перезагрузки необходимо проверить версию ПО в разделе <code>Информация об устройстве</code>. Если версия обновилась, можно переходить к калибровке экрана и настройке часов.</p>
+
+<h2 id="настройка-мультимедиа-и-звука">Настройка мультимедиа и звука</h2>
+
+<p>Акустическая система <em>Skoda Rapid</em> с <em>Swing 2</em> имеет ряд предустановленных эквалайзеров. Вы можете выбрать режимы <strong>Bass Boost</strong> или <strong>Vocal</strong> в зависимости от жанра музыки. Для тонкой настройки используйте ползунки баланса и фейдера.</p>
+
+<p>Чтобы получить максимальное качество звука, настройте таймер затухания. Это позволит плавно снижать громкость при остановке автомобиля. Функция активируется в разделе <code>Аудио → Настройки</code>.</p>
+
+<p>Подключение внешнего усилителя возможно через линейный выход, если он предусмотрен в вашей комплектации. Используйте экранированные кабели для предотвращения наводок и шума.</p>
+
+<ul>
+<li>Эквалайзер позволяет настроить звучание под ваш вкус</li>
+<li>Баланс распределяет звук между передними и задними динамиками</li>
+<li>Фейдер регулирует громкость между передней и задней осями</li>
+<li>Настройки звука сохраняются для каждого источника отдельно</li>
+</ul>
+
+<h2 id="интеграция-с-внешними-устройствами">Интеграция с внешними устройствами</h2>
+
+<p>Современные смартфоны требуют стабильного соединения через <strong>Bluetooth</strong>. При первом подключении необходимо ввести пин-код, обычно это <code>0000</code> или <code>1234</code>. После сопряжения телефон должен отображаться в списке доверенных устройств.</p>
+
+<p>Для воспроизведения видео с флешки поддерживаются форматы <strong>MP4</strong> и <strong>MKV</strong>. Разрешение экрана ограничено, поэтому видео в 4K может воспроизводиться с задержками. Рекомендуется конвертировать файлы в разрешении <code>720p</code> для плавной работы.</p>
+
+<p>Некоторые пользователи устанавливают дополнительные модули для поддержки <strong>CarPlay</strong> или <strong>Android Auto</strong>. Это позволяет дублировать экран телефона на дисплей магнитолы. Однако такие модификации могут нарушить гарантию на электронное оборудование.</p>
+
+<details class="faq-item"><summary>Что делать, если телефон не подключается?</summary><div class="faq-answer"><p>Попробуйте удалить устройство из памяти магнитолы и смартфона. Перезагрузите оба устройства. Проверьте, включена ли видимость телефона. Обновите ПО магнитолы до последней версии.</p></div></details>
+
+<p> Это зависит от настроек профиля Bluetooth.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Для стабильной работы Bluetooth отключите автоматическое обновление приложений на телефоне во время вождения, чтобы избежать перегрузки канала связи.</p></div>
+
+<h2 id="устранение-распространенных-неисправностей">Устранение распространенных неисправностей</h2>
+
+<p>Иногда система может зависнуть или не реагировать на касания. В этом случае помогает мягкая перезагрузка. Нажмите и удерживайте кнопку питания в течение 10-15 секунд, пока экран не погаснет.</p>
+
+<p>Если пропадает звук, проверьте настройки mute и уровень громкости. Также убедитесь, что не активирован режим "Только радио". В редких случаях помогает сброс настроек до заводских через меню <code>Система → Сброс</code>.</p>
+
+<p>Проблемы с навигацией часто связаны с устаревшей картой. Обновите файлы карт, скачав актуальную версию для вашего региона. <mark>Карты должны быть в формате, совместимом с версией прошивки, иначе они не загрузятся.</mark></p>
+
+<table>
+<thead>
+<tr>
+<th>Проблема</th>
+<th>Возможная причина</th>
+<th>Решение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Экран не реагирует</td>
+<td>Зависание системы</td>
+<td>Перезагрузка кнопкой питания</td>
+</tr>
+<tr>
+<td>Нет звука</td>
+<td>Режим Mute</td>
+<td>Отключить Mute, проверить громкость</td>
+</tr>
+<tr>
+<td>Не видит флешку</td>
+<td>Неверный формат</td>
+<td>Отформатировать в FAT32</td>
+</tr>
+<tr>
+<td>Плохой сигнал GPS</td>
+<td>Устаревшая прошивка</td>
+<td>Обновить ПО системы</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="дополнительные-функции-и-настройки">Дополнительные функции и настройки</h2>
+
+<p>В меню настроек можно изменить язык интерфейса, формат времени и единицы измерения. Для любителей спорта доступна функция отображения текущих оборотов двигателя на главном экране.</p>
+
+<p>Система поддерживает управление с руля через <strong>CAN-шину</strong>. Если кнопки не работают, возможно, потребуется калибровка. Это делается через сервисное меню, доступное по комбинации клавиш.</p>
+
+<ul>
+<li>Изменение языка интерфейса</li>
+<li>Настройка формата времени (12/24 часа)</li>
+<li>Калибровка сенсорного экрана</li>
+<li>Настройка яркости дисплея</li>
+</ul>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Регулярная очистка кэша приложений и обновление ПО продлевают жизнь системе и предотвращают зависания.</p></div>
+
+<h2 id="вопросы-и-ответы">Вопросы и ответы</h2>
+
+<details>
+<summary>Можно ли установить CarPlay на штатную Swing 2?</summary>
+<p>Стандартная прошивка не поддерживает CarPlay. Для этого необходимо установить дополнительный модуль-адаптер, который подключается к штатным разъемам.</p>
+</details>
+
+<details>
+<summary>Как сбросить настройки магнитолы?</summary>
+<p>Зайдите в <code>Настройки → Система → Сброс настроек</code>. Введите пароль, если он установлен (обычно 0000 или 1234). Все данные будут удалены.</p>
+</details>
+
+<details>
+<summary>Почему не работает навигация после обновления?</summary>
+<p>Возможно, файлы карт не совместимы с новой версией ПО. Скачайте актуальные карты для вашей версии прошивки и установите их заново.</p>
+</details>
+
+<details>
+<summary>Как изменить язык меню на русский?</summary>
+<p>Перейдите в <code>Настройки → Язык</code> и выберите русский язык из списка. Если его нет, необходимо обновить прошивку до версии с русской локализацией.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#особенности-штатной-системы-в-skoda-rapid">Особенности штатной системы в Skoda Rapid</a></li><li><a href="#процесс-установки-и-подключения">Процесс установки и подключения</a></li><li><a href="#актуализация-программного-обеспечения">Актуализация программного обеспечения</a></li><li><a href="#настройка-мультимедиа-и-звука">Настройка мультимедиа и звука</a></li><li><a href="#интеграция-с-внешними-устройствами">Интеграция с внешними устройствами</a></li><li><a href="#устранение-распространенных-неисправностей">Устранение распространенных неисправностей</a></li><li><a href="#дополнительные-функции-и-настройки">Дополнительные функции и настройки</a></li><li><a href="#вопросы-и-ответы">Вопросы и ответы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/s/sh/shkoda-rapid-gde-nakhoditsya-diagnosticheskij-razem.html" class="related-card">Где находится диагностический разъем на Skoda Rapid: полная инструкция</a></li><li><a href="/articles/d/dv/dvigatel-shkoda-rapid-16-90.html" class="related-card">Двигатель Škoda Rapid 1.6 MPI 90 л.с.: характеристики, проблемы, тюнинг</a></li><li><a href="/articles/p/pe/perednie-kolodki-shkoda-rapid-2021.html" class="related-card">Передние колодки ŠKODA Rapid 2021: выбор, замена, цены и советы</a></li><li><a href="/articles/a/ak/aktivirovan-immobilajzer-shkoda-rapid.html" class="related-card">Активирован иммобилайзер Skoda Rapid: причины, решение и диагностика</a></li><li><a href="/articles/m/ma/magnitola-na-shkoda-rapid-2014.html" class="related-card">Магнитола на Шкода Рапид 2014: Обзор, Замена и Установка</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/s/sh/shkoda-rapid-gde-nakhoditsya-diagnosticheskij-razem.html" class="related-bottom-card"><span class="related-bottom-title">Где находится диагностический разъем на Skoda Rapid: полная инструкция</span><span class="related-bottom-desc">Точное расположение OBD-разъема на Skoda Rapid. Инструкция по поиску, схема подключения сканера и ча</span></a><a href="/articles/d/dv/dvigatel-shkoda-rapid-16-90.html" class="related-bottom-card"><span class="related-bottom-title">Двигатель Škoda Rapid 1.6 MPI 90 л.с.: характеристики, проблемы, тюнинг</span><span class="related-bottom-desc">Подробный разбор мотора 1.6 MPI (90 л.с.) на Škoda Rapid: ресурс, расход топлива, типичные неисправн</span></a><a href="/articles/p/pe/perednie-kolodki-shkoda-rapid-2021.html" class="related-bottom-card"><span class="related-bottom-title">Передние колодки ŠKODA Rapid 2021: выбор, замена, цены и советы</span><span class="related-bottom-desc">Как выбрать и заменить передние тормозные колодки на ŠKODA Rapid 2021? Сравнение брендов, пошаговая </span></a><a href="/articles/a/ak/aktivirovan-immobilajzer-shkoda-rapid.html" class="related-bottom-card"><span class="related-bottom-title">Активирован иммобилайзер Skoda Rapid: причины, решение и диагностика</span><span class="related-bottom-desc">Ошибка активирован иммобилайзер на Шкода Рапид? Узнайте реальные причины, способы сброса кода, диагн</span></a><a href="/articles/m/ma/magnitola-na-shkoda-rapid-2014.html" class="related-bottom-card"><span class="related-bottom-title">Магнитола на Шкода Рапид 2014: Обзор, Замена и Установка</span><span class="related-bottom-desc">Полный гайд по выбору и установке мультимедиа на Skoda Rapid 2014 года. Сравнение штатных систем, An</span></a><a href="/articles/s/sh/shkoda-rapid-blok-komforta.html" class="related-bottom-card"><span class="related-bottom-title">Блок комфорта Škoda Rapid: функции, неисправности и сброс ошибок</span><span class="related-bottom-desc">Подробный разбор блока комфорта в Škoda Rapid: схема, диагностика, сброс ошибок и замена своими рука</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>Ошибка 01336 Шкода: причины, диагностика и устранение — Skoda-Handbook</title>
+    <meta name="description" content="Ошибка 01336 в автомобилях Škoda указывает на сбой CAN-шины. Узнайте, как диагностировать проблему с блоком комфорта и восстановить работу электроники.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/o/os/oshibka-01336-shkoda.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Ошибка 01336 Шкода: причины, диагностика и устранение">
+    <meta property="og:description" content="Ошибка 01336 в автомобилях Škoda указывает на сбой CAN-шины. Узнайте, как диагностировать проблему с блоком комфорта и восстановить работу электроники.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/octavia/">Octavia</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Ошибка 01336 Шкода: причины, диагностика и устранение</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Ошибка 01336 в автомобилях Škoda: полное руководство по диагностике и ремонту</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#суть-проблемы-и-роль-шасси-данных">Суть проблемы и роль шасси данных</a></li><li><a href="#основные-причины-возникновения-сбоя">Основные причины возникновения сбоя</a></li><li><a href="#диагностика-и-поиск-неисправности">Диагностика и поиск неисправности</a></li><li><a href="#методы-устранения-неполадки">Методы устранения неполадки</a></li><li><a href="#программные-методы-и-адаптация">Программные методы и адаптация</a></li><li><a href="#профилактика-и-советы-по-эксплуатации">Профилактика и советы по эксплуатации</a></li><li><a href="#когда-стоит-обратиться-к-профессионалам">Когда стоит обратиться к профессионалам</a></li><li><a href="#заключение">Заключение</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Многие владельцы автомобилей группы Volkswagen, особенно моделей <em>Škoda Octavia</em> и <em>Škoda Octavia A5</em>, сталкиваются с пугающей ситуацией, когда на приборной панели загорается множество значков, а диагностический сканер выдает код ошибки 01336. Эта ошибка, обозначаемая как «Неисправность в цепи питания шасси» или «Канал данных CAN», часто приводит к полному отказу центрального замка, стеклоподъемников и даже системы кондиционирования. Паника в такой ситуации вполне понятна, так как автомобиль теряет часть своих функциональных возможностей и перестает реагировать на ключи.</p>
+
+<p>Однако проблема не всегда является фатальной для двигателя или трансмиссии. Чаще всего она кроется в электрической цепи блока комфорта, который отвечает за управление дверными замками, светом и другими удобствами. Понимание природы этой ошибки позволяет владельцу <em>Škoda</em> не тратить лишние деньги на замену дорогих узлов, если достаточно просто почистить контакты или проверить предохранитель.</p>
+
+<blockquote>⚠️ Внимание: Если ошибка 01336 сопровождается полным отсутствием питания в салоне, немедленно проверьте предохранитель на 30А в блоке под капотом, так как это может указывать на короткое замыкание в проводке.</blockquote>
+
+<h2 id="суть-проблемы-и-роль-шасси-данных">Суть проблемы и роль шасси данных</h2>
+
+<p>Ошибка 01336 — это не поломка одного конкретного датчика, а сигнал о том, что блок управления не может обмениваться данными с другими узлами автомобиля по высокоскоростной шине <strong>CAN</strong>. В современных автомобилях <em>Škoda</em> используется сложная сеть, где каждый электронный блок (двигатель, ABS, подушки безопасности, комфорта) является узлом этой сети. Если один из узлов «молчит» или отправляет некорректные данные, вся система фиксирует сбой.</p>
+
+<p>Основным виновником этой ошибки чаще всего становится блок <strong>BCM</strong> (Body Control Module) или блок комфорта. Именно он выступает главным шлюзом для управления дверными замками и светом. Когда напряжение питания на этом блоке падает ниже критического уровня или пропадает контакт, он «выпадает» из сети, и другие блоки начинают выдавать ошибку связи с ним.</p>
+
+<blockquote>⚠️ Внимание: Не пытайтесь сбрасывать ошибку 01336 простым отключением аккумулятора на длительное время, так как это может привести к потере адаптации стеклоподъемников и необходимости их переобучения.</blockquote>
+
+<h2 id="основные-причины-возникновения-сбоя">Основные причины возникновения сбоя</h2>
+
+<p>Существует несколько ключевых факторов, которые провоцируют появление кода 01336 в диагностических системах <em>Škoda</em>. Самая распространенная причина — окисление или механическое повреждение контактов в разъеме блока комфорта. Влага, проникающая в салон через неплотные уплотнения дверей, со временем разъедает тонкие дорожки в фишке, нарушая целостность цепи питания.</p>
+
+<p>Вторая частая проблема — перегорание предохранителя, отвечающего за питание блока управления шасси. В зависимости от модели и года выпуска, этот предохранитель может находиться в блоке под капотом или в салоне за панелью приборов. Если ток потребления блока резко возрастает из-за короткого замыкания в дверной проводке, предохранитель срабатывает, обрывая питание.</p>
+
+<blockquote>⚠️ Внимание: Регулярная проверка состояния уплотнителей дверей и дренажных отверстий в нижней части дверей может предотвратить попадание влаги и последующее окисление контактов разъема.</blockquote>
+
+<h3>Дополнительные факторы риска</h3>
+<ul>
+<li>🔋 <strong>Разряженный аккумулятор</strong>: При низком напряжении бортовой сети блоки могут отключаться или работать нестабильно, вызывая ложные срабатывания ошибки CAN-шины.</li>
+<li>🔌 <strong>Повреждение проводки</strong>: Мыши или коррозия могут повредить жгут проводов, идущий от блока комфорта к двери водителя, что разрывает цепь заземления.</li>
+<li>💻 <strong>Сбой программного обеспечения</strong>: В редких случаях прошивка блока управления требует обновления для корректной работы с другими узлами.</li>
+</ul>
+
+<div class="attention-box attention-info"><div><strong>📊 Какой симптом вы заметили первым?</strong><ul><li>Отказ центрального замка</li><li>Проблемы со стеклоподъемниками</li><li>Горят все лампочки</li><li>Ошибка на экране бортового компьютера</li></ul></div></div>
+
+<h2 id="диагностика-и-поиск-неисправности">Диагностика и поиск неисправности</h2>
+
+<p>Первым шагом в устранении ошибки 01336 является качественная компьютерная диагностика с использованием оборудования, способного считывать коды ошибок всех блоков, например, <strong>VAS-PC</strong> или <strong>VCDS</strong>. Обычные дешевые сканеры могут показать только код, но не дадут расшифровки статуса контактов. Вам нужно проверить, какие именно блоки не отвечают на запросы и есть ли ошибка по питанию (12V) или заземлению (Ground).</p>
+
+<p>Важно проверить не только сам блок, но и целостность проводки. Особое внимание следует уделить жгуту проводов, проходящему в резиновой гофре между кузовом и водительской дверью. Именно здесь провода часто переламываются от постоянных открываний и закрываний двери.</p>
+
+<div class="checklist-block"><h4>☑️ Проверка проводки</h4><label class="check-item"><input type="checkbox"><span>Осмотреть резиновую гофру на наличие трещин</span></label><label class="check-item"><input type="checkbox"><span>Проверить целостность проводов в гофре</span></label><label class="check-item"><input type="checkbox"><span>Измерить сопротивление на разрыв</span></label><label class="check-item"><input type="checkbox"><span>Проверить контакт в разъеме блока комфорта</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h3>Этапы визуального осмотра</h3>
+<ul>
+<li>🔍 <strong>Осмотр разъема</strong>: Отсоедините разъем от блока комфорта и внимательно осмотрите контакты на предмет коррозии, нагара или следов влаги.</li>
+<li>📏 <strong>Проверка предохранителей</strong>: С помощью мультиметра убедитесь, что предохранитель, отвечающий за блок комфорта (обычно 30А), цел и не имеет признаков перегрева.</li>
+<li>🔧 <strong>Проверка заземления</strong>: Найдите точку заземления блока, очистите её от краски и ржавчины, затем надежно затяните болт для обеспечения надежного контакта.</li>
+</ul>
+
+<h2 id="методы-устранения-неполадки">Методы устранения неполадки</h2>
+
+<p>Если причина кроется в окислении контактов, достаточно тщательно почистить их специальным контактным очистителем и нанести токопроводящую смазку. Это восстановит нормальный контакт и позволит блоку снова «увидеть» сеть. В некоторых случаях помогает простое переподключение разъема, но только после очистки.</p>
+
+<p>В случае перегорания предохранителя необходимо не просто заменить его на новый, но и найти причину короткого замыкания. Если поставить предохранитель большего номинала, это может привести к возгоранию проводки. <mark>Самым критичным моментом является проверка утечки тока в проводке двери водителя, так как именно здесь чаще всего происходит замыкание на массу.</mark></p>
+
+<p>Если диагностика показала, что сам блок управления вышел из строя (например, сгорел силовой транзистор внутри), потребуется его замена или профессиональный ремонт. При замене на новый блок необходимо провести кодирование и адаптацию, иначе автомобиль не будет работать корректно.</p>
+
+<details class="faq-item"><summary>Что делать, если ошибка возвращается после сброса?</summary><div class="faq-answer"><p>Если ошибка 01336 возвращается сразу после сброса, это означает, что физическая неисправность в цепи питания или заземления не устранена. Необходимо повторить проверку предохранителей и целостности проводки, уделяя особое внимание контактам в разъеме блока комфорта.</p></div></details>
+
+<h2 id="программные-методы-и-адаптация">Программные методы и адаптация</h2>
+
+<p>После устранения физических причин сбоя необходимо сбросить ошибку через диагностический интерфейс. Для этого используется команда адаптации или функция «Сброс ошибок» в программном обеспечении. Важно убедиться, что все блоки перестали выдавать ошибки и коммуникация по CAN-шине восстановлена.</p>
+
+<p>В некоторых моделях <em>Škoda</em> может потребоваться процедура инициализации стеклоподъемников. Если они не работают после сброса ошибки, поднимите стекло до упора вверх и удерживайте кнопку еще 3-5 секунд, затем опустите до конца и удерживайте кнопку вниз. Это вернет память положений стеклоподъемника.</p>
+
+<h3>Таблица типичных предохранителей для проверки</h3>
+<table>
+<thead>
+<tr>
+<th>Модель</th>
+<th>Номер предохранителя</th>
+<th>Расположение</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Octavia A5</td>
+<td>S136</td>
+<td>Под капотом</td>
+<td>Питание блока комфорта</td>
+</tr>
+<tr>
+<td>Octavia A7</td>
+<td>S32</td>
+<td>В салоне (боковая панель)</td>
+<td>Центральный замок</td>
+</tr>
+<tr>
+<td>Superb II</td>
+<td>S105</td>
+<td>Под капотом</td>
+<td>Шина CAN-данных</td>
+</tr>
+<tr>
+<td>Yeti</td>
+<td>S230</td>
+<td>В салоне</td>
+<td>Блок управления дверями</td>
+</tr>
+</tbody>
+</table>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед началом работ обязательно отключите минусовую клемму аккумулятора, чтобы избежать случайного короткого замыкания при снятии разъема блока комфорта.</p></div>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Регулярная профилактика контактов и проверка целостности проводки в дверных петлях может предотвратить появление ошибки 01336 и сэкономить средства на дорогостоящем ремонте.</p></div>
+
+<h2 id="профилактика-и-советы-по-эксплуатации">Профилактика и советы по эксплуатации</h2>
+
+<p>Чтобы избежать повторного появления ошибки, рекомендуется регулярно проводить осмотр состояния проводки в местах изгиба. Резиновые гофры со временем дубеют и трескаются, открывая доступ к проводам. Их можно заменить на новые или аккуратно замотать изолентой и термоусадкой, чтобы обеспечить дополнительную защиту.</p>
+
+<p>Также стоит следить за состоянием аккумулятора. Глубокий разряд может привести к сбоям в работе электронных блоков. Используйте качественный зарядное устройство и не оставляйте автомобиль с включенным светом на длительное время.</p>
+
+<h3>Рекомендуемые действия для владельцев</h3>
+<ul>
+<li>🛡️ <strong>Использование влагозащиты</strong>: Обработайте контакты разъема блока комфорта специальной антикоррозийной жидкостью один раз в год.</li>
+<li>🔋 <strong>Контроль напряжения</strong>: Следите за напряжением бортовой сети, оно не должно падать ниже 12В при заглушенном двигателе.</li>
+<li>🔧 <strong>Своевременная диагностика</strong>: При появлении первых признаков отказа центрального замка сразу проводите проверку, не дожидаясь полной потери связи.</li>
+</ul>
+
+<details class="faq-item"><summary>Можно ли ездить с ошибкой 01336?</summary><div class="faq-answer"><p>Технически автомобиль может двигаться, так как ошибка не касается двигателя, но это опасно из-за возможного отказа центрального замка, отсутствия света или работы стеклоподъемников, что снижает безопасность и комфорт.</p></div></details>
+
+<h2 id="когда-стоит-обратиться-к-профессионалам">Когда стоит обратиться к профессионалам</h2>
+
+<p>Если самостоятельная диагностика не выявила явных причин, таких как сгоревший предохранитель или окисленные контакты, проблема может быть глубже. Сбои в работе самого блока управления требуют сложного оборудования для перепрошивки или пайки компонентов. В таких случаях лучше доверить дело специалистам по электронике.</p>
+
+<p>Не стоит также пытаться самостоятельно заменять блок управления без проведения кодирования. Новый блок без адаптации не будет «понимать» ключи, сигнализацию и другие системы автомобиля, что приведет к еще большим проблемам.</p>
+
+<h2 id="заключение">Заключение</h2>
+
+<p>Ошибка 01336 в автомобилях <em>Škoda</em> — это распространенная проблема, которая чаще всего решается восстановлением контакта в цепи питания блока комфорта. Понимание структуры CAN-шины и умение проводить базовую диагностику позволяют владельцам самостоятельно устранить причину сбоя и избежать дорогостоящего ремонта у дилера.</p>
+
+<p>Главное — не игнорировать сигналы автомобиля. Раннее вмешательство и профилактика помогут сохранить работоспособность всех электронных систем вашего <em>Škoda</em> на долгие годы. Регулярный осмотр проводки и чистота контактов — залог стабильной работы бортовой сети.</p>
+
+<details>
+<summary>Что означает ошибка 01336 в Škoda?</summary>
+<p>Ошибка 01336 указывает на нарушение связи по шине CAN или отсутствие питания у блока управления, чаще всего это блок комфорта (BCM), отвечающий за центральный замок и стеклоподъемники.</p>
+</details>
+<details>
+<summary>Как быстро сбросить ошибку 01336?</summary>
+<p>Сброс возможен через диагностический сканер (VCDS, VAS-PC) после устранения физической причины поломки. Простое отключение аккумулятора часто не помогает.</p>
+</details>
+<details>
+<summary>Можно ли ездить с этой ошибкой?</summary>
+<p>Ездить можно, но не рекомендуется, так как могут отказать центральный замок, стеклоподъемники или освещение, что снижает безопасность и комфорт.</p>
+</details>
+<details>
+<summary>Какой предохранитель отвечает за ошибку 01336?</summary>
+<p>В разных моделях это разные предохранители, чаще всего это 30А предохранитель, расположенный в блоке под капотом (например, S136 для Octavia A5) или в салоне.</p>
+</details>
+<details>
+<summary>Почему ошибка появляется снова после сброса?</summary>
+<p>Если причина (обрыв провода, окисление, короткое замыкание) не устранена, ошибка вернется сразу после включения зажигания. Необходимо найти и устранить неисправность в проводке.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#суть-проблемы-и-роль-шасси-данных">Суть проблемы и роль шасси данных</a></li><li><a href="#основные-причины-возникновения-сбоя">Основные причины возникновения сбоя</a></li><li><a href="#диагностика-и-поиск-неисправности">Диагностика и поиск неисправности</a></li><li><a href="#методы-устранения-неполадки">Методы устранения неполадки</a></li><li><a href="#программные-методы-и-адаптация">Программные методы и адаптация</a></li><li><a href="#профилактика-и-советы-по-эксплуатации">Профилактика и советы по эксплуатации</a></li><li><a href="#когда-стоит-обратиться-к-профессионалам">Когда стоит обратиться к профессионалам</a></li><li><a href="#заключение">Заключение</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/s/sh/shkoda-oktaviya-gai.html" class="related-card">Шкода Октавия в ГИБДД: штрафы, ОСАГО и тонировка 2026</a></li><li><a href="/articles/p/pr/predokhraniteli-shkoda-oktaviya-2009.html" class="related-card">Предохранители ŠKODA Octavia 2009: схема, замена, советы</a></li><li><a href="/articles/m/mo/moshchnost-dvigatelya-shkoda-oktaviya.html" class="related-card">Мощность двигателя Skoda Octavia: Обзор всех моторов и выбор</a></li><li><a href="/articles/z/za/zamena-zadnikh-tormoznykh-kolodok-shkoda-oktaviya-a7-svoimi-rukami.html" class="related-card">Замена задних тормозных колодок Škoda Octavia A7: пошаговая инструкция</a></li><li><a href="/articles/r/ra/razborka-shkoda-oktaviya.html" class="related-card">Полный разборка Skoda Octavia: инструкция по снятию салона и кузова</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/s/sh/shkoda-oktaviya-gai.html" class="related-bottom-card"><span class="related-bottom-title">Шкода Октавия в ГИБДД: штрафы, ОСАГО и тонировка 2026</span><span class="related-bottom-desc">Полный гид по взаимодействию владельцев Skoda Octavia с ГИБДД. Тонировка, штрафы, ОСАГО, технические</span></a><a href="/articles/p/pr/predokhraniteli-shkoda-oktaviya-2009.html" class="related-bottom-card"><span class="related-bottom-title">Предохранители ŠKODA Octavia 2009: схема, замена, советы</span><span class="related-bottom-desc">Где находятся блоки предохранителей в Octavia 2009, расшифровка схем, как заменить перегоревший пред</span></a><a href="/articles/m/mo/moshchnost-dvigatelya-shkoda-oktaviya.html" class="related-bottom-card"><span class="related-bottom-title">Мощность двигателя Skoda Octavia: Обзор всех моторов и выбор</span><span class="related-bottom-desc">Полный разбор мощностей двигателей Шкода Октавия. Сравнение бензиновых и дизельных версий, выбор опт</span></a><a href="/articles/z/za/zamena-zadnikh-tormoznykh-kolodok-shkoda-oktaviya-a7-svoimi-rukami.html" class="related-bottom-card"><span class="related-bottom-title">Замена задних тормозных колодок Škoda Octavia A7: пошаговая инструкция</span><span class="related-bottom-desc">Как самостоятельно поменять задние тормозные колодки на Škoda Octavia A7: инструменты, нюансы, ошибк</span></a><a href="/articles/r/ra/razborka-shkoda-oktaviya.html" class="related-bottom-card"><span class="related-bottom-title">Полный разборка Skoda Octavia: инструкция по снятию салона и кузова</span><span class="related-bottom-desc">Подробный гайд по разборке Skoda Octavia A7 и A8. Снятие панелей, сидений, демонтаж торпедо. Советы </span></a><a href="/articles/k/kn/knopka-avarijki-shkoda-oktaviya-tur.html" class="related-bottom-card"><span class="related-bottom-title">Где кнопка аварийки на Škoda Octavia Tour: фото, схема, советы</span><span class="related-bottom-desc">Не можете найти кнопку аварийной сигнализации на Octavia Tour? Подробная инструкция с фото, располож</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

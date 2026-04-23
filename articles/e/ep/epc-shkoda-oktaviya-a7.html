@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛠</text></svg>">
+    <title>EPC Skoda Octavia A7: диагностика, коды ошибок и поиск запчастей — Skoda-Handbook</title>
+    <meta name="description" content="Полное руководство по использованию системы EPC для Skoda Octavia A7. Как читать коды ошибок, искать запчасти по VIN и устранять неисправности.">
+    <link rel="canonical" href="https://skoda-handbook.vercel.app/articles/e/ep/epc-shkoda-oktaviya-a7.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="EPC Skoda Octavia A7: диагностика, коды ошибок и поиск запчастей">
+    <meta property="og:description" content="Полное руководство по использованию системы EPC для Skoda Octavia A7. Как читать коды ошибок, искать запчасти по VIN и устранять неисправности.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1776947320">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛠</span>
+                <span>Skoda-Handbook</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/octavia/" class="nav-link">📁 Octavia</a>
+<a href="/category/rapid/" class="nav-link">📁 Rapid</a>
+<a href="/category/fabia/" class="nav-link">📁 Fabia</a>
+<a href="/category/kodiaq/" class="nav-link">📁 Kodiaq</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/octavia/" class="dropdown-item">📁 Octavia</a>
+<a href="/category/rapid/" class="dropdown-item">📁 Rapid</a>
+<a href="/category/fabia/" class="dropdown-item">📁 Fabia</a>
+<a href="/category/kodiaq/" class="dropdown-item">📁 Kodiaq</a>
+<a href="/category/yeti/" class="dropdown-item">📁 Yeti</a>
+<a href="/category/superb/" class="dropdown-item">📁 Superb</a>
+<a href="/category/karoq/" class="dropdown-item">📁 Karoq</a>
+<a href="/category/авто/" class="dropdown-item">📁 Авто</a>
+<a href="/category/felicia/" class="dropdown-item">📁 Felicia</a>
+<a href="/category/roomster/" class="dropdown-item">📁 Roomster</a>
+<a href="/category/kamiq/" class="dropdown-item">📁 Kamiq</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/octavia/">Octavia</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">EPC Skoda Octavia A7: диагностика, коды ошибок и поиск запчастей</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>EPC Skoda Octavia A7: Полное руководство по диагностике и запчастям</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#введение-в-систему-epc-для-skoda-octavia-a7">Введение в систему EPC для Skoda Octavia A7</a></li><li><a href="#что-означает-индикатор-epc-и-почему-он-загорается">Что означает индикатор EPC и почему он загорается</a></li><li><a href="#основные-причины-неисправностей-системы-epc">Основные причины неисправностей системы EPC</a></li><li><a href="#диагностика-и-чтение-кодов-ошибок">Диагностика и чтение кодов ошибок</a></li><li><a href="#поиск-запчастей-по-epc-и-каталогам">Поиск запчастей по EPC и каталогам</a></li><li><a href="#процедура-адаптации-дроссельной-заслонки">Процедура адаптации дроссельной заслонки</a></li><li><a href="#техническое-обслуживание-для-профилактики-epc">Техническое обслуживание для профилактики EPC</a></li><li><a href="#критические-ошибки-и-их-последствия">Критические ошибки и их последствия</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><h2 id="введение-в-систему-epc-для-skoda-octavia-a7">Введение в систему EPC для Skoda Octavia A7</h2>
+<p>Система <strong>электронного контроля дроссельной заслонки</strong> (EPC) в автомобиле <em>Skoda Octavia A7</em> является критически важным компонентом, отвечающим за управление двигателем и его взаимодействие с трансмиссией. Когда на приборной панели загорается индикатор EPC, это сигнализирует о том, что электронный блок управления (ЭБУ) обнаружил неисправность в цепи дроссельного узла или смежных системах.</p>
+<p>Владельцы <em>Octavia A7</em> часто сталкиваются с необходимостью быстрой диагностики, чтобы избежать потери мощности или полной остановки двигателя. Понимание принципов работы этой системы позволяет не только сэкономить время на визите в сервис, но и самостоятельно провести первичный осмотр перед поездкой к специалистам.</p>
+
+<h2 id="что-означает-индикатор-epc-и-почему-он-загорается">Что означает индикатор EPC и почему он загорается</h2>
+<p>Индикатор <strong>EPC</strong> (Electronic Power Control) — это не просто предупреждение о поломке, а сигнал о переходе двигателя в аварийный режим. В этом режиме <em>Skoda Octavia A7</em> ограничивает обороты двигателя и мощность, чтобы предотвратить дальнейшие повреждения механических узлов. Обычно это сопровождается ощущением «тупой» педали газа и нестабильной работой мотора на холостых оборотах.</p>
+<p>Причины появления ошибки могут быть самыми разными: от банального загрязнения дроссельной заслонки до выхода из строя датчика положения педали акселератора. Иногда проблема кроется в проводке или даже в низком напряжении аккумуляторной батареи, что сбивает калибровку электронных блоков.</p>
+<p>Игнорирование сигнала может привести к тому, что автомобиль просто встанет на обочине, особенно в пробке или при попытке обгона, когда требуется резкое ускорение. Поэтому реакция на загоревшуюся лампу должна быть немедленной и осознанной.</p>
+
+<h2 id="основные-причины-неисправностей-системы-epc">Основные причины неисправностей системы EPC</h2>
+<p>Самой распространенной причиной срабатывания EPC в <em>Octavia A7</em> с двигателями серии EA211 является загрязнение дроссельного узла. Сажа и масляный налет со временем накапливаются на стенках корпуса, мешая заслонке открываться и закрываться с нужной скоростью. Это приводит к рассогласованию данных между ЭБУ и реальным положением заслонки.</p>
+<p>Второй по популярности фактором является износ датчика положения педали акселератора (APP). В современных автомобилях нет механической тяги, связывающей педаль с дросселем, поэтому сигнал передается исключительно электрически. Если один из двух каналов датчика (они дублируют друг друга) начинает «врать», система сразу фиксирует ошибку.</p>
+<p>Также стоит проверить целостность проводки и качество контактов в разъемах. Вибрация и перепады температур могут привести к окислению контактов или обрыву проводов, что станет причиной потери сигнала. Нередко проблема кроется в некорректной работе вакуумного насоса или утечках во впускном коллекторе.</p>
+
+<blockquote>
+<strong>⚠️ Внимание:</strong> Если индикатор EPC мигает во время движения, это может указывать на критическую неисправность, при которой двигатель может начать работать в режиме пропусков зажигания. В таком случае необходимо немедленно остановиться и заглушить мотор, чтобы избежать повреждения каталитического нейтрализатора.
+</blockquote>
+
+<h2 id="диагностика-и-чтение-кодов-ошибок">Диагностика и чтение кодов ошибок</h2>
+<p>Для точного определения проблемы необходим профессиональный диагностический сканер, способный общаться с блоками управления <em>Skoda Octavia A7</em> по протоколу OBD-II. Стандартные дешевые адаптеры часто показывают только общие коды, тогда как для этой модели важны специфические параметры от производителя VAG.</p>
+<p>После подключения сканера необходимо зайти в раздел «Двигатель» и считать список ошибок. Коды ошибок (DTC) будут иметь формат, например, <code>P0120</code> или <code>P2135</code>. Расшифровка этих кодов даст понимание того, какой именно датчик или цепь вышла из строя. Не пытайтесь сбросить ошибку без устранения причины — индикатор EPC вернется практически сразу.</p>
+<p>Важно также посмотреть «живые данные» (Live Data) во время движения. Сравните показания педали газа с данными о положении дроссельной заслонки. Если вы нажимаете педаль, а заслонка реагирует с задержкой или не реагирует вовсе — проблема точно в исполнительном механизме или его управлении.</p>
+
+<div class="attention-box attention-info"><div><strong>📊 Какой двигатель установлен в вашем Skoda Octavia A7?</strong><ul><li>1.6 MPI</li><li>1.2 TSI</li><li>1.4 TSI</li><li>1.8 TSI</li><li>2.0 TSI</li></ul></div></div>
+
+<h2 id="поиск-запчастей-по-epc-и-каталогам">Поиск запчастей по EPC и каталогам</h2>
+<p>Многие путают систему EPC (индикатор) с EPC-каталогом запчастей. EPC-каталог — это электронная база данных, где по VIN-коду можно найти точные номера оригинальных деталей и их расположение. Для <em>Octavia A7</em> это незаменимый инструмент при заказе дроссельной заслонки, датчиков или ремней ГРМ.</p>
+<p>Используя каталог, вы можете увидеть схематическое изображение узла и понять, какие крепежи и прокладки идут в комплекте. Это особенно актуально при замене дроссельной заслонки, где часто требуется замена уплотнительного кольца и хомутов, которые не всегда входят в стандартный набор.</p>
+<p>В таблице ниже приведены примеры типичных запчастей, связанных с системой EPC, и их примерные номера для двигателей 1.6 MPI и 1.4 TSI:</p>
+
+<table>
+<thead>
+<tr>
+<th>Наименование детали</th>
+<th>Номер детали (пример)</th>
+<th>Применимость</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Дроссельная заслонка в сборе</td>
+<td>04C 133 062</td>
+<td>Двигатели 1.2 TSI, 1.4 TSI</td>
+</tr>
+<tr>
+<td>Датчик положения педали газа</td>
+<td>1K0 927 156</td>
+<td>Все модели Octavia A7</td>
+</tr>
+<tr>
+<td>Уплотнительное кольцо дросселя</td>
+<td>04C 133 582</td>
+<td>Для замены при снятии заслонки</td>
+</tr>
+<tr>
+<td>Проводка к дроссельной заслонке</td>
+<td>04C 906 284</td>
+<td>При обрыве цепи</td>
+</tr>
+</tbody>
+</table>
+
+<p>При заказе деталей всегда сверяйте номер с VIN-кодом вашего автомобиля, так как даже в рамках одной модели <em>Octavia A7</em> могут быть разные модификации двигателя и системы управления. Использование неоригинальных аналогов без проверки совместимости может привести к повторному появлению ошибки EPC.</p>
+
+<div class="checklist-block"><h4>☑️ Подготовка к замене дроссельной заслонки</h4><label class="check-item"><input type="checkbox"><span>Снять минусовую клемму АКБ</span></label><label class="check-item"><input type="checkbox"><span>Снять воздушный патрубок</span></label><label class="check-item"><input type="checkbox"><span>Открутить болты крепления</span></label><label class="check-item"><input type="checkbox"><span>Очистить посадочное место</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="процедура-адаптации-дроссельной-заслонки">Процедура адаптации дроссельной заслонки</h2>
+<p>После замены дроссельной заслонки или очистки её от нагара, обязательно требуется процедура адаптации. Без этого <em>Skoda Octavia A7</em> не сможет корректно определять положение заслонки в закрытом состоянии, что приведет к неустойчивым холостым оборотам или повторному загоранию EPC.</p>
+<p>Адаптацию можно провести двумя способами: с помощью диагностического оборудования или вручную. Вручную процедура выглядит так: включите зажигание, но не заводите двигатель. Подождите около 10-15 секунд, пока не услышите характерный щелчок или жужжание сервопривода. Затем выключите зажигание и подождите еще 5 секунд. После этого запустите двигатель и дайте ему поработать на холостых оборотах до прогрева.</p>
+<p>Если ручная адаптация не помогла, необходимо использовать сканер для входа в базовые настройки (Basic Settings). Введите код группы <code>060</code> или <code>098</code> (в зависимости от версии ПО ЭБУ) и следуйте подсказкам на экране. Система сама проверит ход заслонки и сохранит новые параметры.</p>
+
+<details class="faq-item"><summary>Почему не работает ручная адаптация?</summary><div class="faq-answer"><p>Ручная адаптация работает не на всех версиях программного обеспечения ЭБУ. Если после процедуры обороты плавают, значит, блок управления требует профессиональной адаптации через диагностический интерфейс VAS или VCDS. Также это может означать, что заслонка механически повреждена или имеет сильный износ.</p></div></details>
+
+<blockquote>
+<strong>⚠️ Внимание:</strong> Ни в коем случае не пытайтесь принудительно закрыть или открыть дроссельную заслонку руками, пока включено зажигание. Это может сжечь моторчик привода, так как электроника будет пытаться компенсировать ваше действие, создавая перегрузку.
+</blockquote>
+
+<h2 id="техническое-обслуживание-для-профилактики-epc">Техническое обслуживание для профилактики EPC</h2>
+<p>Чтобы избежать проблем с системой EPC, необходимо регулярно проводить техническое обслуживание. Замена воздушного фильтра должна выполняться строго по регламенту или чаще, если вы ездите по пыльным дорогам. Забитый фильтр создает разрежение, которое может исказить показания датчиков расхода воздуха.</p>
+<p>Используйте только качественное топливо. Дешевый бензин с большим количеством присадок ускоряет образование нагара на клапанах и стенках дроссельной заслонки. Для двигателей <em>TSI</em> это особенно критично, так как они имеют прямой впрыск и более чувствительны к качеству смеси.</p>
+<p>Раз в 60-80 тысяч километров рекомендуется проверять состояние вакуумных магистралей и патрубков. Трещины в резине приводят к подсосу лишнего воздуха, что сбивает состав смеси и заставляет ЭБУ работать в нештатном режиме. Регулярный осмотр подкапотного пространства сэкономит вам деньги на ремонте.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если вы часто стоите в пробках, рекомендуется периодически давать двигателю нагрузку на высоких оборотах (3000-4000 об/мин) в течение 5-10 минут. Это помогает сжечь часть нагара и очистить дроссельную заслонку естественным путем.</p></div>
+
+<h2 id="критические-ошибки-и-их-последствия">Критические ошибки и их последствия</h2>
+<p>Некоторые коды ошибок EPC требуют немедленного вмешательства. Например, ошибка <code>P2118</code> указывает на то, что ток привода дроссельной заслонки выходит за допустимые пределы. Это часто говорит о коротком замыкании внутри мотора заслонки или обрыве в проводке.</p>
+<p>Ошибка <code>P2135</code> сигнализирует о рассогласовании сигналов от двух датчиков положения педали газа. Это может быть вызвано как неисправностью самого датчика, так и проблемами с питанием или заземлением. В этом случае автомобиль может вообще не реагировать на нажатие педали.</p>
+<p>Иногда проблема кроется в самом блоке управления двигателем (ЭБУ). Если все датчики и проводка в порядке, а ошибка сохраняется, возможно, потребуется перепрошивка или замена самого блока. <mark>В редких случаях проблема может быть вызвана низким напряжением в бортовой сети, которое сбивает калибровку ЭБУ при запуске двигателя.</mark></p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Регулярная очистка дроссельной заслонки и использование качественного топлива являются лучшими способами предотвращения проблем с индикатором EPC в Skoda Octavia A7.</p></div>
+
+<h2 id="faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</h2>
+
+<details>
+<summary>Можно ли ездить с горящим индикатором EPC?</summary>
+<p>Технически можно, но только до ближайшего сервиса. Двигатель будет работать в аварийном режиме с ограниченной мощностью, что опасно при обгонах или движении в гору. Кроме того, длительная езда в таком режиме может повредить каталитический нейтрализатор.</p>
+</details>
+
+<details>
+<summary>Сколько стоит очистка дроссельной заслонки?</summary>
+<p>Стоимость варьируется от 1000 до 3000 рублей в зависимости от сервиса и типа двигателя. В стоимость обычно входит демонтаж, чистка, установка и адаптация. Если требуется замена прокладки или уплотнителей, цена увеличится.</p>
+</details>
+
+<details>
+<summary>Почему EPC загорается только на холодную?</summary>
+<p>Это может указывать на износ датчиков, которые «плывут» при изменении температуры, или на проблемы с проводкой, которые проявляются при холодном металле. Также возможно, что ЭБУ не может корректно адаптировать заслонку при низких температурах без дополнительного прогрева.</p>
+</details>
+
+<details>
+<summary>Нужно ли обкатывать новую дроссельную заслонку?</summary>
+<p>Сама деталь не требует обкатки, но обязательна процедура адаптации (обучения). После установки новой заслонки ЭБУ должен запомнить её минимальное и максимальное положения. Без адаптации работа двигателя будет нестабильной.</p>
+</details>
+
+<details>
+<summary>Может ли проблема быть в аккумуляторе?</summary>
+<p>Да, слабая или разряженная аккумуляторная батарея может вызывать ложные срабатывания системы EPC. Электроника очень чувствительна к просадкам напряжения, особенно в момент запуска двигателя или при резком изменении нагрузки. Проверьте напряжение АКБ перед диагностикой.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#введение-в-систему-epc-для-skoda-octavia-a7">Введение в систему EPC для Skoda Octavia A7</a></li><li><a href="#что-означает-индикатор-epc-и-почему-он-загорается">Что означает индикатор EPC и почему он загорается</a></li><li><a href="#основные-причины-неисправностей-системы-epc">Основные причины неисправностей системы EPC</a></li><li><a href="#диагностика-и-чтение-кодов-ошибок">Диагностика и чтение кодов ошибок</a></li><li><a href="#поиск-запчастей-по-epc-и-каталогам">Поиск запчастей по EPC и каталогам</a></li><li><a href="#процедура-адаптации-дроссельной-заслонки">Процедура адаптации дроссельной заслонки</a></li><li><a href="#техническое-обслуживание-для-профилактики-epc">Техническое обслуживание для профилактики EPC</a></li><li><a href="#критические-ошибки-и-их-последствия">Критические ошибки и их последствия</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/s/sh/shkoda-oktaviya-a5-spojler.html" class="related-card">Спойлер на Škoda Octavia A5: выбор, установка, тюнинг</a></li><li><a href="/articles/z/za/zamena-linzy-v-fare-shkoda-oktaviya-a5.html" class="related-card">Замена линзы в фаре Skoda Octavia A5: пошаговая инструкция и советы</a></li><li><a href="/articles/s/st/stojki-shkoda-oktaviya-a5.html" class="related-card">Стойки стабилизатора Шкода Октавия А5: выбор, замена и симптомы</a></li><li><a href="/articles/p/po/podkrylki-perednie-shkoda-oktaviya-tur.html" class="related-card">Передние подкрылки на ŠKODA Octavia Tour: выбор, замена, советы</a></li><li><a href="/articles/s/sh/shkoda-oktaviya-a5-zamena-zadnikh-amortizatorov.html" class="related-card">Замена задних амортизаторов ŠKODA Octavia A5: пошаговая инструкция</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/s/sh/shkoda-oktaviya-a5-spojler.html" class="related-bottom-card"><span class="related-bottom-title">Спойлер на Škoda Octavia A5: выбор, установка, тюнинг</span><span class="related-bottom-desc">Как выбрать и установить спойлер на Škoda Octavia A5? Обзор оригинальных и универсальных моделей, ин</span></a><a href="/articles/z/za/zamena-linzy-v-fare-shkoda-oktaviya-a5.html" class="related-bottom-card"><span class="related-bottom-title">Замена линзы в фаре Skoda Octavia A5: пошаговая инструкция и советы</span><span class="related-bottom-desc">Подробный гайд по замене линзы в фаре Skoda Octavia A5. Разборка, выбор оптики, устранение мутности </span></a><a href="/articles/s/st/stojki-shkoda-oktaviya-a5.html" class="related-bottom-card"><span class="related-bottom-title">Стойки стабилизатора Шкода Октавия А5: выбор, замена и симптомы</span><span class="related-bottom-desc">Полный гид по стойкам стабилизатора для Skoda Octavia A5. Признаки неисправности, отличия оригинала </span></a><a href="/articles/p/po/podkrylki-perednie-shkoda-oktaviya-tur.html" class="related-bottom-card"><span class="related-bottom-title">Передние подкрылки на ŠKODA Octavia Tour: выбор, замена, советы</span><span class="related-bottom-desc">Как выбрать и установить передние подкрылки на Škoda Octavia Tour? Сравнение материалов, инструкция </span></a><a href="/articles/s/sh/shkoda-oktaviya-a5-zamena-zadnikh-amortizatorov.html" class="related-bottom-card"><span class="related-bottom-title">Замена задних амортизаторов ŠKODA Octavia A5: пошаговая инструкция</span><span class="related-bottom-desc">Как самостоятельно поменять задние амортизаторы на ŠKODA Octavia A5: выбор запчастей, инструменты, н</span></a><a href="/articles/k/ka/kak-snyat-podlokotnik-na-shkoda-oktaviya-a5.html" class="related-bottom-card"><span class="related-bottom-title">Как снять подлокотник на ŠKODA Octavia A5: пошаговая инструкция</span><span class="related-bottom-desc">Детальный гайд по демонтажу переднего подлокотника на ŠKODA Octavia A5 (2004-2013). Схемы, инструмен</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🛠 Skoda-Handbook</div>
+                    <p class="footer-about">Škoda — чешская практичность на каждый день. Обзоры моделей от Rapid до Kodiaq, технические характеристики, честные отзывы владельцев и советы по обслуживанию.
+</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/octavia/">📁 Octavia</a></li>
+<li><a href="/category/rapid/">📁 Rapid</a></li>
+<li><a href="/category/fabia/">📁 Fabia</a></li>
+<li><a href="/category/kodiaq/">📁 Kodiaq</a></li>
+<li><a href="/category/yeti/">📁 Yeti</a></li>
+<li><a href="/category/superb/">📁 Superb</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Skoda-Handbook. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>
